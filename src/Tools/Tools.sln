@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TogglExport", "TogglExport\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TogglData", "TogglData\TogglData.csproj", "{166DCE93-CECD-4820-87D6-676F9CE4BA11}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TogglMerge", "TogglMerge\TogglMerge.csproj", "{B4088D08-373A-4F4E-AF03-5891936548C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TogglMerge", "TogglMerge\TogglMerge.csproj", "{B4088D08-373A-4F4E-AF03-5891936548C3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

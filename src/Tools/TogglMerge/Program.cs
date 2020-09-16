@@ -1,14 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using TogglData.dto;
+using TogglData.entities;
 
 namespace TogglMerge
 {
     internal class Program
     {
-        private static readonly Dictionary<long, TimelineEventsDTO> GlobalDB = new Dictionary<long, TimelineEventsDTO>();
+        private static readonly Dictionary<long, TimelineEvents> GlobalDB = new Dictionary<long, TimelineEvents>();
+        private static readonly Dictionary<long, TimelineEvents> NewRecordsDB = new Dictionary<long, TimelineEvents>();
 
         private static void Main(string[] args)
         {
@@ -18,16 +21,33 @@ namespace TogglMerge
             var name = Path.GetFileName(filePattern);
             var files = Directory.GetFiles(path, name);
 
+            var globalDB = ConfigHelper.Config["GlobalDB"];
+            globalDB.ReadOriginal().ForEach(r => { GlobalDB[r.LocalId] = r; });
+
             foreach (var item in files)
             {
                 Console.WriteLine($"Reading {item}...");
                 item
-                    .ReadDB()
-                    .ForEach((r) => { GlobalDB[r.LocalId] = r; });
+                    .ReadOriginal()
+                    .ForEach((r) => 
+                    { 
+                        if (!GlobalDB.ContainsKey(r.LocalId))
+                        {
+                            NewRecordsDB[r.LocalId] = r;
+                            GlobalDB[r.LocalId] = r;
+                        }
+                    });
             }
 
-            var outputFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + $"\\toggleDB.xlsx";
-            GlobalDB.Values.WriteToExcel(outputFile);
+            if (NewRecordsDB.Values.Count > 0)
+            {
+                Console.WriteLine($"Writing {NewRecordsDB.Values.Count} items to {globalDB}");
+                globalDB.WriteOriginal(NewRecordsDB.Values);
+            }
+
+
+            //var outputFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + $"\\toggleDB.xlsx";
+            //GlobalDB.Values.WriteToExcel(outputFile);
         }
 
 

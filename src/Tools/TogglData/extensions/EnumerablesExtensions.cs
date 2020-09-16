@@ -3,6 +3,7 @@ using OfficeOpenXml;
 using System.Linq;
 using TogglData.context;
 using TogglData.dto;
+using TogglData.entities;
 
 namespace System.Collections.Generic
 {
@@ -67,6 +68,30 @@ namespace System.Collections.Generic
 
         }
 
+        public static List<TimelineEvents> ReadOriginal(this string file)
+        {
+            var connString = $"Data Source={file}";
+            var options = new DbContextOptionsBuilder<TogglContext>()
+                .UseSqlite(connString)
+                .Options;
+
+            using var db = new TogglContext(options);
+            var datos = db.TimelineEvents.ToList();
+
+            return datos;
+        }
+
+        public static void WriteOriginal(this string file, IEnumerable<TimelineEvents> datos)
+        {
+            var connString = $"Data Source={file}";
+            var options = new DbContextOptionsBuilder<TogglContext>()
+                .UseSqlite(connString)
+                .Options;
+
+            using var db = new TogglContext(options);
+            db.TimelineEvents.AddRange(datos);
+            db.SaveChanges();
+        }
 
     }
 }
