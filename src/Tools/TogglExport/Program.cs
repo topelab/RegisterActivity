@@ -13,7 +13,7 @@ namespace TogglExport
             var connString = args.Length > 1 ? args[1] : "toggl";
             var dbFileName = ConfigHelper.GetConnectionString(connString).GetPart("Data Source");
             string filename = Path.GetFileNameWithoutExtension(dbFileName);
-            var outputFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + $"\\{filename}.{format}";
+            var outputFile = (ConfigHelper.Config["OutputDirectory"] ?? Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)) + $"\\{ filename}.{format}";
 
             var list = dbFileName
                 .ReadDB();
