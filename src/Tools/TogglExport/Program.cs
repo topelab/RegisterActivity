@@ -9,14 +9,23 @@ namespace TogglExport
     {
         private static void Main(string[] args)
         {
-            var connString = args.Length > 0 ? args[0] : "toggl";
+            var format = args.Length > 0 && args[0].Equals("-e", StringComparison.CurrentCultureIgnoreCase) ? "xlsx" : "csv";
+            var connString = args.Length > 1 ? args[1] : "toggl";
             var dbFileName = ConfigHelper.GetConnectionString(connString).GetPart("Data Source");
             string filename = Path.GetFileNameWithoutExtension(dbFileName);
-            var outputFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + $"\\{filename}.xlsx";
+            var outputFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + $"\\{filename}.{format}";
 
-            dbFileName
-                .ReadDB()
-                .WriteToExcel(outputFile);
+            var list = dbFileName
+                .ReadDB();
+
+            if (format.Equals("csv"))
+            {
+                list.WriteToCSV(outputFile);
+            }
+            else
+            {
+                list.WriteToExcel(outputFile);
+            }
 
         }
     }

@@ -1,6 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OfficeOpenXml;
+using System.Globalization;
+using System.IO;
 using System.Linq;
+using System.Text;
 using TogglData.context;
 using TogglData.dto;
 using TogglData.entities;
@@ -44,6 +47,12 @@ namespace System.Collections.Generic
 
             pack.Save();
 
+        }
+
+        public static void WriteToCSV(this IEnumerable<TimelineEventsDTO> datos, string outputFile)
+        {
+            var content = datos.ToCsv();
+            File.WriteAllText(outputFile, content);
         }
 
         public static List<TimelineEventsDTO> ReadDB(this string file)
@@ -93,5 +102,43 @@ namespace System.Collections.Generic
             db.SaveChanges();
         }
 
+        private static readonly string Separator = ",";
+
+        public static string ToCsv<T>(this IEnumerable<T> items)
+            where T : class
+        {
+            var csvBuilder = new StringBuilder();
+            var properties = typeof(T).GetProperties();
+            
+            csvBuilder.AppendLine(string.Join(Separator, properties.Select(p => p.Name)));
+
+            foreach (T item in items)
+            {
+                string line = string.Join(Separator, properties.Select(p => p.GetValue(item, null).ToCsvValue()).ToArray());
+                csvBuilder.AppendLine(line);
+            }
+            return csvBuilder.ToString();
+        }
+
+        private static string ToCsvValue<T>(this T item)
+        {
+            if (item == null) return "\"\"";
+
+            string value = item.ToString();
+
+            if (item is string)
+            {
+                return string.Format("\"{0}\"", item.ToString().Replace("\"", "\"\""));
+            }
+            if (item is double || item is float || item is decimal)
+            {
+                return value.Contains(",") ? $"\"{value}\"" : value;
+            }
+            if (item is DateTime)
+            {
+                return (item as DateTime?).Value.ToString("yyyy-MM-dd HH:mm:ss").Replace(" 00:00:00", "");
+            }
+            return string.Format("{0}", item);
+        }
     }
 }

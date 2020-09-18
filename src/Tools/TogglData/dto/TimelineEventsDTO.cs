@@ -11,7 +11,7 @@ namespace TogglData.dto
         public string Filename { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime? EndTime { get; set; }
-        public double TotalTime => EndTime.HasValue ? (EndTime.Value - StartTime).TotalSeconds : 0;
+        public double TotalTime => EndTime.HasValue ? (EndTime.Value - StartTime).TotalMinutes : 0;
         public DateTime Date => EndTime.HasValue ? EndTime.Value.Date : StartTime.Date;
         public string Program => $"{Path.GetFileName(Filename)} - {Title}";
 
