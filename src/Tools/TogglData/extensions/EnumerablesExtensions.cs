@@ -128,7 +128,7 @@ namespace System.Collections.Generic
 
             if (item is string)
             {
-                return string.Format("\"{0}\"", item.ToString().Replace("\"", "\"\""));
+                return string.Format("\"{0}\"", item.ToString().Replace("\"", "\"\"").Replace("\r\n"," ").Replace('\n', ' '));
             }
             if (item is double || item is float || item is decimal)
             {
