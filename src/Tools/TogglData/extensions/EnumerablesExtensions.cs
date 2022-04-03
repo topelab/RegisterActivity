@@ -4,9 +4,9 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
-using TogglData.context;
 using TogglData.dto;
-using TogglData.entities;
+using Tools.TogglData.Adapters.Context;
+using Tools.TogglData.Domain.Entities;
 
 namespace System.Collections.Generic
 {
@@ -58,12 +58,12 @@ namespace System.Collections.Generic
         public static List<TimelineEventsDTO> ReadDB(this string file)
         {
             var connString = $"Data Source={file}";
-            var options = new DbContextOptionsBuilder<TogglContext>()
+            var options = new DbContextOptionsBuilder<TogglDataDbContext>()
                 .UseSqlite(connString)
                 .Options;
 
-            using var db = new TogglContext(options);
-            var datos = db.TimelineEvents
+            using var db = new TogglDataDbContext(options);
+            var datos = db.TimelineEvent
                 .Select(r => new TimelineEventsDTO
                 {
                     LocalId = r.LocalId,
@@ -77,28 +77,28 @@ namespace System.Collections.Generic
 
         }
 
-        public static List<TimelineEvents> ReadOriginal(this string file)
+        public static List<TimelineEvent> ReadOriginal(this string file)
         {
             var connString = $"Data Source={file}";
-            var options = new DbContextOptionsBuilder<TogglContext>()
+            var options = new DbContextOptionsBuilder<TogglDataDbContext>()
                 .UseSqlite(connString)
                 .Options;
 
-            using var db = new TogglContext(options);
-            var datos = db.TimelineEvents.ToList();
+            using var db = new TogglDataDbContext(options);
+            var datos = db.TimelineEvent.ToList();
 
             return datos;
         }
 
-        public static void WriteOriginal(this string file, IEnumerable<TimelineEvents> datos)
+        public static void WriteOriginal(this string file, IEnumerable<TimelineEvent> datos)
         {
             var connString = $"Data Source={file}";
-            var options = new DbContextOptionsBuilder<TogglContext>()
+            var options = new DbContextOptionsBuilder<TogglDataDbContext>()
                 .UseSqlite(connString)
                 .Options;
 
-            using var db = new TogglContext(options);
-            db.TimelineEvents.AddRange(datos);
+            using var db = new TogglDataDbContext(options);
+            db.TimelineEvent.AddRange(datos);
             db.SaveChanges();
         }
 

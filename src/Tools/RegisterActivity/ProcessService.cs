@@ -8,6 +8,7 @@ namespace RegisterActivity
 {
     internal class ProcessService
     {
+        private bool timerRunning;
         private readonly Timer timer;
         private Action<IEnumerable<ProcessDTO>> onNewProcesses;
 
@@ -31,11 +32,22 @@ namespace RegisterActivity
 
         private void OnTimerElapsed(object sender, ElapsedEventArgs e)
         {
-            IEnumerable<ProcessDTO> processes = Process.GetProcesses()
-                .Where(p => !string.IsNullOrWhiteSpace(p.MainWindowTitle))
-                .Select(p => new ProcessDTO(p.MainWindowTitle, p.ProcessName, p.StartTime, p.MainModule.FileName));
+            if (!timerRunning)
+            {
+                timerRunning = true;
 
-            onNewProcesses?.Invoke(processes);
+                try
+                {
+                    IEnumerable<ProcessDTO> processes = Process.GetProcesses()
+                        .Where(p => !string.IsNullOrWhiteSpace(p.MainWindowTitle))
+                        .Select(p => new ProcessDTO(p.MainWindowTitle, p.ProcessName, p.StartTime, p.MainModule.FileName));
+                    onNewProcesses?.Invoke(processes);
+                }
+                finally
+                {
+                    timerRunning = false;
+                }
+            }
         }
     }
 }
