@@ -19,7 +19,7 @@ namespace Tools.TogglData.Adapters.Builders
             modelBuilder.Entity<TimelineEvent>(entity =>
             {
                 entity.ToTable("timeline_events");
-                entity.HasNoKey();
+                entity.HasKey(e => e.LocalId);
 
                 entity.Property(e => e.LocalId)
                     .HasColumnName("local_id")

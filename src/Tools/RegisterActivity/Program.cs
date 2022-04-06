@@ -1,15 +1,13 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading;
+﻿using System;
+using Topelab.Core.Resolver.Interfaces;
+using Topelab.Core.Resolver.Microsoft;
 
 namespace RegisterActivity
 {
     internal class Program
     {
-        private static Timer timer;
-        private static bool stopNow;
+        private static IResolver resolver;
+        private static IProcessService processService;
 
         private static void Main(string[] args)
         {
@@ -18,26 +16,21 @@ namespace RegisterActivity
             bool exit = false;
             while (!exit)
             {
-                var key = Console.ReadKey();
+                ConsoleKeyInfo key = Console.ReadKey();
                 if (key.Key == ConsoleKey.Escape)
                 {
                     exit = true;
-                    stopNow = true;
-                    timer.Dispose();
+                    processService.Stop();
                 }
             }
         }
 
         static void Prepare()
         {
-            stopNow = false;
-            timer = new Timer(CheckProcesses, stopNow, 0, 5000);
-        }
-
-        private static void CheckProcesses(object state)
-        {
-            var processes = Process.GetProcesses().Where(p => !string.IsNullOrWhiteSpace(p.MainWindowTitle)).Select(p => new { p.MainWindowTitle, p.ProcessName, p.StartTime, p.MainModule.FileName });
-            Console.WriteLine(JsonConvert.SerializeObject(processes, Formatting.None));
+            resolver = ResolverFactory.Create(SetupDI.Register());
+            processService = resolver.Get<IProcessService>();
+            IDataService dataService = resolver.Get<IDataService>();
+            processService.Start(dataService.SaveData);
         }
     }
 }

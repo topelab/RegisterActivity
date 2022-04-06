@@ -6,7 +6,7 @@ using System.Timers;
 
 namespace RegisterActivity
 {
-    internal class ProcessService
+    internal class ProcessService : IProcessService
     {
         private bool timerRunning;
         private readonly Timer timer;
@@ -39,6 +39,7 @@ namespace RegisterActivity
                 try
                 {
                     IEnumerable<ProcessDTO> processes = Process.GetProcesses()
+                        .Where(p => CanGetProcess(p))
                         .Where(p => !string.IsNullOrWhiteSpace(p.MainWindowTitle))
                         .Select(p => new ProcessDTO(p.MainWindowTitle, p.ProcessName, p.StartTime, p.MainModule.FileName));
                     onNewProcesses?.Invoke(processes);
@@ -48,6 +49,23 @@ namespace RegisterActivity
                     timerRunning = false;
                 }
             }
+        }
+
+        private bool CanGetProcess(Process process)
+        {
+            bool result;
+
+            try
+            {
+                var ptr = process.Handle;
+                result = true;
+            }
+            catch
+            {
+                result = false;
+            }
+
+            return result;
         }
     }
 }
