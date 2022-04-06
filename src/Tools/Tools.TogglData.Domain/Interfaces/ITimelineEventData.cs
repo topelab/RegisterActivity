@@ -8,11 +8,6 @@ namespace Tools.TogglData.Domain.Interfaces
     public interface ITimelineEventData
     {
         /// <summary>
-        /// Local id
-        /// </summary>
-        int LocalId { get; set; }
-
-        /// <summary>
         /// Guid
         /// </summary>
         string Guid { get; set; }

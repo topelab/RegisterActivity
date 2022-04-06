@@ -24,6 +24,7 @@ namespace Tools.TogglData.Adapters.Builders
                 entity.Property(e => e.LocalId)
                     .HasColumnName("local_id")
                     .HasPrecision(8, 0);
+
                 entity.Property(e => e.Title)
                     .HasColumnName("title")
                     .HasMaxLength(2147483647);

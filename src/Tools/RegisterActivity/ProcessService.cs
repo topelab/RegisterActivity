@@ -41,7 +41,7 @@ namespace RegisterActivity
                     IEnumerable<ProcessDTO> processes = Process.GetProcesses()
                         .Where(p => CanGetProcess(p))
                         .Where(p => !string.IsNullOrWhiteSpace(p.MainWindowTitle))
-                        .Select(p => new ProcessDTO(p.MainWindowTitle, p.ProcessName, p.StartTime, p.MainModule.FileName));
+                        .Select(p => new ProcessDTO(p.Id, p.MainWindowTitle, p.ProcessName, p.StartTime, p.MainModule.FileName));
                     onNewProcesses?.Invoke(processes);
                 }
                 finally

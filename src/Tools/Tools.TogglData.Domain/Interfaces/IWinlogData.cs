@@ -8,11 +8,6 @@ namespace Tools.TogglData.Domain.Interfaces
     public interface IWinlogData
     {
         /// <summary>
-        /// Local id
-        /// </summary>
-        int LocalId { get; set; }
-
-        /// <summary>
         /// Title
         /// </summary>
         string Title { get; set; }

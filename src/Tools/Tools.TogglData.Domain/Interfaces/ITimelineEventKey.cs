@@ -7,5 +7,10 @@ namespace Tools.TogglData.Domain.Interfaces
     /// </summary>
     public interface ITimelineEventKey
     {
+        /// <summary>
+        /// Local id
+        /// </summary>
+        int LocalId { get; set; }
+
     }
 }

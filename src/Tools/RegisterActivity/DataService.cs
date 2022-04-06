@@ -19,6 +19,11 @@ namespace RegisterActivity
             options = optionsFactory.Create("toggl");
         }
 
+        public void CalculateData(IEnumerable<ProcessDTO> processes)
+        {
+
+        }
+
         public void SaveData(IEnumerable<ProcessDTO> processes)
         {
             using ITogglDataDbContext db = resolver.Get<ITogglDataDbContext, DbContextOptions<TogglDataDbContext>>(options);
