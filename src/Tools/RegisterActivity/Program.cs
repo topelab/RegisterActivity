@@ -30,7 +30,7 @@ namespace RegisterActivity
             resolver = ResolverFactory.Create(SetupDI.Register());
             processService = resolver.Get<IProcessService>();
             IDataService dataService = resolver.Get<IDataService>();
-            processService.Start(dataService.SaveData);
+            processService.Start(dataService.CalculateData);
         }
     }
 }
