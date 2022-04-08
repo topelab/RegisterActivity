@@ -31,39 +31,43 @@ namespace RegisterActivity
             if (currentProcess != null)
             {
                 TimeSpan duration = DateTime.Now - lastTime;
+                lastTime = DateTime.Now;
                 if (processData.TryGetValue(currentProcess.Id, out ProcessDTO process))
                 {
                     currentProcess = process;
                 }
 
-                currentProcess.Duration += duration;
+                currentProcess.Duration = currentProcess.Duration.Add(duration);
+                SaveData(currentProcess);
                 processData[currentProcess.Id] = currentProcess;
             }
         }
 
-        public void SaveData(ProcessDTO process)
+        private void SaveData(ProcessDTO process)
         {
             using ITogglDataDbContext db = resolver.Get<ITogglDataDbContext, DbContextOptions<TogglDataDbContext>>(options);
+            Winlog winlog;
 
             if (process.LocalId > 0)
             {
-                Winlog savedProcess = db.Find<Winlog>(process.LocalId);
-                if (savedProcess != null)
+                winlog = db.Find<Winlog>(process.LocalId);
+                if (winlog != null)
                 {
-                    savedProcess.TotalTime = process.Duration.TotalSeconds.ToString();
+                    winlog.TotalTime = process.Duration.TotalSeconds.ToString();
                 }
-                db.Update(savedProcess);
+                db.Update(winlog);
             }
             else
             {
-                Winlog winlog = Map(process);
+                winlog = Map(process);
                 db.Add(winlog);
-            }
+            } 
 
             db.SaveChanges();
+            process.LocalId = winlog.LocalId;
         }
 
-        public void SaveData(IEnumerable<ProcessDTO> processes)
+        private void SaveData(IEnumerable<ProcessDTO> processes)
         {
             using ITogglDataDbContext db = resolver.Get<ITogglDataDbContext, DbContextOptions<TogglDataDbContext>>(options);
             foreach (ProcessDTO item in processes)
