@@ -8,6 +8,7 @@ namespace RegisterActivity
 {
     internal class ProcessService : IProcessService
     {
+        private double interval = 5000;
         private bool timerRunning;
         private readonly Timer timer;
         private Action<ProcessDTO> onNewProcesses;
@@ -20,7 +21,7 @@ namespace RegisterActivity
 
         public void Start(Action<ProcessDTO> onNewProcesses)
         {
-            timer.Interval = 5000;
+            timer.Interval = interval;
             this.onNewProcesses = onNewProcesses;
             timer.Start();
         }
@@ -39,8 +40,14 @@ namespace RegisterActivity
                 try
                 {
                     var activeWindow = WindowTools.GetActiveWindowProcessId();
-                    ProcessDTO currentProcess = new ProcessDTO(Process.GetProcessById(activeWindow.processId));
-                    onNewProcesses?.Invoke(currentProcess);
+                    var process = Process.GetProcessById(activeWindow.processId);
+                    if (process != null)
+                    {
+                        ProcessDTO currentProcess = new ProcessDTO(process);
+                        DateTime previousInstance = DateTime.Now.AddMilliseconds(-interval);
+                        currentProcess.LastTimeActive = process.StartTime > previousInstance ? process.StartTime : previousInstance;
+                        onNewProcesses?.Invoke(currentProcess);
+                    }
                 }
                 finally
                 {

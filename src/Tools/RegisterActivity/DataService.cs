@@ -23,20 +23,17 @@ namespace RegisterActivity
 
         public void CalculateData(ProcessDTO currentProcess)
         {
-            if (currentProcess != null)
+            if (processData.TryGetValue(currentProcess.Id, out ProcessDTO process))
             {
-                if (processData.TryGetValue(currentProcess.Id, out ProcessDTO process))
-                {
-                    currentProcess = process;
-                }
-                DateTime lastMoment = currentProcess.LastTimeActive ?? DateTime.Now;
-                TimeSpan duration = currentProcess.Duration.Add(DateTime.Now - lastMoment);
-                currentProcess.Duration = duration;
-                currentProcess.LastTimeActive = DateTime.Now;
-
-                SaveData(currentProcess);
-                processData[currentProcess.Id] = currentProcess;
+                currentProcess = process;
             }
+            DateTime lastMoment = currentProcess.LastTimeActive ?? DateTime.Now;
+            TimeSpan duration = currentProcess.Duration.Add(DateTime.Now - lastMoment);
+            currentProcess.Duration = duration;
+            currentProcess.LastTimeActive = DateTime.Now;
+
+            SaveData(currentProcess);
+            processData[currentProcess.Id] = currentProcess;
         }
 
         private void SaveData(ProcessDTO process)
