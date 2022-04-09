@@ -10,7 +10,7 @@ namespace RegisterActivity
     {
         private bool timerRunning;
         private readonly Timer timer;
-        private Action<IEnumerable<ProcessDTO>> onNewProcesses;
+        private Action<ProcessDTO> onNewProcesses;
 
         public ProcessService()
         {
@@ -18,9 +18,9 @@ namespace RegisterActivity
             timer.Elapsed += OnTimerElapsed;
         }
 
-        public void Start(Action<IEnumerable<ProcessDTO>> onNewProcesses, double interval = 5000)
+        public void Start(Action<ProcessDTO> onNewProcesses)
         {
-            timer.Interval = interval;
+            timer.Interval = 5000;
             this.onNewProcesses = onNewProcesses;
             timer.Start();
         }
@@ -38,11 +38,9 @@ namespace RegisterActivity
 
                 try
                 {
-                    IEnumerable<ProcessDTO> processes = Process.GetProcesses()
-                        .Where(p => CanGetProcess(p))
-                        .Where(p => !string.IsNullOrWhiteSpace(p.MainWindowTitle))
-                        .Select(p => new ProcessDTO(p.Id, p.MainWindowHandle, p.MainWindowTitle, p.ProcessName, p.StartTime, p.MainModule.FileName));
-                    onNewProcesses?.Invoke(processes);
+                    var activeWindow = WindowTools.GetActiveWindowProcessId();
+                    ProcessDTO currentProcess = new ProcessDTO(Process.GetProcessById(activeWindow.processId));
+                    onNewProcesses?.Invoke(currentProcess);
                 }
                 finally
                 {

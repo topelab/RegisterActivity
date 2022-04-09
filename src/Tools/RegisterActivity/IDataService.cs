@@ -4,6 +4,6 @@ namespace RegisterActivity
 {
     internal interface IDataService
     {
-        void CalculateData(IEnumerable<ProcessDTO> processes);
+        void CalculateData(ProcessDTO currentProcess);
     }
 }

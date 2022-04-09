@@ -1,9 +1,14 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace RegisterActivity
 {
     internal class ProcessDTO
     {
+        public ProcessDTO(Process p) : this(p.Id, p.MainWindowHandle, p.MainWindowTitle, p.ProcessName, p.StartTime, p.MainModule.FileName)
+        {
+        }
+
         public ProcessDTO(int id, IntPtr mainWindowHandle, string mainWindowTitle, string processName, DateTime startTime, string fileName)
         {
             Id = id;
@@ -23,5 +28,6 @@ namespace RegisterActivity
 
         public int LocalId { get; set; }
         public TimeSpan Duration { get; set; }
+        public DateTime? LastTimeActive { get; set; }
     }
 }
