@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace RegisterActivity
 {
@@ -46,17 +47,28 @@ namespace RegisterActivity
                     throw new Win32Exception(Marshal.GetLastWin32Error());
                 }
             }
+
+            Application.Run();
         }
 
         private void WindowEventCallback(IntPtr hWinEventHook, uint eventType, IntPtr hwnd, int idObject, int idChild, uint dwEventThread, uint dwmsEventTime)
         {
+            ProcessDTO currentProcess = null;
+
             try
             {
-                (IntPtr intPtr, int processId) activeWindow = WindowTools.GetActiveWindowProcessId();
-                ProcessDTO currentProcess = new ProcessDTO(Process.GetProcessById(activeWindow.processId));
-                onNewProcesses?.Invoke(currentProcess);
+                var processId = WindowTools.GetActiveWindowProcessId();
+                currentProcess = new ProcessDTO(Process.GetProcessById(processId));
             }
             catch { }
+            finally
+            {
+                if (previousProcess != null)
+                {
+                    onNewProcesses?.Invoke(previousProcess);
+                }
+                previousProcess = currentProcess;
+            }
         }
 
         private IntPtr windowEventHook;
@@ -67,5 +79,6 @@ namespace RegisterActivity
         private const int EVENT_SYSTEM_FOREGROUND = 3;
 
         private Action<ProcessDTO> onNewProcesses;
+        private ProcessDTO previousProcess;
     }
 }

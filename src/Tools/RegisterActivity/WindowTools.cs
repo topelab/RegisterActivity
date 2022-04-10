@@ -23,24 +23,19 @@ namespace RegisterActivity
 
         internal delegate void WinEventProc(IntPtr hWinEventHook, uint eventType, IntPtr hwnd, int idObject, int idChild, uint dwEventThread, uint dwmsEventTime);
 
-        public static (IntPtr intPtr, string title) GetActiveWindowTitle()
+        public static string GetActiveWindowTitle()
         {
             const int nChars = 512;
-            IntPtr handle = IntPtr.Zero;
             StringBuilder Buff = new StringBuilder(nChars);
-            handle = GetForegroundWindow();
-
-            if (GetWindowText(handle, Buff, nChars) > 0)
-            {
-                return (handle, Buff.ToString());
-            }
-            return (IntPtr.Zero, null);
+            IntPtr handle = GetForegroundWindow();
+            return GetWindowText(handle, Buff, nChars) > 0 ? Buff.ToString() : null;
         }
-        public static (IntPtr intPtr, int processId) GetActiveWindowProcessId()
+
+        public static int GetActiveWindowProcessId()
         {
             IntPtr handle = GetForegroundWindow();
             GetWindowThreadProcessId(handle, out uint processId);
-            return (handle, (int)processId);
+            return (int)processId;
         }
     }
 }
