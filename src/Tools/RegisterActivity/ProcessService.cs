@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Timers;
 
 namespace RegisterActivity
@@ -39,11 +37,12 @@ namespace RegisterActivity
 
                 try
                 {
-                    var processId = WindowTools.GetActiveWindowProcessId();
-                    var process = Process.GetProcessById(processId);
+                    string activeWindow = WindowTools.GetActiveWindowTitle();
+                    int processId = WindowTools.GetActiveWindowProcessId();
+                    Process process = Process.GetProcessById(processId);
                     if (process != null)
                     {
-                        ProcessDTO currentProcess = new ProcessDTO(process);
+                        ProcessDTO currentProcess = new ProcessDTO(process, activeWindow);
                         DateTime previousInstance = DateTime.Now.AddMilliseconds(-interval);
                         currentProcess.LastTimeActive = process.StartTime > previousInstance ? process.StartTime : previousInstance;
                         onNewProcesses?.Invoke(currentProcess);
@@ -54,23 +53,6 @@ namespace RegisterActivity
                     timerRunning = false;
                 }
             }
-        }
-
-        private bool CanGetProcess(Process process)
-        {
-            bool result;
-
-            try
-            {
-                var ptr = process.Handle;
-                result = true;
-            }
-            catch
-            {
-                result = false;
-            }
-
-            return result;
         }
     }
 }

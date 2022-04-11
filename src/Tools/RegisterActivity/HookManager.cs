@@ -57,8 +57,9 @@ namespace RegisterActivity
 
             try
             {
+                var activeWindowTitle = WindowTools.GetActiveWindowTitle();
                 var processId = WindowTools.GetActiveWindowProcessId();
-                currentProcess = new ProcessDTO(Process.GetProcessById(processId));
+                currentProcess = new ProcessDTO(Process.GetProcessById(processId), activeWindowTitle);
             }
             catch { }
             finally

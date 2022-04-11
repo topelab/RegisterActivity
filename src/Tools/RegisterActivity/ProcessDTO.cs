@@ -5,18 +5,20 @@ namespace RegisterActivity
 {
     internal class ProcessDTO
     {
-        public ProcessDTO(Process p) : this(p.Id, p.MainWindowHandle, p.MainWindowTitle, p.ProcessName, p.StartTime, p.MainModule.FileName)
+        public ProcessDTO(Process p, string defaultTitle)
         {
-        }
-
-        public ProcessDTO(int id, IntPtr mainWindowHandle, string mainWindowTitle, string processName, DateTime startTime, string fileName)
-        {
-            Id = id;
-            MainWindowHandle = mainWindowHandle;
-            MainWindowTitle = mainWindowTitle;
-            ProcessName = processName;
-            StartTime = startTime;
-            FileName = fileName;
+            Id = p.Id;
+            MainWindowHandle = p.MainWindowHandle;
+            MainWindowTitle = string.IsNullOrWhiteSpace(p.MainWindowTitle) ? defaultTitle : p.MainWindowTitle;
+            ProcessName = p.ProcessName;
+            StartTime = p.StartTime;
+            try
+            {
+                FileName = p.MainModule.FileName;
+            }
+            catch
+            {
+            }
         }
 
         public int Id { get; set; }
@@ -29,5 +31,10 @@ namespace RegisterActivity
         public int LocalId { get; set; }
         public TimeSpan Duration { get; set; }
         public DateTime? LastTimeActive { get; set; }
+
+        public override int GetHashCode()
+        {
+            return string.Concat(MainWindowTitle, ProcessName, StartTime.ToString("u")).GetHashCode();
+        }
     }
 }
