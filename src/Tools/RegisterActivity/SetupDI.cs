@@ -12,7 +12,7 @@ namespace RegisterActivity
         {
             return new ResolveInfoCollection()
                 .AddInstance<ILogger>(LogManager.GetCurrentClassLogger())
-                .AddSingleton<IProcessService, HookManager>()
+                .AddSingleton<IProcessService, ProcessService>()
                 .AddSingleton<IOptionsFactory, OptionsFactory>()
                 .AddSingleton<IDataService, DataService>()
                 .Add<ITogglDataDbContext, TogglDataDbContext>(typeof(DbContextOptions<TogglDataDbContext>))

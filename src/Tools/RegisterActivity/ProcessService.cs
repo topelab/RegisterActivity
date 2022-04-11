@@ -6,7 +6,7 @@ namespace RegisterActivity
 {
     internal class ProcessService : IProcessService
     {
-        private double interval = 5000;
+        private double interval = 1000;
         private bool timerRunning;
         private readonly Timer timer;
         private Action<ProcessDTO> onNewProcesses;
@@ -34,15 +34,16 @@ namespace RegisterActivity
             if (!timerRunning)
             {
                 timerRunning = true;
+                string activeWindow = null;
 
                 try
                 {
-                    string activeWindow = WindowTools.GetActiveWindowTitle();
+                    activeWindow = WindowTools.GetActiveWindowTitle();
                     int processId = WindowTools.GetActiveWindowProcessId();
-                    Process process = Process.GetProcessById(processId);
-                    if (process != null)
+                    if (activeWindow != null && processId > 0)
                     {
-                        ProcessDTO currentProcess = new ProcessDTO(process, activeWindow);
+                        Process process = Process.GetProcessById(processId);
+                        ProcessDTO currentProcess = new(process, activeWindow);
                         DateTime previousInstance = DateTime.Now.AddMilliseconds(-interval);
                         currentProcess.LastTimeActive = process.StartTime > previousInstance ? process.StartTime : previousInstance;
                         onNewProcesses?.Invoke(currentProcess);

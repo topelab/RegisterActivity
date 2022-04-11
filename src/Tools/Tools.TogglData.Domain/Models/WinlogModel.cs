@@ -17,6 +17,7 @@ namespace Tools.TogglData.Domain.Models
         private string totalTime;
         private string date;
         private string program;
+        private int? hashCode;
 
         /// <summary>
         /// Constructor for Winlog
@@ -39,6 +40,7 @@ namespace Tools.TogglData.Domain.Models
             totalTime = entity.TotalTime;
             date = entity.Date;
             program = entity.Program;
+            hashCode = entity.HashCode;
         }
 
         /// <summary>
@@ -114,6 +116,15 @@ namespace Tools.TogglData.Domain.Models
         }
 
         /// <summary>
+        /// Hash code
+        /// </summary>
+        public int? HashCode
+        {
+            get => hashCode;
+            set => SetProperty(ref hashCode, value, OnHashCodeChanged, CanHashCodeChange);
+        }
+
+        /// <summary>
         /// Test if LocalId can change its value
         /// </summary>
         public Func<IWinlog, int, bool> CanLocalIdChange { get; set; }
@@ -184,5 +195,14 @@ namespace Tools.TogglData.Domain.Models
         /// Action triggered after Program changed its value
         /// </summary>
         public Action<string> OnProgramChanged { get; set; }
+
+        /// <summary>
+        /// Test if HashCode can change its value
+        /// </summary>
+        public Func<IWinlog, int?, bool> CanHashCodeChange { get; set; }
+        /// <summary>
+        /// Action triggered after HashCode changed its value
+        /// </summary>
+        public Action<int?> OnHashCodeChanged { get; set; }
     }
 }

@@ -18,6 +18,7 @@ namespace Tools.TogglData.Domain.Entities
         private string totalTime;
         private string date;
         private string program;
+        private int? hashCode;
 
         /// <summary>
         /// Constructor for Winlog
@@ -41,6 +42,7 @@ namespace Tools.TogglData.Domain.Entities
             totalTime = entity.TotalTime;
             date = entity.Date;
             program = entity.Program;
+            hashCode = entity.HashCode;
 
             Initialize();
         }
@@ -222,6 +224,28 @@ namespace Tools.TogglData.Domain.Entities
         /// </summary>
         /// <returns></returns>
         partial void OnProgramChanged();
+
+        /// <summary>
+        /// Hash code
+        /// </summary>
+        public int? HashCode
+        {
+            get => hashCode;
+            set
+            {
+                if (hashCode != value)
+                {
+                    hashCode = value;
+                    OnHashCodeChanged();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Called when HashCode changed its value
+        /// </summary>
+        /// <returns></returns>
+        partial void OnHashCodeChanged();
 
 
         private void Initialize()

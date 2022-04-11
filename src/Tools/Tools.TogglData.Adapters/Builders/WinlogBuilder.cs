@@ -48,6 +48,9 @@ namespace Tools.TogglData.Adapters.Builders
                 entity.Property(e => e.Program)
                     .HasColumnName("program")
                     .HasMaxLength(2147483647);
+                entity.Property(e => e.HashCode)
+                    .HasColumnName("hash_code")
+                    .HasPrecision(8, 0);
 
             });
         }

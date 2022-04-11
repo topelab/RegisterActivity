@@ -42,5 +42,10 @@ namespace Tools.TogglData.Domain.Interfaces
         /// </summary>
         string Program { get; set; }
 
+        /// <summary>
+        /// Hash code
+        /// </summary>
+        int? HashCode { get; set; }
+
     }
 }

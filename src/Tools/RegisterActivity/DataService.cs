@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Tools.TogglData.Adapters.Context;
 using Tools.TogglData.Adapters.Interfaces;
 using Tools.TogglData.Domain.Entities;
@@ -23,7 +24,8 @@ namespace RegisterActivity
 
         public void CalculateData(ProcessDTO currentProcess)
         {
-            if (processData.TryGetValue(currentProcess.Id, out ProcessDTO process))
+            int hashCode = currentProcess.GetHashCode();
+            if (processData.TryGetValue(hashCode, out ProcessDTO process))
             {
                 currentProcess = process;
             }
@@ -33,22 +35,18 @@ namespace RegisterActivity
             currentProcess.LastTimeActive = DateTime.Now;
 
             SaveData(currentProcess);
-            processData[currentProcess.Id] = currentProcess;
+            processData[hashCode] = currentProcess;
         }
 
         private void SaveData(ProcessDTO process)
         {
             using ITogglDataDbContext db = resolver.Get<ITogglDataDbContext, DbContextOptions<TogglDataDbContext>>(options);
-            Winlog winlog;
+            Winlog winlog = db.Winlog.Where(r => r.HashCode == process.GetHashCode()).OrderByDescending(r => r.StartTime).FirstOrDefault();
 
-            if (process.LocalId > 0)
+            if (winlog != null)
             {
-                winlog = db.Find<Winlog>(process.LocalId);
-                if (winlog != null)
-                {
-                    winlog.TotalTime = process.Duration.TotalSeconds.ToString();
-                    winlog.Date = DateTime.UtcNow.ToString("u");
-                }
+                winlog.TotalTime = process.Duration.TotalSeconds.ToString();
+                winlog.Date = DateTime.UtcNow.ToString("u");
                 db.Update(winlog);
             }
             else
@@ -70,7 +68,8 @@ namespace RegisterActivity
                 Program = item.ProcessName,
                 Title = item.MainWindowTitle,
                 Filename = item.FileName,
-                TotalTime = item.Duration.TotalSeconds.ToString()
+                TotalTime = item.Duration.TotalSeconds.ToString(),
+                HashCode = item.GetHashCode()
             };
         }
     }
