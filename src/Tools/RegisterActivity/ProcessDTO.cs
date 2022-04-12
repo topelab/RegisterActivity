@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using Topelab.Core.Helpers.Extensions;
 
 namespace RegisterActivity
 {
@@ -31,6 +32,14 @@ namespace RegisterActivity
         public int LocalId { get; set; }
         public TimeSpan Duration { get; set; }
         public DateTime? LastTimeActive { get; set; }
+
+        public int DurationInSeconds => (int)Duration.TotalSeconds;
+        public double DurationInMinutes => Math.Round(Duration.TotalMinutes, 2);
+
+        public override string ToString()
+        {
+            return this.ToJSon();
+        }
 
         public override int GetHashCode()
         {

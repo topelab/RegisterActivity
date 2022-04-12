@@ -44,8 +44,8 @@ namespace RegisterActivity
                     {
                         Process process = Process.GetProcessById(processId);
                         ProcessDTO currentProcess = new(process, activeWindow);
-                        DateTime previousInstance = DateTime.Now.AddMilliseconds(-interval);
-                        currentProcess.LastTimeActive = process.StartTime > previousInstance ? process.StartTime : previousInstance;
+                        double discount = process.StartTime > DateTime.Now.AddMilliseconds(-interval) ? (DateTime.Now - process.StartTime).TotalMilliseconds : interval;
+                        currentProcess.LastTimeActive = DateTime.Now.AddMilliseconds(-discount);
                         onNewProcesses?.Invoke(currentProcess);
                     }
                 }

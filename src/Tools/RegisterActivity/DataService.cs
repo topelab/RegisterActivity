@@ -15,6 +15,8 @@ namespace RegisterActivity
         private readonly IResolver resolver;
         private readonly Dictionary<int, ProcessDTO> processData;
 
+        private ProcessDTO lastProcess = null;
+
         public DataService(IResolver resolver, IOptionsFactory optionsFactory)
         {
             this.resolver = resolver ?? throw new ArgumentNullException(nameof(resolver));
@@ -30,12 +32,20 @@ namespace RegisterActivity
                 currentProcess = process;
             }
             DateTime lastMoment = currentProcess.LastTimeActive ?? DateTime.Now;
-            TimeSpan duration = currentProcess.Duration.Add(DateTime.Now - lastMoment);
-            currentProcess.Duration = duration;
             currentProcess.LastTimeActive = DateTime.Now;
+            currentProcess.Duration += DateTime.Now - lastMoment;
 
-            SaveData(currentProcess);
+            if (lastProcess != null)
+            {
+                int lastHashCode = lastProcess.GetHashCode();
+                if (lastHashCode != hashCode)
+                {
+                    SaveData(lastProcess);
+                    processData[lastHashCode] = lastProcess;
+                }
+            }
             processData[hashCode] = currentProcess;
+            lastProcess = currentProcess;
         }
 
         private void SaveData(ProcessDTO process)
@@ -45,8 +55,8 @@ namespace RegisterActivity
 
             if (winlog != null)
             {
-                winlog.TotalTime = process.Duration.TotalSeconds.ToString();
-                winlog.Date = DateTime.UtcNow.ToString("u");
+                winlog.TotalTime = process.DurationInSeconds.ToString();
+                winlog.Date = DateTime.Now.ToString("u");
                 db.Update(winlog);
             }
             else
@@ -63,12 +73,12 @@ namespace RegisterActivity
         {
             return new Winlog
             {
-                Date = DateTime.UtcNow.ToString("u"),
+                Date = DateTime.Now.ToString("u"),
                 StartTime = item.StartTime.ToString("u"),
                 Program = item.ProcessName,
                 Title = item.MainWindowTitle,
                 Filename = item.FileName,
-                TotalTime = item.Duration.TotalSeconds.ToString(),
+                TotalTime = item.DurationInSeconds.ToString(),
                 HashCode = item.GetHashCode()
             };
         }
