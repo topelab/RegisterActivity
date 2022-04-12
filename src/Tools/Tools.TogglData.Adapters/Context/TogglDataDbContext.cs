@@ -61,8 +61,6 @@ namespace Tools.TogglData.Adapters.Context
         /// </summary>
         public int Id { get; private set; }
 
-        /// <summary>DbSet for TimelineEvent</summary>
-        public virtual DbSet<TimelineEvent> TimelineEvent { get; set; }
         /// <summary>DbSet for Winlog</summary>
         public virtual DbSet<Winlog> Winlog { get; set; }
 
@@ -119,7 +117,6 @@ namespace Tools.TogglData.Adapters.Context
         /// </remarks>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            TimelineEventBuilder.Build(modelBuilder);
             WinlogBuilder.Build(modelBuilder);
 
         }

@@ -11,14 +11,14 @@ namespace Tools.TogglData.Domain.Entities
     public partial class Winlog : IWinlog
     {
         private int localId;
-        private string title;
+        private int hashCode;
+        private string program;
         private string filename;
+        private string title;
         private string startTime;
         private string endTime;
         private string totalTime;
-        private string date;
-        private string program;
-        private int? hashCode;
+        private int? exported;
 
         /// <summary>
         /// Constructor for Winlog
@@ -35,14 +35,14 @@ namespace Tools.TogglData.Domain.Entities
         public Winlog(IWinlog entity)
         {
             localId = entity.LocalId;
-            title = entity.Title;
+            hashCode = entity.HashCode;
+            program = entity.Program;
             filename = entity.Filename;
+            title = entity.Title;
             startTime = entity.StartTime;
             endTime = entity.EndTime;
             totalTime = entity.TotalTime;
-            date = entity.Date;
-            program = entity.Program;
-            hashCode = entity.HashCode;
+            exported = entity.Exported;
 
             Initialize();
         }
@@ -72,26 +72,48 @@ namespace Tools.TogglData.Domain.Entities
         partial void OnLocalIdChanged();
 
         /// <summary>
-        /// Title
+        /// Hash code
         /// </summary>
-        public string Title
+        public int HashCode
         {
-            get => title;
+            get => hashCode;
             set
             {
-                if (title != value)
+                if (hashCode != value)
                 {
-                    title = value;
-                    OnTitleChanged();
+                    hashCode = value;
+                    OnHashCodeChanged();
                 }
             }
         }
 
         /// <summary>
-        /// Called when Title changed its value
+        /// Called when HashCode changed its value
         /// </summary>
         /// <returns></returns>
-        partial void OnTitleChanged();
+        partial void OnHashCodeChanged();
+
+        /// <summary>
+        /// Program
+        /// </summary>
+        public string Program
+        {
+            get => program;
+            set
+            {
+                if (program != value)
+                {
+                    program = value;
+                    OnProgramChanged();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Called when Program changed its value
+        /// </summary>
+        /// <returns></returns>
+        partial void OnProgramChanged();
 
         /// <summary>
         /// Filename
@@ -114,6 +136,28 @@ namespace Tools.TogglData.Domain.Entities
         /// </summary>
         /// <returns></returns>
         partial void OnFilenameChanged();
+
+        /// <summary>
+        /// Title
+        /// </summary>
+        public string Title
+        {
+            get => title;
+            set
+            {
+                if (title != value)
+                {
+                    title = value;
+                    OnTitleChanged();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Called when Title changed its value
+        /// </summary>
+        /// <returns></returns>
+        partial void OnTitleChanged();
 
         /// <summary>
         /// Start time
@@ -182,70 +226,26 @@ namespace Tools.TogglData.Domain.Entities
         partial void OnTotalTimeChanged();
 
         /// <summary>
-        /// Date
+        /// Exported
         /// </summary>
-        public string Date
+        public int? Exported
         {
-            get => date;
+            get => exported;
             set
             {
-                if (date != value)
+                if (exported != value)
                 {
-                    date = value;
-                    OnDateChanged();
+                    exported = value;
+                    OnExportedChanged();
                 }
             }
         }
 
         /// <summary>
-        /// Called when Date changed its value
+        /// Called when Exported changed its value
         /// </summary>
         /// <returns></returns>
-        partial void OnDateChanged();
-
-        /// <summary>
-        /// Program
-        /// </summary>
-        public string Program
-        {
-            get => program;
-            set
-            {
-                if (program != value)
-                {
-                    program = value;
-                    OnProgramChanged();
-                }
-            }
-        }
-
-        /// <summary>
-        /// Called when Program changed its value
-        /// </summary>
-        /// <returns></returns>
-        partial void OnProgramChanged();
-
-        /// <summary>
-        /// Hash code
-        /// </summary>
-        public int? HashCode
-        {
-            get => hashCode;
-            set
-            {
-                if (hashCode != value)
-                {
-                    hashCode = value;
-                    OnHashCodeChanged();
-                }
-            }
-        }
-
-        /// <summary>
-        /// Called when HashCode changed its value
-        /// </summary>
-        /// <returns></returns>
-        partial void OnHashCodeChanged();
+        partial void OnExportedChanged();
 
 
         private void Initialize()

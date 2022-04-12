@@ -25,11 +25,18 @@ namespace Tools.TogglData.Adapters.Builders
                     .HasColumnName("local_id")
                     .HasPrecision(8, 0);
 
-                entity.Property(e => e.Title)
-                    .HasColumnName("title")
+                entity.Property(e => e.HashCode)
+                    .HasColumnName("hash_code")
+                    .HasPrecision(8, 0);
+                entity.Property(e => e.Program)
+                    .HasColumnName("program")
                     .HasMaxLength(2147483647);
                 entity.Property(e => e.Filename)
                     .HasColumnName("filename")
+                    .HasMaxLength(2147483647);
+                entity.Property(e => e.Title)
+                    .HasColumnName("title")
+                    .IsRequired()
                     .HasMaxLength(2147483647);
                 entity.Property(e => e.StartTime)
                     .HasColumnName("start_time")
@@ -37,19 +44,14 @@ namespace Tools.TogglData.Adapters.Builders
                     .HasMaxLength(2147483647);
                 entity.Property(e => e.EndTime)
                     .HasColumnName("end_time")
+                    .IsRequired()
                     .HasMaxLength(2147483647);
                 entity.Property(e => e.TotalTime)
                     .HasColumnName("total_time")
-                    .HasPrecision(8, 0)
-                    .HasMaxLength(8);
-                entity.Property(e => e.Date)
-                    .HasColumnName("date")
+                    .IsRequired()
                     .HasMaxLength(2147483647);
-                entity.Property(e => e.Program)
-                    .HasColumnName("program")
-                    .HasMaxLength(2147483647);
-                entity.Property(e => e.HashCode)
-                    .HasColumnName("hash_code")
+                entity.Property(e => e.Exported)
+                    .HasColumnName("exported")
                     .HasPrecision(8, 0);
 
             });

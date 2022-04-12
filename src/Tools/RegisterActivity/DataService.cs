@@ -40,6 +40,7 @@ namespace RegisterActivity
                 int lastHashCode = lastProcess.GetHashCode();
                 if (lastHashCode != hashCode)
                 {
+                    lastProcess.LastTimeActive = null;
                     SaveData(lastProcess);
                     processData[lastHashCode] = lastProcess;
                 }
@@ -56,7 +57,7 @@ namespace RegisterActivity
             if (winlog != null)
             {
                 winlog.TotalTime = process.DurationInSeconds.ToString();
-                winlog.Date = DateTime.Now.ToString("u");
+                winlog.EndTime = DateTime.Now.ToString("u");
                 db.Update(winlog);
             }
             else
@@ -73,7 +74,7 @@ namespace RegisterActivity
         {
             return new Winlog
             {
-                Date = DateTime.Now.ToString("u"),
+                EndTime = DateTime.Now.ToString("u"),
                 StartTime = item.StartTime.ToString("u"),
                 Program = item.ProcessName,
                 Title = item.MainWindowTitle,

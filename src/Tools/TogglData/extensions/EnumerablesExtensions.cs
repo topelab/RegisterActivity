@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OfficeOpenXml;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -55,7 +54,7 @@ namespace System.Collections.Generic
             File.WriteAllText(outputFile, content);
         }
 
-        public static List<TimelineEventsDTO> ReadDB(this string file)
+        public static List<TimelineEventsDTO> ReadDB(this string file, Func<Winlog, bool> criteria = null, Action<TogglDataDbContext, IEnumerable<Winlog>> action = null)
         {
             var connString = $"Data Source={file}";
             var options = new DbContextOptionsBuilder<TogglDataDbContext>()
@@ -63,43 +62,25 @@ namespace System.Collections.Generic
                 .Options;
 
             using var db = new TogglDataDbContext(options);
-            var datos = db.TimelineEvent
+            IEnumerable<Winlog> datosDB = db.Winlog;
+
+            if (criteria != null)
+                datosDB = datosDB.Where(criteria);
+
+            var datos = datosDB
                 .Select(r => new TimelineEventsDTO
                 {
                     LocalId = r.LocalId,
                     Title = r.Title,
-                    StartTime = (new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).AddSeconds(r.StartTime).ToLocalTime(),
-                    EndTime = (new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).AddSeconds((long)r.EndTime).ToLocalTime(),
+                    StartTime = DateTime.Parse(r.StartTime),
+                    EndTime = DateTime.Parse(r.EndTime),
                     Filename = r.Filename,
+                    TotalTime = double.Parse(r.TotalTime) / 60.0,
                 }).ToList();
 
-            return datos;
-
-        }
-
-        public static List<TimelineEvent> ReadOriginal(this string file)
-        {
-            var connString = $"Data Source={file}";
-            var options = new DbContextOptionsBuilder<TogglDataDbContext>()
-                .UseSqlite(connString)
-                .Options;
-
-            using var db = new TogglDataDbContext(options);
-            var datos = db.TimelineEvent.ToList();
-
-            return datos;
-        }
-
-        public static void WriteOriginal(this string file, IEnumerable<TimelineEvent> datos)
-        {
-            var connString = $"Data Source={file}";
-            var options = new DbContextOptionsBuilder<TogglDataDbContext>()
-                .UseSqlite(connString)
-                .Options;
-
-            using var db = new TogglDataDbContext(options);
-            db.TimelineEvent.AddRange(datos);
+            action?.Invoke(db, datosDB);
             db.SaveChanges();
+            return datos;
         }
 
         private static readonly string Separator = ",";
@@ -109,7 +90,7 @@ namespace System.Collections.Generic
         {
             var csvBuilder = new StringBuilder();
             var properties = typeof(T).GetProperties();
-            
+
             csvBuilder.AppendLine(string.Join(Separator, properties.Select(p => p.Name)));
 
             foreach (T item in items)
@@ -128,7 +109,7 @@ namespace System.Collections.Generic
 
             if (item is string)
             {
-                return string.Format("\"{0}\"", item.ToString().Replace("\"", "\"\"").Replace("\r\n"," ").Replace('\n', ' '));
+                return string.Format("\"{0}\"", item.ToString().Replace("\"", "\"\"").Replace("\r\n", " ").Replace('\n', ' '));
             }
             if (item is double || item is float || item is decimal)
             {

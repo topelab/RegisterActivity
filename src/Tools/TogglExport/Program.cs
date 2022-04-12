@@ -26,7 +26,6 @@ namespace TogglExport
             {
                 list.WriteToExcel(outputFile);
             }
-
         }
     }
 }

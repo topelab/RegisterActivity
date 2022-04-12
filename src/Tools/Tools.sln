@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TogglExport", "TogglExport\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TogglData", "TogglData\TogglData.csproj", "{166DCE93-CECD-4820-87D6-676F9CE4BA11}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TogglMerge", "TogglMerge\TogglMerge.csproj", "{B4088D08-373A-4F4E-AF03-5891936548C3}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RegisterActivity", "RegisterActivity\RegisterActivity.csproj", "{AFF9490B-8D3F-4BD6-8E8C-011E11FD5A2C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tools.TogglData.Domain", "Tools.TogglData.Domain\Tools.TogglData.Domain.csproj", "{09BE6FBA-FC89-4F6F-99E3-BD2FFCEF5B98}"
@@ -29,10 +27,6 @@ Global
 		{166DCE93-CECD-4820-87D6-676F9CE4BA11}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{166DCE93-CECD-4820-87D6-676F9CE4BA11}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{166DCE93-CECD-4820-87D6-676F9CE4BA11}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B4088D08-373A-4F4E-AF03-5891936548C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B4088D08-373A-4F4E-AF03-5891936548C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B4088D08-373A-4F4E-AF03-5891936548C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B4088D08-373A-4F4E-AF03-5891936548C3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AFF9490B-8D3F-4BD6-8E8C-011E11FD5A2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AFF9490B-8D3F-4BD6-8E8C-011E11FD5A2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AFF9490B-8D3F-4BD6-8E8C-011E11FD5A2C}.Release|Any CPU.ActiveCfg = Release|Any CPU

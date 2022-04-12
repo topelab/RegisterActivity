@@ -10,14 +10,14 @@ namespace Tools.TogglData.Domain.Models
     public partial class WinlogModel : BaseModel<IWinlog>, IWinlog
     {
         private int localId;
-        private string title;
+        private int hashCode;
+        private string program;
         private string filename;
+        private string title;
         private string startTime;
         private string endTime;
         private string totalTime;
-        private string date;
-        private string program;
-        private int? hashCode;
+        private int? exported;
 
         /// <summary>
         /// Constructor for Winlog
@@ -33,14 +33,14 @@ namespace Tools.TogglData.Domain.Models
         public WinlogModel(IWinlog entity)
         {
             localId = entity.LocalId;
-            title = entity.Title;
+            hashCode = entity.HashCode;
+            program = entity.Program;
             filename = entity.Filename;
+            title = entity.Title;
             startTime = entity.StartTime;
             endTime = entity.EndTime;
             totalTime = entity.TotalTime;
-            date = entity.Date;
-            program = entity.Program;
-            hashCode = entity.HashCode;
+            exported = entity.Exported;
         }
 
         /// <summary>
@@ -53,12 +53,21 @@ namespace Tools.TogglData.Domain.Models
         }
 
         /// <summary>
-        /// Title
+        /// Hash code
         /// </summary>
-        public string Title
+        public int HashCode
         {
-            get => title;
-            set => SetProperty(ref title, value, OnTitleChanged, CanTitleChange);
+            get => hashCode;
+            set => SetProperty(ref hashCode, value, OnHashCodeChanged, CanHashCodeChange);
+        }
+
+        /// <summary>
+        /// Program
+        /// </summary>
+        public string Program
+        {
+            get => program;
+            set => SetProperty(ref program, value, OnProgramChanged, CanProgramChange);
         }
 
         /// <summary>
@@ -68,6 +77,15 @@ namespace Tools.TogglData.Domain.Models
         {
             get => filename;
             set => SetProperty(ref filename, value, OnFilenameChanged, CanFilenameChange);
+        }
+
+        /// <summary>
+        /// Title
+        /// </summary>
+        public string Title
+        {
+            get => title;
+            set => SetProperty(ref title, value, OnTitleChanged, CanTitleChange);
         }
 
         /// <summary>
@@ -98,30 +116,12 @@ namespace Tools.TogglData.Domain.Models
         }
 
         /// <summary>
-        /// Date
+        /// Exported
         /// </summary>
-        public string Date
+        public int? Exported
         {
-            get => date;
-            set => SetProperty(ref date, value, OnDateChanged, CanDateChange);
-        }
-
-        /// <summary>
-        /// Program
-        /// </summary>
-        public string Program
-        {
-            get => program;
-            set => SetProperty(ref program, value, OnProgramChanged, CanProgramChange);
-        }
-
-        /// <summary>
-        /// Hash code
-        /// </summary>
-        public int? HashCode
-        {
-            get => hashCode;
-            set => SetProperty(ref hashCode, value, OnHashCodeChanged, CanHashCodeChange);
+            get => exported;
+            set => SetProperty(ref exported, value, OnExportedChanged, CanExportedChange);
         }
 
         /// <summary>
@@ -134,13 +134,22 @@ namespace Tools.TogglData.Domain.Models
         public Action<int> OnLocalIdChanged { get; set; }
 
         /// <summary>
-        /// Test if Title can change its value
+        /// Test if HashCode can change its value
         /// </summary>
-        public Func<IWinlog, string, bool> CanTitleChange { get; set; }
+        public Func<IWinlog, int, bool> CanHashCodeChange { get; set; }
         /// <summary>
-        /// Action triggered after Title changed its value
+        /// Action triggered after HashCode changed its value
         /// </summary>
-        public Action<string> OnTitleChanged { get; set; }
+        public Action<int> OnHashCodeChanged { get; set; }
+
+        /// <summary>
+        /// Test if Program can change its value
+        /// </summary>
+        public Func<IWinlog, string, bool> CanProgramChange { get; set; }
+        /// <summary>
+        /// Action triggered after Program changed its value
+        /// </summary>
+        public Action<string> OnProgramChanged { get; set; }
 
         /// <summary>
         /// Test if Filename can change its value
@@ -150,6 +159,15 @@ namespace Tools.TogglData.Domain.Models
         /// Action triggered after Filename changed its value
         /// </summary>
         public Action<string> OnFilenameChanged { get; set; }
+
+        /// <summary>
+        /// Test if Title can change its value
+        /// </summary>
+        public Func<IWinlog, string, bool> CanTitleChange { get; set; }
+        /// <summary>
+        /// Action triggered after Title changed its value
+        /// </summary>
+        public Action<string> OnTitleChanged { get; set; }
 
         /// <summary>
         /// Test if StartTime can change its value
@@ -179,30 +197,12 @@ namespace Tools.TogglData.Domain.Models
         public Action<string> OnTotalTimeChanged { get; set; }
 
         /// <summary>
-        /// Test if Date can change its value
+        /// Test if Exported can change its value
         /// </summary>
-        public Func<IWinlog, string, bool> CanDateChange { get; set; }
+        public Func<IWinlog, int?, bool> CanExportedChange { get; set; }
         /// <summary>
-        /// Action triggered after Date changed its value
+        /// Action triggered after Exported changed its value
         /// </summary>
-        public Action<string> OnDateChanged { get; set; }
-
-        /// <summary>
-        /// Test if Program can change its value
-        /// </summary>
-        public Func<IWinlog, string, bool> CanProgramChange { get; set; }
-        /// <summary>
-        /// Action triggered after Program changed its value
-        /// </summary>
-        public Action<string> OnProgramChanged { get; set; }
-
-        /// <summary>
-        /// Test if HashCode can change its value
-        /// </summary>
-        public Func<IWinlog, int?, bool> CanHashCodeChange { get; set; }
-        /// <summary>
-        /// Action triggered after HashCode changed its value
-        /// </summary>
-        public Action<int?> OnHashCodeChanged { get; set; }
+        public Action<int?> OnExportedChanged { get; set; }
     }
 }

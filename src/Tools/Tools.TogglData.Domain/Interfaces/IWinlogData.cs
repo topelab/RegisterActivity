@@ -8,14 +8,24 @@ namespace Tools.TogglData.Domain.Interfaces
     public interface IWinlogData
     {
         /// <summary>
-        /// Title
+        /// Hash code
         /// </summary>
-        string Title { get; set; }
+        int HashCode { get; set; }
+
+        /// <summary>
+        /// Program
+        /// </summary>
+        string Program { get; set; }
 
         /// <summary>
         /// Filename
         /// </summary>
         string Filename { get; set; }
+
+        /// <summary>
+        /// Title
+        /// </summary>
+        string Title { get; set; }
 
         /// <summary>
         /// Start time
@@ -33,19 +43,9 @@ namespace Tools.TogglData.Domain.Interfaces
         string TotalTime { get; set; }
 
         /// <summary>
-        /// Date
+        /// Exported
         /// </summary>
-        string Date { get; set; }
-
-        /// <summary>
-        /// Program
-        /// </summary>
-        string Program { get; set; }
-
-        /// <summary>
-        /// Hash code
-        /// </summary>
-        int? HashCode { get; set; }
+        int? Exported { get; set; }
 
     }
 }
