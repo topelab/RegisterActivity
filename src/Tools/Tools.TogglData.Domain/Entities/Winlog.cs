@@ -17,7 +17,7 @@ namespace Tools.TogglData.Domain.Entities
         private string title;
         private string startTime;
         private string endTime;
-        private string totalTime;
+        private decimal totalTime;
         private int? exported;
 
         /// <summary>
@@ -206,7 +206,7 @@ namespace Tools.TogglData.Domain.Entities
         /// <summary>
         /// Total time
         /// </summary>
-        public string TotalTime
+        public decimal TotalTime
         {
             get => totalTime;
             set

@@ -40,7 +40,7 @@ namespace Tools.TogglData.Domain.Interfaces
         /// <summary>
         /// Total time
         /// </summary>
-        string TotalTime { get; set; }
+        decimal TotalTime { get; set; }
 
         /// <summary>
         /// Exported

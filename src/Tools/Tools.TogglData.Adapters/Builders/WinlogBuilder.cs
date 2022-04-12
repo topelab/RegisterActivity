@@ -47,9 +47,9 @@ namespace Tools.TogglData.Adapters.Builders
                     .IsRequired()
                     .HasMaxLength(2147483647);
                 entity.Property(e => e.TotalTime)
+					.HasColumnType("NUMERIC")
                     .HasColumnName("total_time")
-                    .IsRequired()
-                    .HasMaxLength(2147483647);
+                    .HasPrecision(8, 0);
                 entity.Property(e => e.Exported)
                     .HasColumnName("exported")
                     .HasPrecision(8, 0);

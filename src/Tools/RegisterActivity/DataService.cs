@@ -56,7 +56,7 @@ namespace RegisterActivity
 
             if (winlog != null)
             {
-                winlog.TotalTime = process.DurationInSeconds.ToString();
+                winlog.TotalTime = process.DurationInSeconds;
                 winlog.EndTime = DateTime.Now.ToString("u");
                 db.Update(winlog);
             }
@@ -79,7 +79,7 @@ namespace RegisterActivity
                 Program = item.ProcessName,
                 Title = item.MainWindowTitle,
                 Filename = item.FileName,
-                TotalTime = item.DurationInSeconds.ToString(),
+                TotalTime = item.DurationInSeconds,
                 HashCode = item.GetHashCode()
             };
         }

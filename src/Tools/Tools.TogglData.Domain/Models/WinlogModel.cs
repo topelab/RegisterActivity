@@ -16,7 +16,7 @@ namespace Tools.TogglData.Domain.Models
         private string title;
         private string startTime;
         private string endTime;
-        private string totalTime;
+        private decimal totalTime;
         private int? exported;
 
         /// <summary>
@@ -109,7 +109,7 @@ namespace Tools.TogglData.Domain.Models
         /// <summary>
         /// Total time
         /// </summary>
-        public string TotalTime
+        public decimal TotalTime
         {
             get => totalTime;
             set => SetProperty(ref totalTime, value, OnTotalTimeChanged, CanTotalTimeChange);
@@ -190,11 +190,11 @@ namespace Tools.TogglData.Domain.Models
         /// <summary>
         /// Test if TotalTime can change its value
         /// </summary>
-        public Func<IWinlog, string, bool> CanTotalTimeChange { get; set; }
+        public Func<IWinlog, decimal, bool> CanTotalTimeChange { get; set; }
         /// <summary>
         /// Action triggered after TotalTime changed its value
         /// </summary>
-        public Action<string> OnTotalTimeChanged { get; set; }
+        public Action<decimal> OnTotalTimeChanged { get; set; }
 
         /// <summary>
         /// Test if Exported can change its value

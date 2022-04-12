@@ -75,7 +75,7 @@ namespace System.Collections.Generic
                     StartTime = DateTime.Parse(r.StartTime),
                     EndTime = DateTime.Parse(r.EndTime),
                     Filename = r.Filename,
-                    TotalTime = double.Parse(r.TotalTime) / 60.0,
+                    TotalTime = (double)r.TotalTime / 60.0,
                 }).ToList();
 
             action?.Invoke(db, datosDB);
