@@ -5,7 +5,7 @@ using System.Timers;
 
 namespace RegisterActivity.Services
 {
-    internal class ProcessService : IProcessService
+    public class ProcessService : IProcessService
     {
         private double interval = 1000;
         private bool timerRunning;

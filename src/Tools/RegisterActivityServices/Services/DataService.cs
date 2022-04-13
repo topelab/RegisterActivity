@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RegisterActivity.DTO;
 using RegisterActivity.Factories;
+using RegisterActivityServices.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ using Topelab.Core.Resolver.Interfaces;
 
 namespace RegisterActivity.Services
 {
-    internal class DataService : IDataService
+    public class DataService : IDataService
     {
         private DbContextOptions<TogglDataDbContext> options;
         private readonly IResolver resolver;
@@ -22,7 +23,7 @@ namespace RegisterActivity.Services
         public DataService(IResolver resolver, IOptionsFactory optionsFactory)
         {
             this.resolver = resolver ?? throw new ArgumentNullException(nameof(resolver));
-            options = optionsFactory.Create("toggl");
+            options = optionsFactory.Create(Constants.ConnStringKey);
             processData = new Dictionary<int, ProcessDTO>();
         }
 

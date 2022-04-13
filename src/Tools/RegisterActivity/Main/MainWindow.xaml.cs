@@ -46,7 +46,13 @@ namespace RegisterActivity.Main
             notifyIcon.ContextMenuStrip =
               new System.Windows.Forms.ContextMenuStrip();
             notifyIcon.ContextMenuStrip.Items.Add("MainWindow...").Click += (s, e) => ShowMainWindow();
+            notifyIcon.ContextMenuStrip.Items.Add("Export CSV...").Click += (s, e) => Export("csv");
             notifyIcon.ContextMenuStrip.Items.Add("Exit").Click += (s, e) => ExitApplication();
+        }
+
+        private void Export(string format)
+        {
+            throw new NotImplementedException();
         }
 
         private void ExitApplication()

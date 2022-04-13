@@ -15,12 +15,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-		<PackageReference Include="NLog" Version="4.7.15" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<ProjectReference Include="..\Tools.TogglData.Adapters\Tools.TogglData.Adapters.csproj" />
+		<ProjectReference Include="..\RegisterActivityServices\RegisterActivityServices.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

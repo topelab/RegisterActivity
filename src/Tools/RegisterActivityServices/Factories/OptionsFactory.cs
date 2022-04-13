@@ -3,7 +3,7 @@ using Tools.TogglData.Adapters.Context;
 
 namespace RegisterActivity.Factories
 {
-    internal class OptionsFactory : IOptionsFactory
+    public class OptionsFactory : IOptionsFactory
     {
         /// <summary>
         /// Create options for TogglDataFbContext
