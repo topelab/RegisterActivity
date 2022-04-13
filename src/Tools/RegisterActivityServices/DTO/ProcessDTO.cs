@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using Topelab.Core.Helpers.Extensions;
 
-namespace RegisterActivity.DTO
+namespace RegisterActivityServices.DTO
 {
     public class ProcessDTO
     {

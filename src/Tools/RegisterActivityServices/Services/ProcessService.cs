@@ -1,9 +1,10 @@
-﻿using RegisterActivity.DTO;
+﻿using RegisterActivityServices.DTO;
+using RegisterActivityServices.Tools;
 using System;
 using System.Diagnostics;
 using System.Timers;
 
-namespace RegisterActivity.Services
+namespace RegisterActivityServices.Services
 {
     public class ProcessService : IProcessService
     {
@@ -40,12 +41,12 @@ namespace RegisterActivity.Services
                 try
                 {
                     activeWindow = WindowTools.GetActiveWindowTitle();
-                    int processId = WindowTools.GetActiveWindowProcessId();
+                    var processId = WindowTools.GetActiveWindowProcessId();
                     if (activeWindow != null && processId > 0)
                     {
-                        Process process = Process.GetProcessById(processId);
+                        var process = Process.GetProcessById(processId);
                         ProcessDTO currentProcess = new(process, activeWindow);
-                        double discount = process.StartTime > DateTime.Now.AddMilliseconds(-interval) ? (DateTime.Now - process.StartTime).TotalMilliseconds : interval;
+                        var discount = process.StartTime > DateTime.Now.AddMilliseconds(-interval) ? (DateTime.Now - process.StartTime).TotalMilliseconds : interval;
                         currentProcess.LastTimeActive = DateTime.Now.AddMilliseconds(-discount);
                         onNewProcesses?.Invoke(currentProcess);
                     }

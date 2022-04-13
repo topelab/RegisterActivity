@@ -1,5 +1,3 @@
-using System;
-
 namespace Tools.TogglData.Domain.Interfaces
 {
     /// <summary>

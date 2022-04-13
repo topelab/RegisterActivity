@@ -1,11 +1,11 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using Tools.TogglData.Domain.Entities;
 using Tools.TogglData.Adapters.Builders;
 using Tools.TogglData.Adapters.Interfaces;
-using Microsoft.EntityFrameworkCore.Infrastructure;
+using Tools.TogglData.Domain.Entities;
 
 namespace Tools.TogglData.Adapters.Context
 {

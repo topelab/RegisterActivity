@@ -1,6 +1,4 @@
-﻿using System.Collections.ObjectModel;
-
-namespace RegisterActivity.Main
+﻿namespace RegisterActivity.Main
 {
     internal class MainWindowInitializer : IMainWindowInitializer
     {

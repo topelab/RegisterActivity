@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Tools.TogglData.Adapters.Context;
 
-namespace RegisterActivity.Factories
+namespace RegisterActivityServices.Factories
 {
     public class OptionsFactory : IOptionsFactory
     {
@@ -11,7 +11,7 @@ namespace RegisterActivity.Factories
         /// <param name="connectionStringLabel">Label for connection string</param>
         public DbContextOptions<TogglDataDbContext> Create(string connectionStringLabel)
         {
-            string connString = ConfigHelper.GetConnectionString(connectionStringLabel);
+            var connString = ConfigHelper.GetConnectionString(connectionStringLabel);
             return new DbContextOptionsBuilder<TogglDataDbContext>()
                 .UseSqlite(connString)
                 .Options;

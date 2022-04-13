@@ -6,10 +6,11 @@
 
 	<ItemGroup>
 		<PackageReference Include="NLog" Version="4.7.15" />
+		<PackageReference Include="EPPlus" Version="5.3.2" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\TogglData\TogglData.csproj" />
+	  <ProjectReference Include="..\Tools.TogglData.Adapters\Tools.TogglData.Adapters.csproj" />
 	</ItemGroup>
 
 </Project>

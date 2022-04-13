@@ -1,5 +1,4 @@
-﻿using RegisterActivity.Main;
-using RegisterActivity.Services;
+﻿using RegisterActivityServices.DTO;
 using System;
 using System.ComponentModel;
 using System.Windows;
@@ -37,6 +36,7 @@ namespace RegisterActivity.Main
             notifyIcon.DoubleClick += (s, args) => ShowMainWindow();
             notifyIcon.Icon = new System.Drawing.Icon(@"Resources/register-activity-70.ico");
             notifyIcon.Visible = true;
+            notifyIcon.BalloonTipText = "Register Activity";
 
             CreateContextMenu();
         }
@@ -46,13 +46,9 @@ namespace RegisterActivity.Main
             notifyIcon.ContextMenuStrip =
               new System.Windows.Forms.ContextMenuStrip();
             notifyIcon.ContextMenuStrip.Items.Add("MainWindow...").Click += (s, e) => ShowMainWindow();
-            notifyIcon.ContextMenuStrip.Items.Add("Export CSV...").Click += (s, e) => Export("csv");
+            notifyIcon.ContextMenuStrip.Items.Add("Export CSV...").Click += (s, e) => mainWindowVM.ExportCommand.Execute(ExportFormat.CSV);
+            notifyIcon.ContextMenuStrip.Items.Add("Export Excel...").Click += (s, e) => mainWindowVM.ExportCommand.Execute(ExportFormat.Excel);
             notifyIcon.ContextMenuStrip.Items.Add("Exit").Click += (s, e) => ExitApplication();
-        }
-
-        private void Export(string format)
-        {
-            throw new NotImplementedException();
         }
 
         private void ExitApplication()

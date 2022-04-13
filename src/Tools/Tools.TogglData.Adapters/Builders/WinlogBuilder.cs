@@ -1,6 +1,4 @@
-using System;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Tools.TogglData.Domain.Entities;
 
 namespace Tools.TogglData.Adapters.Builders
@@ -47,7 +45,7 @@ namespace Tools.TogglData.Adapters.Builders
                     .IsRequired()
                     .HasMaxLength(2147483647);
                 entity.Property(e => e.TotalTime)
-					.HasColumnType("NUMERIC")
+                    .HasColumnType("NUMERIC")
                     .HasColumnName("total_time")
                     .HasPrecision(8, 0);
                 entity.Property(e => e.Exported)

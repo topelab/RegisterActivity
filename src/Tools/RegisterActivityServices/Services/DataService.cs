@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using RegisterActivity.DTO;
-using RegisterActivity.Factories;
 using RegisterActivityServices.DTO;
+using RegisterActivityServices.Factories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +9,7 @@ using Tools.TogglData.Adapters.Interfaces;
 using Tools.TogglData.Domain.Entities;
 using Topelab.Core.Resolver.Interfaces;
 
-namespace RegisterActivity.Services
+namespace RegisterActivityServices.Services
 {
     public class DataService : IDataService
     {
@@ -29,18 +28,18 @@ namespace RegisterActivity.Services
 
         public void CalculateData(ProcessDTO currentProcess, Action<ProcessDTO> afterSave = null)
         {
-            int hashCode = currentProcess.GetHashCode();
-            if (processData.TryGetValue(hashCode, out ProcessDTO process))
+            var hashCode = currentProcess.GetHashCode();
+            if (processData.TryGetValue(hashCode, out var process))
             {
                 currentProcess = process;
             }
-            DateTime lastMoment = currentProcess.LastTimeActive ?? DateTime.Now;
+            var lastMoment = currentProcess.LastTimeActive ?? DateTime.Now;
             currentProcess.LastTimeActive = DateTime.Now;
             currentProcess.Duration += DateTime.Now - lastMoment;
 
             if (lastProcess != null)
             {
-                int lastHashCode = lastProcess.GetHashCode();
+                var lastHashCode = lastProcess.GetHashCode();
                 if (lastHashCode != hashCode)
                 {
                     lastProcess.LastTimeActive = null;
@@ -55,8 +54,8 @@ namespace RegisterActivity.Services
 
         private void SaveData(ProcessDTO process)
         {
-            using ITogglDataDbContext db = resolver.Get<ITogglDataDbContext, DbContextOptions<TogglDataDbContext>>(options);
-            Winlog winlog = db.Winlog.Where(r => r.HashCode == process.GetHashCode()).OrderByDescending(r => r.StartTime).FirstOrDefault();
+            using var db = resolver.Get<ITogglDataDbContext, DbContextOptions<TogglDataDbContext>>(options);
+            var winlog = db.Winlog.Where(r => r.HashCode == process.GetHashCode()).OrderByDescending(r => r.StartTime).FirstOrDefault();
 
             if (winlog != null)
             {
