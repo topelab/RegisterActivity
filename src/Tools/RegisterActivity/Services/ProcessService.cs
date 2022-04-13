@@ -1,8 +1,9 @@
-﻿using System;
+﻿using RegisterActivity.DTO;
+using System;
 using System.Diagnostics;
 using System.Timers;
 
-namespace RegisterActivity
+namespace RegisterActivity.Services
 {
     internal class ProcessService : IProcessService
     {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Tools.TogglData.Adapters.Context;
 
-namespace RegisterActivity
+namespace RegisterActivity.Factories
 {
     internal interface IOptionsFactory
     {

@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using RegisterActivity.DTO;
+using RegisterActivity.Factories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +9,7 @@ using Tools.TogglData.Adapters.Interfaces;
 using Tools.TogglData.Domain.Entities;
 using Topelab.Core.Resolver.Interfaces;
 
-namespace RegisterActivity
+namespace RegisterActivity.Services
 {
     internal class DataService : IDataService
     {
@@ -24,7 +26,7 @@ namespace RegisterActivity
             processData = new Dictionary<int, ProcessDTO>();
         }
 
-        public void CalculateData(ProcessDTO currentProcess)
+        public void CalculateData(ProcessDTO currentProcess, Action<ProcessDTO> afterSave = null)
         {
             int hashCode = currentProcess.GetHashCode();
             if (processData.TryGetValue(hashCode, out ProcessDTO process))
@@ -43,6 +45,7 @@ namespace RegisterActivity
                     lastProcess.LastTimeActive = null;
                     SaveData(lastProcess);
                     processData[lastHashCode] = lastProcess;
+                    afterSave?.Invoke(lastProcess);
                 }
             }
             processData[hashCode] = currentProcess;
