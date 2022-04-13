@@ -1,7 +1,7 @@
-﻿using RegisterActivity.DTO;
+﻿using RegisterActivityServices.DTO;
 using System;
 
-namespace RegisterActivity.Services
+namespace RegisterActivityServices.Services
 {
     public interface IDataService
     {

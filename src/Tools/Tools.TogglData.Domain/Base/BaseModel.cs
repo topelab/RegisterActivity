@@ -63,7 +63,7 @@ namespace Tools.TogglData.Domain.Base
         /// <param name="newValue">New value to set</param>
         /// <param name="onChange">Action called after value changed and just before PropertChanged triggered</param>
         /// <param name="propertyName">Property name of field to set value</param>
-        protected void SetValue<T>(ref T field, T newValue, Action<T> onChange, [CallerMemberName] string propertyName = null)
+        protected void SetValue<T>(ref T field, T newValue, Action<T> onChange = null, [CallerMemberName] string propertyName = null)
         {
             field = newValue;
             onChange?.Invoke(newValue);

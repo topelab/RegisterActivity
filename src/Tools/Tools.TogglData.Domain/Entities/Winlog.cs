@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
 using Tools.TogglData.Domain.Interfaces;
-using Tools.TogglData.Domain.Collections;
 
 namespace Tools.TogglData.Domain.Entities
 {

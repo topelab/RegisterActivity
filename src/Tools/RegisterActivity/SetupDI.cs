@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NLog;
-using RegisterActivity.Factories;
 using RegisterActivity.Main;
-using RegisterActivity.Services;
+using RegisterActivityServices.Factories;
+using RegisterActivityServices.Services;
 using Tools.TogglData.Adapters.Context;
 using Tools.TogglData.Adapters.Interfaces;
 using Topelab.Core.Resolver.Entities;
@@ -18,6 +18,7 @@ namespace RegisterActivity
                 .AddSingleton<IProcessService, ProcessService>()
                 .AddSingleton<IOptionsFactory, OptionsFactory>()
                 .AddSingleton<IDataService, DataService>()
+                .AddSingleton<IExportService, ExportService>()
                 .Add<ITogglDataDbContext, TogglDataDbContext>(typeof(DbContextOptions<TogglDataDbContext>))
                 .Add<IMainWindowFactory, MainWindowFactory>()
                 .Add<IMainWindowInitializer, MainWindowInitializer>()

@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OfficeOpenXml;
+using RegisterActivityServices.DTO;
 using System.IO;
 using System.Linq;
 using System.Text;
-using TogglData.dto;
 using Tools.TogglData.Adapters.Context;
 using Tools.TogglData.Domain.Entities;
 
@@ -13,9 +13,9 @@ namespace System.Collections.Generic
     {
         public static void WriteToExcel(this IEnumerable<TimelineEventsDTO> datos, string outputFile)
         {
-            string hoja = "timeline_events";
+            var hoja = "timeline_events";
 
-            using ExcelPackage pack = new ExcelPackage(new System.IO.FileInfo(outputFile));
+            using var pack = new ExcelPackage(new System.IO.FileInfo(outputFile));
             var old = pack.Workbook.Worksheets.Where(w => w.Name == hoja).FirstOrDefault();
             if (old != null)
             {
@@ -93,9 +93,9 @@ namespace System.Collections.Generic
 
             csvBuilder.AppendLine(string.Join(Separator, properties.Select(p => p.Name)));
 
-            foreach (T item in items)
+            foreach (var item in items)
             {
-                string line = string.Join(Separator, properties.Select(p => p.GetValue(item, null).ToCsvValue()).ToArray());
+                var line = string.Join(Separator, properties.Select(p => p.GetValue(item, null).ToCsvValue()).ToArray());
                 csvBuilder.AppendLine(line);
             }
             return csvBuilder.ToString();
@@ -105,7 +105,7 @@ namespace System.Collections.Generic
         {
             if (item == null) return "\"\"";
 
-            string value = item.ToString();
+            var value = item.ToString();
 
             if (item is string)
             {

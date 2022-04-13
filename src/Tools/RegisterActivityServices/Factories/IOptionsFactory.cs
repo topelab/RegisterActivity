@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Tools.TogglData.Adapters.Context;
 
-namespace RegisterActivity.Factories
+namespace RegisterActivityServices.Factories
 {
-    internal interface IOptionsFactory
+    public interface IOptionsFactory
     {
         /// <summary>
         /// Create options for TogglDataFbContext

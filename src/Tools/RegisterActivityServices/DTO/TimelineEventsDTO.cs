@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 
-namespace TogglData.dto
+namespace RegisterActivityServices.DTO
 {
     public partial class TimelineEventsDTO
     {

@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace RegisterActivity
+namespace RegisterActivityServices.Tools
 {
     internal class WindowTools
     {
@@ -26,15 +26,15 @@ namespace RegisterActivity
         public static string GetActiveWindowTitle()
         {
             const int nChars = 512;
-            StringBuilder Buff = new StringBuilder(nChars);
-            IntPtr handle = GetForegroundWindow();
+            var Buff = new StringBuilder(nChars);
+            var handle = GetForegroundWindow();
             return GetWindowText(handle, Buff, nChars) > 0 ? Buff.ToString() : null;
         }
 
         public static int GetActiveWindowProcessId()
         {
-            IntPtr handle = GetForegroundWindow();
-            GetWindowThreadProcessId(handle, out uint processId);
+            var handle = GetForegroundWindow();
+            GetWindowThreadProcessId(handle, out var processId);
             return (int)processId;
         }
     }

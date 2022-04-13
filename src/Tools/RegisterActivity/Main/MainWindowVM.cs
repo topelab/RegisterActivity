@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Windows.Input;
 using System.Windows.Threading;
 using Tools.TogglData.Domain.Base;
 
@@ -21,11 +22,18 @@ namespace RegisterActivity.Main
             set => SetProperty(ref title, value);
         }
 
-        private readonly Dispatcher dispatcher; 
+        private ICommand exportCommand;
+        public ICommand ExportCommand
+        {
+            get => exportCommand;
+            set => SetProperty(ref exportCommand, value);
+        }
+
+        private readonly Dispatcher dispatcher;
 
         public MainWindowVM()
         {
-            this.messages = new ObservableCollection<string>();
+            messages = new ObservableCollection<string>();
             dispatcher = App.Current.Dispatcher;
         }
 
@@ -39,6 +47,11 @@ namespace RegisterActivity.Main
                     Messages.RemoveAt(Messages.Count - 1);
                 }
             });
+        }
+
+        public void SetCommands(ICommand exportCommand)
+        {
+            this.exportCommand = exportCommand;
         }
 
     }
