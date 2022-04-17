@@ -60,7 +60,7 @@ namespace RegisterActivityServices.Services
             if (winlog != null)
             {
                 winlog.TotalTime = process.DurationInSeconds;
-                winlog.EndTime = DateTime.Now.ToString("u");
+                winlog.EndTime = DateTime.Now.ToString("s");
                 db.Update(winlog);
             }
             else
@@ -77,8 +77,8 @@ namespace RegisterActivityServices.Services
         {
             return new Winlog
             {
-                EndTime = DateTime.Now.ToString("u"),
-                StartTime = item.StartTime.ToString("u"),
+                EndTime = DateTime.Now.ToString("s"),
+                StartTime = item.StartTime.ToString("s"),
                 Program = item.ProcessName,
                 Title = item.MainWindowTitle,
                 Filename = item.FileName,

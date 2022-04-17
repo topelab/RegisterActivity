@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace RegisterActivityServices.Services
 {

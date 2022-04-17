@@ -43,7 +43,7 @@ namespace RegisterActivityServices.DTO
 
         public override int GetHashCode()
         {
-            return string.Concat(MainWindowTitle, ProcessName, StartTime.ToString("u")).GetHashCode();
+            return string.Concat(MainWindowTitle, ProcessName, StartTime.ToString("s")).GetHashCode();
         }
     }
 }
