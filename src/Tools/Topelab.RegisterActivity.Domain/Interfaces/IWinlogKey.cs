@@ -1,4 +1,6 @@
-namespace Tools.TogglData.Domain.Interfaces
+using System;
+
+namespace Topelab.RegisterActivity.Domain.Interfaces
 {
     /// <summary>
     /// Interface for keys part of Winlog

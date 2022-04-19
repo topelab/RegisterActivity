@@ -8,7 +8,7 @@ namespace System
         {
             var parts = connString.Split(';', StringSplitOptions.RemoveEmptyEntries);
             var result = parts.FirstOrDefault(p => p.StartsWith($"{part}="));
-            return result == null ? null : result.Split('=')[1].Trim();
+            return result?.Split('=')[1].Trim();
         }
     }
 }

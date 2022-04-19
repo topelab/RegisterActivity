@@ -1,20 +1,15 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 using System.Windows.Threading;
-using Tools.TogglData.Domain.Base;
+using Topelab.RegisterActivity.Domain.Base;
 
 namespace RegisterActivity.Main
 {
     public class MainWindowVM : BaseModel
     {
-        private ObservableCollection<string> messages;
+		public ObservableCollection<string> Messages { get; }
 
-        public ObservableCollection<string> Messages
-        {
-            get => messages;
-        }
-
-        private string title;
+		private string title;
 
         public string Title
         {
@@ -33,7 +28,7 @@ namespace RegisterActivity.Main
 
         public MainWindowVM()
         {
-            messages = new ObservableCollection<string>();
+			Messages = new ObservableCollection<string>();
             dispatcher = App.Current.Dispatcher;
         }
 
@@ -53,6 +48,5 @@ namespace RegisterActivity.Main
         {
             this.exportCommand = exportCommand;
         }
-
     }
 }

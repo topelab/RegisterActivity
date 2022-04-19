@@ -3,8 +3,8 @@ using NLog;
 using RegisterActivity.Main;
 using RegisterActivityServices.Factories;
 using RegisterActivityServices.Services;
-using Tools.TogglData.Adapters.Context;
-using Tools.TogglData.Adapters.Interfaces;
+using Topelab.RegisterActivity.Adapters.Context;
+using Topelab.RegisterActivity.Adapters.Interfaces;
 using Topelab.Core.Resolver.Entities;
 
 namespace RegisterActivity
@@ -19,7 +19,7 @@ namespace RegisterActivity
                 .AddSingleton<IOptionsFactory, OptionsFactory>()
                 .AddSingleton<IDataService, DataService>()
                 .AddSingleton<IExportService, ExportService>()
-                .Add<ITogglDataDbContext, TogglDataDbContext>(typeof(DbContextOptions<TogglDataDbContext>))
+                .Add<IRegisterActivityDbContext, RegisterActivityDbContext>(typeof(DbContextOptions<RegisterActivityDbContext>))
                 .Add<IMainWindowFactory, MainWindowFactory>()
                 .Add<IMainWindowInitializer, MainWindowInitializer>()
                 .AddSelf<MainWindow>(typeof(MainWindowVM))

@@ -1,8 +1,8 @@
 using System;
-using Tools.TogglData.Domain.Base;
-using Tools.TogglData.Domain.Interfaces;
+using Topelab.RegisterActivity.Domain.Base;
+using Topelab.RegisterActivity.Domain.Interfaces;
 
-namespace Tools.TogglData.Domain.Models
+namespace Topelab.RegisterActivity.Domain.Models
 {
     /// <summary>
     /// Implementation for Winlog model

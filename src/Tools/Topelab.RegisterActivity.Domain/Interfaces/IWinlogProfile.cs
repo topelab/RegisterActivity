@@ -1,6 +1,6 @@
-using Tools.TogglData.Domain.Contract;
+using Topelab.RegisterActivity.Domain.Contract;
 
-namespace Tools.TogglData.Domain.Interfaces
+namespace Topelab.RegisterActivity.Domain.Interfaces
 {
     /// <summary>
     /// Interface for WinlogProfile for AutoMapper

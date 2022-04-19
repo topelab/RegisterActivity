@@ -10,7 +10,7 @@ using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Tools.TogglData.Adapters.Interfaces
+namespace Topelab.RegisterActivity.Adapters.Interfaces
 {
     /// <summary>
     /// Interface fro DbContext<br />

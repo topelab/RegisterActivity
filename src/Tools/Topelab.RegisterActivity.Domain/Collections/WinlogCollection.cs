@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using Tools.TogglData.Domain.Entities;
+using Topelab.RegisterActivity.Domain.Entities;
 
-namespace Tools.TogglData.Domain.Collections
+namespace Topelab.RegisterActivity.Domain.Collections
 {
     /// <summary>
     /// Implementation for Winlog collection

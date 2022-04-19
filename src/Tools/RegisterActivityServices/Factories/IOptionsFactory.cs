@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Tools.TogglData.Adapters.Context;
+using Topelab.RegisterActivity.Adapters.Context;
 
 namespace RegisterActivityServices.Factories
 {
@@ -9,6 +9,6 @@ namespace RegisterActivityServices.Factories
         /// Create options for TogglDataFbContext
         /// </summary>
         /// <param name="connectionStringLabel">Label for connection string</param>
-        DbContextOptions<TogglDataDbContext> Create(string connectionStringLabel);
+        DbContextOptions<RegisterActivityDbContext> Create(string connectionStringLabel);
     }
 }

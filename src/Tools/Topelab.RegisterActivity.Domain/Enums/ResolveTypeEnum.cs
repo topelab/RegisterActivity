@@ -1,4 +1,4 @@
-namespace Tools.TogglData.Domain.Enums
+namespace Topelab.RegisterActivity.Domain.Enums
 {
     /// <summary>
     /// Life time enum

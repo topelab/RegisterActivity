@@ -5,9 +5,9 @@ VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RegisterActivity", "RegisterActivity\RegisterActivity.csproj", "{AFF9490B-8D3F-4BD6-8E8C-011E11FD5A2C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tools.TogglData.Domain", "Tools.TogglData.Domain\Tools.TogglData.Domain.csproj", "{09BE6FBA-FC89-4F6F-99E3-BD2FFCEF5B98}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Topelab.RegisterActivity.Domain", "Topelab.RegisterActivity.Domain\Topelab.RegisterActivity.Domain.csproj", "{09BE6FBA-FC89-4F6F-99E3-BD2FFCEF5B98}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tools.TogglData.Adapters", "Tools.TogglData.Adapters\Tools.TogglData.Adapters.csproj", "{752B4110-4A0E-4AB1-8B28-ED9BC862351E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Topelab.RegisterActivity.Adapters", "Topelab.RegisterActivity.Adapters\Topelab.RegisterActivity.Adapters.csproj", "{752B4110-4A0E-4AB1-8B28-ED9BC862351E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RegisterActivityServices", "RegisterActivityServices\RegisterActivityServices.csproj", "{70C4EB2A-A339-4636-8395-3F7BB81E86CF}"
 EndProject

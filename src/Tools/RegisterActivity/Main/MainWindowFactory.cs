@@ -1,7 +1,7 @@
 ﻿using RegisterActivityServices.DTO;
 using RegisterActivityServices.Services;
 using System;
-using Tools.TogglData.Domain.Base;
+using Topelab.RegisterActivity.Domain.Base;
 using Topelab.Core.Resolver.Interfaces;
 
 namespace RegisterActivity.Main

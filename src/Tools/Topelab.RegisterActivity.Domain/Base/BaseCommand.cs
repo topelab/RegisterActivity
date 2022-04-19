@@ -1,7 +1,7 @@
-﻿using System;
+using System;
 using System.Windows.Input;
 
-namespace Tools.TogglData.Domain.Base
+namespace Topelab.RegisterActivity.Domain.Base
 {
     /// <summary>
     /// Base command
@@ -16,6 +16,7 @@ namespace Tools.TogglData.Domain.Base
 
         private readonly Action<T> execute;
         private readonly Func<T, bool> canExecute;
+        private bool canExecuteLastResult;
 
         /// <summary>
         /// Constructor
@@ -42,7 +43,13 @@ namespace Tools.TogglData.Domain.Base
         /// <param name="parameter"></param>
         public bool CanExecute(object parameter)
         {
-            return canExecute?.Invoke((T)parameter) ?? true;
+            var result = canExecute?.Invoke((T)parameter) ?? true;
+            if (result != canExecuteLastResult)
+            {
+                canExecuteLastResult = result;
+                CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+            }
+            return result;
         }
 
         /// <summary>
@@ -59,8 +66,7 @@ namespace Tools.TogglData.Domain.Base
         /// </summary>
         public void OnCanExecuteChanged()
         {
-            CanExecuteChanged(this, EventArgs.Empty);
+            CanExecuteChanged?.Invoke(this, EventArgs.Empty);
         }
-
     }
 }

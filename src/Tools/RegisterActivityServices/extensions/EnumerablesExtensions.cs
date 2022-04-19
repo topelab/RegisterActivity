@@ -4,8 +4,8 @@ using RegisterActivityServices.DTO;
 using System.IO;
 using System.Linq;
 using System.Text;
-using Tools.TogglData.Adapters.Context;
-using Tools.TogglData.Domain.Entities;
+using Topelab.RegisterActivity.Adapters.Context;
+using Topelab.RegisterActivity.Domain.Entities;
 
 namespace System.Collections.Generic
 {
@@ -16,14 +16,14 @@ namespace System.Collections.Generic
             var hoja = "timeline_events";
 
             using var pack = new ExcelPackage(new System.IO.FileInfo(outputFile));
-            var old = pack.Workbook.Worksheets.Where(w => w.Name == hoja).FirstOrDefault();
+            var old = pack.Workbook.Worksheets.FirstOrDefault(w => w.Name == hoja);
             if (old != null)
             {
                 old.Name = $"{hoja}-back";
             }
 
-            var ws = pack.Workbook.Worksheets.Add(hoja);
-            pack.Workbook.Worksheets.MoveToStart(hoja);
+			var ws = pack.Workbook.Worksheets.Add(hoja);
+			pack.Workbook.Worksheets.MoveToStart(hoja);
             if (old != null)
             {
                 pack.Workbook.Worksheets.Delete(old);
@@ -45,7 +45,6 @@ namespace System.Collections.Generic
             ws.Column(8).Width = 90;
 
             pack.Save();
-
         }
 
         public static void WriteToCSV(this IEnumerable<TimelineEventsDTO> datos, string outputFile)
@@ -54,14 +53,14 @@ namespace System.Collections.Generic
             File.WriteAllText(outputFile, content);
         }
 
-        public static List<TimelineEventsDTO> ReadDB(this string file, Func<Winlog, bool> criteria = null, Action<TogglDataDbContext, IEnumerable<Winlog>> action = null)
+        public static List<TimelineEventsDTO> ReadDB(this string file, Func<Winlog, bool> criteria = null, Action<RegisterActivityDbContext, IEnumerable<Winlog>> action = null)
         {
             var connString = $"Data Source={file}";
-            var options = new DbContextOptionsBuilder<TogglDataDbContext>()
+            var options = new DbContextOptionsBuilder<RegisterActivityDbContext>()
                 .UseSqlite(connString)
                 .Options;
 
-            using var db = new TogglDataDbContext(options);
+            using var db = new RegisterActivityDbContext(options);
             IEnumerable<Winlog> datosDB = db.Winlog;
 
             if (criteria != null)
@@ -83,7 +82,7 @@ namespace System.Collections.Generic
             return datos;
         }
 
-        private static readonly string Separator = ",";
+        private const string Separator = ",";
 
         public static string ToCsv<T>(this IEnumerable<T> items)
             where T : class
@@ -113,7 +112,7 @@ namespace System.Collections.Generic
             }
             if (item is double || item is float || item is decimal)
             {
-                return value.Contains(",") ? $"\"{value}\"" : value;
+                return value.Contains(',') ? $"\"{value}\"" : value;
             }
             if (item is DateTime)
             {

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace Tools.TogglData.Domain.Dtos
+namespace Topelab.RegisterActivity.Domain.Dtos
 {
     /// <summary>
     /// Criteria base DTO class.

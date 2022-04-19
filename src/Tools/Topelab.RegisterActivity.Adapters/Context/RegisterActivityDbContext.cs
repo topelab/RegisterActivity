@@ -1,20 +1,20 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
-using Tools.TogglData.Adapters.Builders;
-using Tools.TogglData.Adapters.Interfaces;
-using Tools.TogglData.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using Topelab.RegisterActivity.Domain.Entities;
+using Topelab.RegisterActivity.Adapters.Builders;
+using Topelab.RegisterActivity.Adapters.Interfaces;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
-namespace Tools.TogglData.Adapters.Context
+namespace Topelab.RegisterActivity.Adapters.Context
 {
     /// <summary>
-    /// Context for module TogglData
+    /// Context for module RegisterActivity
     /// </summary>
     /// <seealso cref="DbContext" />
-    /// <seealso cref="ITogglDataDbContext" />
-    public partial class TogglDataDbContext : DbContext, ITogglDataDbContext
+    /// <seealso cref="IRegisterActivityDbContext" />
+    public partial class RegisterActivityDbContext : DbContext, IRegisterActivityDbContext
     {
         private static ILoggerFactory loggerFactory;
         private static ILogger logger;
@@ -22,27 +22,27 @@ namespace Tools.TogglData.Adapters.Context
         private string connectionString;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TogglDataDbContext"/> class.
+        /// Initializes a new instance of the <see cref="RegisterActivityDbContext"/> class.
         /// </summary>
-        public TogglDataDbContext()
+        public RegisterActivityDbContext()
         {
             Id = ++id;
             PrepareHandlers();
             OpenIfMemoryDb();
-            logger?.LogInformation($"Starting instance number {Id} from TogglDataDbContext");
+            logger?.LogInformation($"Starting instance number {Id} from RegisterActivityDbContext");
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TogglDataDbContext"/> class.
+        /// Initializes a new instance of the <see cref="RegisterActivityDbContext"/> class.
         /// </summary>
         /// <param name="options">The options.</param>
-        public TogglDataDbContext(DbContextOptions<TogglDataDbContext> options) : base(options)
+        public RegisterActivityDbContext(DbContextOptions<RegisterActivityDbContext> options) : base(options)
         {
             Id = ++id;
             PrepareHandlers();
             connectionString = options.Extensions.OfType<RelationalOptionsExtension>().FirstOrDefault()?.ConnectionString;
             OpenIfMemoryDb();
-            logger?.LogInformation($"Starting instance number {Id} from TogglDataDbContext (with options)");
+            logger?.LogInformation($"Starting instance number {Id} from RegisterActivityDbContext (with options)");
         }
 
         /// <summary>
@@ -51,9 +51,9 @@ namespace Tools.TogglData.Adapters.Context
         public static void SetLoggerFactory(ILoggerFactory loggerFactory)
         {
             // loggerFactory could be null, it's ok
-            TogglDataDbContext.loggerFactory = loggerFactory;
-            logger = loggerFactory?.CreateLogger<TogglDataDbContext>();
-            logger?.LogInformation("Starting Loggin at TogglDataDbContext");
+            RegisterActivityDbContext.loggerFactory = loggerFactory;
+            logger = loggerFactory?.CreateLogger<RegisterActivityDbContext>();
+            logger?.LogInformation("Starting Loggin at RegisterActivityDbContext");
         }
 
         /// <summary>

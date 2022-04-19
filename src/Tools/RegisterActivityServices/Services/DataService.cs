@@ -4,16 +4,16 @@ using RegisterActivityServices.Factories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Tools.TogglData.Adapters.Context;
-using Tools.TogglData.Adapters.Interfaces;
-using Tools.TogglData.Domain.Entities;
+using Topelab.RegisterActivity.Adapters.Context;
+using Topelab.RegisterActivity.Adapters.Interfaces;
+using Topelab.RegisterActivity.Domain.Entities;
 using Topelab.Core.Resolver.Interfaces;
 
 namespace RegisterActivityServices.Services
 {
     public class DataService : IDataService
     {
-        private DbContextOptions<TogglDataDbContext> options;
+        private readonly DbContextOptions<RegisterActivityDbContext> options;
         private readonly IResolver resolver;
         private readonly Dictionary<int, ProcessDTO> processData;
 
@@ -54,7 +54,7 @@ namespace RegisterActivityServices.Services
 
         private void SaveData(ProcessDTO process)
         {
-            using var db = resolver.Get<ITogglDataDbContext, DbContextOptions<TogglDataDbContext>>(options);
+            using var db = resolver.Get<IRegisterActivityDbContext, DbContextOptions<RegisterActivityDbContext>>(options);
             var winlog = db.Winlog.Where(r => r.HashCode == process.GetHashCode()).OrderByDescending(r => r.StartTime).FirstOrDefault();
 
             if (winlog != null)

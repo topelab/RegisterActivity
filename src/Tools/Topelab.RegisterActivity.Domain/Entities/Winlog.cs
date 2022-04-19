@@ -1,6 +1,9 @@
-using Tools.TogglData.Domain.Interfaces;
+using System;
+using System.Collections.Generic;
+using Topelab.RegisterActivity.Domain.Interfaces;
+using Topelab.RegisterActivity.Domain.Collections;
 
-namespace Tools.TogglData.Domain.Entities
+namespace Topelab.RegisterActivity.Domain.Entities
 {
     /// <summary>
     /// Implementation for Winlog

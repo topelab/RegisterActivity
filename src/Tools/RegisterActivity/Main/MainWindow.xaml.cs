@@ -34,7 +34,7 @@ namespace RegisterActivity.Main
 
             notifyIcon = new System.Windows.Forms.NotifyIcon();
             notifyIcon.DoubleClick += (s, args) => ShowMainWindow();
-            notifyIcon.Icon = new System.Drawing.Icon(@"Resources/register-activity-70.ico");
+            notifyIcon.Icon = new System.Drawing.Icon("Resources/register-activity-70.ico");
             notifyIcon.Visible = true;
             notifyIcon.BalloonTipText = "Register Activity";
 

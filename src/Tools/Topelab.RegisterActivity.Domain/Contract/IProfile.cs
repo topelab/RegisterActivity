@@ -1,6 +1,6 @@
 using AutoMapper;
 
-namespace Tools.TogglData.Domain.Contract
+namespace Topelab.RegisterActivity.Domain.Contract
 {
     /// <summary>
     /// Interface for Profile

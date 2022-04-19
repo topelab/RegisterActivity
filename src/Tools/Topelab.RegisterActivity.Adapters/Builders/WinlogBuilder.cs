@@ -1,7 +1,9 @@
+using System;
 using Microsoft.EntityFrameworkCore;
-using Tools.TogglData.Domain.Entities;
+using Microsoft.EntityFrameworkCore.Metadata;
+using Topelab.RegisterActivity.Domain.Entities;
 
-namespace Tools.TogglData.Adapters.Builders
+namespace Topelab.RegisterActivity.Adapters.Builders
 {
     /// <summary>
     /// Class for modeling Winlog
@@ -45,7 +47,7 @@ namespace Tools.TogglData.Adapters.Builders
                     .IsRequired()
                     .HasMaxLength(2147483647);
                 entity.Property(e => e.TotalTime)
-                    .HasColumnType("NUMERIC")
+					.HasColumnType("NUMERIC")
                     .HasColumnName("total_time")
                     .HasPrecision(8, 0);
                 entity.Property(e => e.Exported)
