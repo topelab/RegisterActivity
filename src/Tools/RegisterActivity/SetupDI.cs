@@ -6,6 +6,7 @@ using RegisterActivityServices.Services;
 using Topelab.RegisterActivity.Adapters.Context;
 using Topelab.RegisterActivity.Adapters.Interfaces;
 using Topelab.Core.Resolver.Entities;
+using Topelab.RegisterActivity.Business.SetupDI;
 
 namespace RegisterActivity
 {
@@ -14,7 +15,7 @@ namespace RegisterActivity
         public static ResolveInfoCollection Register()
         {
             return new ResolveInfoCollection()
-                .AddInstance<ILogger>(LogManager.GetCurrentClassLogger())
+                .AddCollection(BusinessSetupDI.ModuleDependencies)
                 .AddSingleton<IProcessService, ProcessService>()
                 .AddSingleton<IOptionsFactory, OptionsFactory>()
                 .AddSingleton<IDataService, DataService>()

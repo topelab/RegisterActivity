@@ -40,5 +40,15 @@ namespace RegisterActivityServices.Services
 
             return datos;
         }
+
+        public IEnumerable<TIn> GetAll<TIn>(string file) where TIn : class
+        {
+            var connString = $"Data Source={file}";
+            var options = optionsFactory.Create(connString);
+            using var db = resolver.Get<IRegisterActivityDbContext, DbContextOptions<RegisterActivityDbContext>>(options);
+            var dbSet = db.Set<TIn>();
+
+            return dbSet.AsNoTracking();
+        }
     }
 }
