@@ -15,7 +15,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\RegisterActivityServices\RegisterActivityServices.csproj" />
+	  <PackageReference Include="NLog.Extensions.Logging" Version="1.7.4" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Topelab.RegisterActivity.Business\Topelab.RegisterActivity.Business.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

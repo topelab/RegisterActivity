@@ -16,8 +16,8 @@ namespace Topelab.RegisterActivity.Tools.Actions
             try
             {
                 logger.LogInformation("Trying to create database on {ProviderName}", db.Database.ProviderName);
-                bool created = db.Database.EnsureCreated();
-                logger.LogInformation("Database {Created}",  created ? "was created" : "already exists");
+                var created = db.Database.EnsureCreated();
+                logger.LogInformation("Database {Created}", created ? "was created" : "already exists");
 
                 return created;
             }

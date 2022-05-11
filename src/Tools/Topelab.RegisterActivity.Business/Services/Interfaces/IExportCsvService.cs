@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
-namespace RegisterActivityServices.Services
+namespace Topelab.RegisterActivity.Business.Services
 {
     public interface IExportCsvService
     {

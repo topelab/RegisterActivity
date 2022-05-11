@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using Topelab.Core.Helpers.Extensions;
 
-namespace RegisterActivityServices.DTO
+namespace Topelab.RegisterActivity.Business.DTO
 {
     public class ProcessDTO
     {

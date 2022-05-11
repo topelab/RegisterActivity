@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace RegisterActivityServices.Services
+namespace Topelab.RegisterActivity.Business.Services
 {
     public class ExportCsvService : IExportCsvService
     {

@@ -1,7 +1,7 @@
-﻿using RegisterActivityServices.DTO;
 using System;
 using System.ComponentModel;
 using System.Windows;
+using Topelab.RegisterActivity.Business.DTO;
 
 namespace RegisterActivity.Main
 {

@@ -39,8 +39,8 @@ namespace Topelab.RegisterActivity.Business.Services
             var Terminal = $"{Environment.GetEnvironmentVariable("CLIENTNAME")} {Environment.GetEnvironmentVariable("COMPUTERNAME")}".Trim();
             var Usuario = Environment.GetEnvironmentVariable("USERNAME");
 
-            string module = $"{System.IO.Path.GetFileNameWithoutExtension(sourceFilePath)}.{memberName}";
-            string output = $"{Usuario} {Terminal} {module}: {text}";
+            var module = $"{System.IO.Path.GetFileNameWithoutExtension(sourceFilePath)}.{memberName}";
+            var output = $"{Usuario} {Terminal} {module}: {text}";
 
             LastError = string.Empty;
             switch (tipo)

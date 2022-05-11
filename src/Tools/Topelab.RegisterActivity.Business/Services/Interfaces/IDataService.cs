@@ -1,7 +1,7 @@
-﻿using RegisterActivityServices.DTO;
 using System;
+using Topelab.RegisterActivity.Business.DTO;
 
-namespace RegisterActivityServices.Services
+namespace Topelab.RegisterActivity.Business.Services
 {
     public interface IDataService
     {

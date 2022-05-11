@@ -61,31 +61,31 @@ namespace Topelab.RegisterActivity.Business.Extensions
         /// <param name="criteria">The criteria.</param>
         /// <returns>Gets the page based on <paramref name="criteria"/></returns>
 		public static IQueryable<T> GetPage<T>(this IQueryable<T> list, CriteriaMultipleDto<T> criteria)
-			where T : class
-		{
-			if (criteria.Filters != null)
-			{
-				foreach (var item in criteria.Filters)
-				{
-					list = list.Where(item.Filter);
-				}
-			}
+            where T : class
+        {
+            if (criteria.Filters != null)
+            {
+                foreach (var item in criteria.Filters)
+                {
+                    list = list.Where(item.Filter);
+                }
+            }
 
-			if (criteria.Orders?.Any() == true)
-			{
-				var first = criteria.Orders.First();
-				var orderedList = first.Descending ? list.OrderByDescending(first.Order) : list.OrderBy(first.Order);
-				foreach (var item in criteria.Orders.Skip(1))
-				{
-					orderedList = item.Descending ? orderedList.ThenByDescending(item.Order) : orderedList.ThenBy(item.Order);
-				}
+            if (criteria.Orders?.Any() == true)
+            {
+                var first = criteria.Orders.First();
+                var orderedList = first.Descending ? list.OrderByDescending(first.Order) : list.OrderBy(first.Order);
+                foreach (var item in criteria.Orders.Skip(1))
+                {
+                    orderedList = item.Descending ? orderedList.ThenByDescending(item.Order) : orderedList.ThenBy(item.Order);
+                }
 
-				return orderedList.GetPage(criteria.PageSize, criteria.PageNumber);
-			}
-			else
-			{
-				return list.GetPage(criteria.PageSize, criteria.PageNumber);
-			}
-		}
-	}
+                return orderedList.GetPage(criteria.PageSize, criteria.PageNumber);
+            }
+            else
+            {
+                return list.GetPage(criteria.PageSize, criteria.PageNumber);
+            }
+        }
+    }
 }

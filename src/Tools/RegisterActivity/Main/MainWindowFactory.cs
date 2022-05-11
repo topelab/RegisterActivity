@@ -1,8 +1,8 @@
-﻿using RegisterActivityServices.DTO;
-using RegisterActivityServices.Services;
 using System;
-using Topelab.RegisterActivity.Domain.Base;
 using Topelab.Core.Resolver.Interfaces;
+using Topelab.RegisterActivity.Business.DTO;
+using Topelab.RegisterActivity.Business.Services;
+using Topelab.RegisterActivity.Domain.Base;
 
 namespace RegisterActivity.Main
 {

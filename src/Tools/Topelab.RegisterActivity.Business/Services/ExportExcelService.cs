@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace RegisterActivityServices.Services
+namespace Topelab.RegisterActivity.Business.Services
 {
     public class ExportExcelService : IExportExcelService
     {

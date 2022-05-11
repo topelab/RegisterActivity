@@ -1,10 +1,11 @@
 using Microsoft.EntityFrameworkCore;
-using RegisterActivityServices.DTO;
 using System;
 using System.Diagnostics;
 using System.IO;
+using Topelab.RegisterActivity.Business.DTO;
+using Topelab.RegisterActivity.Business.Services.Entities;
 
-namespace RegisterActivityServices.Services
+namespace Topelab.RegisterActivity.Business.Services
 {
     public class ExportService : IExportService
     {
@@ -14,7 +15,7 @@ namespace RegisterActivityServices.Services
 
         public ExportService(IWinlogService winlogReaderService, IExportCsvService csvService, IExportExcelService excelService)
         {
-            this.winlogService = winlogReaderService ?? throw new ArgumentNullException(nameof(winlogReaderService));
+            winlogService = winlogReaderService ?? throw new ArgumentNullException(nameof(winlogReaderService));
             this.csvService = csvService ?? throw new ArgumentNullException(nameof(csvService));
             this.excelService = excelService ?? throw new ArgumentNullException(nameof(excelService));
         }

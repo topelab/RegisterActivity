@@ -1,4 +1,4 @@
-namespace RegisterActivityServices.DTO
+namespace Topelab.RegisterActivity.Business.DTO
 {
     public class Constants
     {

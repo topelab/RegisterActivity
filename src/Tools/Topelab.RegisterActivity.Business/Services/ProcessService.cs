@@ -1,10 +1,10 @@
-﻿using RegisterActivityServices.DTO;
-using RegisterActivityServices.Tools;
 using System;
 using System.Diagnostics;
 using System.Timers;
+using Topelab.RegisterActivity.Business.DTO;
+using Topelab.RegisterActivity.Business.Tools;
 
-namespace RegisterActivityServices.Services
+namespace Topelab.RegisterActivity.Business.Services
 {
     public class ProcessService : IProcessService
     {

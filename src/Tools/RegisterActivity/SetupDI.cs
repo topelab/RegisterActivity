@@ -1,11 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
-using NLog;
+using Microsoft.Extensions.Logging;
+using NLog.Extensions.Logging;
 using RegisterActivity.Main;
-using RegisterActivityServices.Factories;
-using RegisterActivityServices.Services;
-using Topelab.RegisterActivity.Adapters.Context;
-using Topelab.RegisterActivity.Adapters.Interfaces;
 using Topelab.Core.Resolver.Entities;
+using Topelab.Core.Resolver.Interfaces;
+using Topelab.RegisterActivity.Business.Services;
+using Topelab.RegisterActivity.Business.Services.Entities;
 using Topelab.RegisterActivity.Business.SetupDI;
 
 namespace RegisterActivity
@@ -17,18 +16,26 @@ namespace RegisterActivity
             return new ResolveInfoCollection()
                 .AddCollection(BusinessSetupDI.ModuleDependencies)
                 .AddSingleton<IProcessService, ProcessService>()
-                .AddSingleton<IOptionsFactory, OptionsFactory>()
                 .AddSingleton<IDataService, DataService>()
                 .AddSingleton<IExportService, ExportService>()
                 .AddSingleton<IExportCsvService, ExportCsvService>()
                 .AddSingleton<IExportExcelService, ExportExcelService>()
                 .AddSingleton<IWinlogService, WinlogService>()
-                .Add<IRegisterActivityDbContext, RegisterActivityDbContext>(typeof(DbContextOptions<RegisterActivityDbContext>))
+                .AddSingleton<ILoggerFactory, LoggerFactory>()
+                .AddFactory(s => GetLogger(s))
                 .Add<IMainWindowFactory, MainWindowFactory>()
                 .Add<IMainWindowInitializer, MainWindowInitializer>()
                 .AddSelf<MainWindow>(typeof(MainWindowVM))
                 .AddSelf<MainWindowVM>()
                 ;
         }
+
+        private static ILogger GetLogger(IResolver resolver)
+        {
+            var factory = resolver.Get<ILoggerFactory>();
+            factory.AddProvider(new NLogLoggerProvider());
+            return factory.CreateLogger("RegisterActivity");
+        }
+
     }
 }

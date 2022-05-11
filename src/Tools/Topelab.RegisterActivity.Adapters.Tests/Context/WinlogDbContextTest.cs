@@ -1,18 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Data.Common;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Sqlite;
-using NLog.Web.AspNetCore;
-using NUnit.Framework;
-using Topelab.RegisterActivity.Domain.Entities;
-using Topelab.RegisterActivity.Adapters.Context;
-using Topelab.RegisterActivity.Adapters.Builders;
 using Microsoft.Extensions.Logging;
 using NLog.Extensions.Logging;
-using Microsoft.Data.Sqlite;
+using NUnit.Framework;
+using System;
+using System.Linq;
+using Topelab.RegisterActivity.Adapters.Context;
 
 namespace Topelab.RegisterActivity.Adapters.Tests
 {

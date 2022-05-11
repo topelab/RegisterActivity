@@ -1,12 +1,9 @@
+using Topelab.Core.Resolver.Entities;
+using Topelab.RegisterActivity.Adapters.Context;
+using Topelab.RegisterActivity.Adapters.Interfaces;
 using Topelab.RegisterActivity.Business.Services;
 using Topelab.RegisterActivity.Business.Services.Entities;
 using Topelab.RegisterActivity.Business.Services.Interfaces;
-using Topelab.RegisterActivity.Domain.Dtos;
-using Topelab.RegisterActivity.Adapters.Context;
-using Topelab.RegisterActivity.Adapters.Interfaces;
-using System;
-using Topelab.Core.Resolver.Entities;
-using Topelab.Core.Resolver.Enums;
 
 namespace Topelab.RegisterActivity.Business.SetupDI
 {

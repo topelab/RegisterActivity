@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 
-namespace RegisterActivityServices.DTO
+namespace Topelab.RegisterActivity.Business.DTO
 {
     public partial class TimelineEventsDTO
     {

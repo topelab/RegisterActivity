@@ -1,5 +1,3 @@
-using System;
-
 namespace Topelab.RegisterActivity.Domain.Interfaces
 {
     /// <summary>

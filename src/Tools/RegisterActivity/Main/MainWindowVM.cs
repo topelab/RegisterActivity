@@ -7,9 +7,9 @@ namespace RegisterActivity.Main
 {
     public class MainWindowVM : BaseModel
     {
-		public ObservableCollection<string> Messages { get; }
+        public ObservableCollection<string> Messages { get; }
 
-		private string title;
+        private string title;
 
         public string Title
         {
@@ -28,7 +28,7 @@ namespace RegisterActivity.Main
 
         public MainWindowVM()
         {
-			Messages = new ObservableCollection<string>();
+            Messages = new ObservableCollection<string>();
             dispatcher = App.Current.Dispatcher;
         }
 

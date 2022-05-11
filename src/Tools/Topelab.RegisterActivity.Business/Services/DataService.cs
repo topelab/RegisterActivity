@@ -1,22 +1,22 @@
-using RegisterActivityServices.DTO;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using Topelab.RegisterActivity.Adapters.Interfaces;
+using Topelab.RegisterActivity.Business.DTO;
+using Topelab.RegisterActivity.Business.Services.Entities;
 using Topelab.RegisterActivity.Domain.Entities;
 
-namespace RegisterActivityServices.Services
+namespace Topelab.RegisterActivity.Business.Services
 {
     public class DataService : IDataService
     {
         private readonly Dictionary<int, ProcessDTO> processData;
-        private readonly IRegisterActivityDbContextFactory registerActivityDbContextFactory;
+        private readonly IWinlogService winlogService;
         private ProcessDTO lastProcess = null;
 
-        public DataService(IRegisterActivityDbContextFactory registerActivityDbContextFactory)
+
+        public DataService(IWinlogService winlogService)
         {
             processData = new Dictionary<int, ProcessDTO>();
-            this.registerActivityDbContextFactory = registerActivityDbContextFactory ?? throw new ArgumentNullException(nameof(registerActivityDbContextFactory));
+            this.winlogService = winlogService ?? throw new ArgumentNullException(nameof(winlogService));
         }
 
         public void CalculateData(ProcessDTO currentProcess, Action<ProcessDTO> afterSave = null)
@@ -47,23 +47,7 @@ namespace RegisterActivityServices.Services
 
         private void SaveData(ProcessDTO process)
         {
-            using var db = registerActivityDbContextFactory.Create();
-            var winlog = db.Winlog.Where(r => r.HashCode == process.GetHashCode()).OrderByDescending(r => r.StartTime).FirstOrDefault();
-
-            if (winlog != null)
-            {
-                winlog.TotalTime = process.DurationInSeconds;
-                winlog.EndTime = DateTime.Now.ToString("s");
-                db.Update(winlog);
-            }
-            else
-            {
-                winlog = Map(process);
-                db.Add(winlog);
-            }
-
-            db.SaveChanges();
-            process.LocalId = winlog.LocalId;
+            process.LocalId = winlogService.Save(Map(process));
         }
 
         private static Winlog Map(ProcessDTO item)

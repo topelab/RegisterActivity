@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace RegisterActivityServices.Tools
+namespace Topelab.RegisterActivity.Business.Tools
 {
     internal class WindowTools
     {
