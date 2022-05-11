@@ -47,7 +47,6 @@ namespace Topelab.RegisterActivity.Adapters.Builders
                     .IsRequired()
                     .HasMaxLength(2147483647);
                 entity.Property(e => e.TotalTime)
-					.HasColumnType("NUMERIC")
                     .HasColumnName("total_time")
                     .HasPrecision(8, 0);
                 entity.Property(e => e.Exported)

@@ -17,7 +17,7 @@ namespace Topelab.RegisterActivity.Domain.Entities
         private string title;
         private string startTime;
         private string endTime;
-        private decimal totalTime;
+        private int totalTime;
         private int? exported;
 
         /// <summary>
@@ -206,7 +206,7 @@ namespace Topelab.RegisterActivity.Domain.Entities
         /// <summary>
         /// Total time
         /// </summary>
-        public decimal TotalTime
+        public int TotalTime
         {
             get => totalTime;
             set

@@ -13,6 +13,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RegisterActivityServices", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Topelab.RegisterActivity.Business", "Topelab.RegisterActivity.Business\Topelab.RegisterActivity.Business.csproj", "{0C3C2A17-EFC6-441E-9CED-488F6172DA4B}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Topelab.RegisterActivity.Adapters.Tests", "Topelab.RegisterActivity.Adapters.Tests\Topelab.RegisterActivity.Adapters.Tests.csproj", "{1910D1F6-787D-427D-A3DB-FA64D0A1CDEF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Topelab.RegisterActivity.Tools", "Topelab.RegisterActivity.Tools\Topelab.RegisterActivity.Tools.csproj", "{75CAC53F-11C6-4CA8-BCD0-10908A712FE9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{0C3C2A17-EFC6-441E-9CED-488F6172DA4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C3C2A17-EFC6-441E-9CED-488F6172DA4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C3C2A17-EFC6-441E-9CED-488F6172DA4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1910D1F6-787D-427D-A3DB-FA64D0A1CDEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1910D1F6-787D-427D-A3DB-FA64D0A1CDEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1910D1F6-787D-427D-A3DB-FA64D0A1CDEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1910D1F6-787D-427D-A3DB-FA64D0A1CDEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75CAC53F-11C6-4CA8-BCD0-10908A712FE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75CAC53F-11C6-4CA8-BCD0-10908A712FE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75CAC53F-11C6-4CA8-BCD0-10908A712FE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75CAC53F-11C6-4CA8-BCD0-10908A712FE9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

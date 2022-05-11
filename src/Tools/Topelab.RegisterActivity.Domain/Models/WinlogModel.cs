@@ -16,7 +16,7 @@ namespace Topelab.RegisterActivity.Domain.Models
         private string title;
         private string startTime;
         private string endTime;
-        private decimal totalTime;
+        private int totalTime;
         private int? exported;
 
         /// <summary>
@@ -109,7 +109,7 @@ namespace Topelab.RegisterActivity.Domain.Models
         /// <summary>
         /// Total time
         /// </summary>
-        public decimal TotalTime
+        public int TotalTime
         {
             get => totalTime;
             set => SetProperty(ref totalTime, value, OnTotalTimeChanged, CanTotalTimeChange);
@@ -190,11 +190,11 @@ namespace Topelab.RegisterActivity.Domain.Models
         /// <summary>
         /// Test if TotalTime can change its value
         /// </summary>
-        public Func<IWinlog, decimal, bool> CanTotalTimeChange { get; set; }
+        public Func<IWinlog, int, bool> CanTotalTimeChange { get; set; }
         /// <summary>
         /// Action triggered after TotalTime changed its value
         /// </summary>
-        public Action<decimal> OnTotalTimeChanged { get; set; }
+        public Action<int> OnTotalTimeChanged { get; set; }
 
         /// <summary>
         /// Test if Exported can change its value

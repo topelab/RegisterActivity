@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace Topelab.RegisterActivity.Adapters.Interfaces
 {
     /// <summary>
-    /// Interface fro DbContext<br />
+    /// Interface for DbContext<br />
     /// <see cref="DbContext"/>
     /// </summary>
     public interface IDbContext : IDisposable, IAsyncDisposable, IInfrastructure<IServiceProvider>, IResettableService

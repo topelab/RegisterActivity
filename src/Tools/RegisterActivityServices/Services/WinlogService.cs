@@ -1,33 +1,26 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using RegisterActivityServices.DTO;
-using RegisterActivityServices.Factories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Topelab.Core.Resolver.Interfaces;
-using Topelab.RegisterActivity.Adapters.Context;
 using Topelab.RegisterActivity.Adapters.Interfaces;
 
 namespace RegisterActivityServices.Services
 {
     public class WinlogService : IWinlogService
     {
-        private readonly IResolver resolver;
-        private readonly IOptionsFactory optionsFactory;
+        private readonly IRegisterActivityDbContextFactory registerActivityDbContextFactory;
 
-        public WinlogService(IResolver resolver, IOptionsFactory optionsFactory)
+        public WinlogService(IRegisterActivityDbContextFactory registerActivityDbContextFactory)
         {
-            this.resolver = resolver ?? throw new ArgumentNullException(nameof(resolver));
-            this.optionsFactory = optionsFactory ?? throw new ArgumentNullException(nameof(optionsFactory));
+            this.registerActivityDbContextFactory = registerActivityDbContextFactory ?? throw new ArgumentNullException(nameof(registerActivityDbContextFactory));
         }
 
-        public List<TimelineEventsDTO> ReadDB(string file)
+        public List<TimelineEventsDTO> GetTimeLineEvents()
         {
-            var connString = $"Data Source={file}";
-            var options = optionsFactory.Create(connString);
-            using var db = resolver.Get<IRegisterActivityDbContext, DbContextOptions<RegisterActivityDbContext>>(options);
+            using var db = registerActivityDbContextFactory.Create();
 
-            var datos = db.Winlog
+            var datos = db.Winlog.AsNoTracking()
                 .Select(r => new TimelineEventsDTO
                 {
                     LocalId = r.LocalId,
@@ -39,16 +32,6 @@ namespace RegisterActivityServices.Services
                 }).ToList();
 
             return datos;
-        }
-
-        public IEnumerable<TIn> GetAll<TIn>(string file) where TIn : class
-        {
-            var connString = $"Data Source={file}";
-            var options = optionsFactory.Create(connString);
-            using var db = resolver.Get<IRegisterActivityDbContext, DbContextOptions<RegisterActivityDbContext>>(options);
-            var dbSet = db.Set<TIn>();
-
-            return dbSet.AsNoTracking();
         }
     }
 }

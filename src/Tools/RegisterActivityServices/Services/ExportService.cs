@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using RegisterActivityServices.DTO;
 using System;
 using System.Diagnostics;
@@ -25,7 +25,7 @@ namespace RegisterActivityServices.Services
             var filename = Path.GetFileNameWithoutExtension(dbFileName);
             var filePath = (ConfigHelper.Config[Constants.OutputDirectory] ?? Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
 
-            var list = winlogService.ReadDB(dbFileName);
+            var list = winlogService.GetTimeLineEvents();
             var outputFile = Path.Combine(filePath, filename);
 
             switch (format)

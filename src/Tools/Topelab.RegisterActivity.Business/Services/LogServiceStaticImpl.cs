@@ -8,7 +8,7 @@ namespace Topelab.RegisterActivity.Business.Services
     /// <summary>
     /// Static implementation for the log service
     /// </summary>
-    public class LogServiceStaticImpl
+    public static class LogServiceStaticImpl
     {
         private static readonly ILogger _logger = LogManager.GetCurrentClassLogger();
 

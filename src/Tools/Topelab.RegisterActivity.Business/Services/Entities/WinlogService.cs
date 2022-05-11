@@ -23,18 +23,18 @@ namespace Topelab.RegisterActivity.Business.Services.Entities
         /// <summary>
         /// The context database
         /// </summary>
-        protected readonly IRegisterActivityDbContext context;
+        protected readonly IRegisterActivityDbContextFactory contextFactory;
 
         /// <summary>
         /// Initializes a new instance of the Winlog Service class.
         /// </summary>
-        /// <param name="context">The context for service.</param>
+        /// <param name="context">The context factory for service.</param>
         /// <param name="logService">The log service for service.</param>
-        public WinlogService(IRegisterActivityDbContext context,
+        public WinlogService(IRegisterActivityDbContextFactory contextFactory,
             ILogService logService)
         {
             this.logService = logService;
-            this.context = context;
+            this.contextFactory = contextFactory;
         }
 
     }

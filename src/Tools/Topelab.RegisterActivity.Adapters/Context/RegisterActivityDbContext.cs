@@ -12,48 +12,37 @@ namespace Topelab.RegisterActivity.Adapters.Context
     /// <summary>
     /// Context for module RegisterActivity
     /// </summary>
-    /// <seealso cref="DbContext" />
-    /// <seealso cref="IRegisterActivityDbContext" />
     public partial class RegisterActivityDbContext : DbContext, IRegisterActivityDbContext
     {
-        private static ILoggerFactory loggerFactory;
-        private static ILogger logger;
+        private readonly ILogger logger;
+        private readonly string connectionString;
         private static int id;
-        private string connectionString;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RegisterActivityDbContext"/> class.
         /// </summary>
-        public RegisterActivityDbContext()
+        /// <param name="logger">Logger</param>
+        public RegisterActivityDbContext(ILogger logger = null)
         {
             Id = ++id;
-            PrepareHandlers();
+            this.logger = logger;
+            connectionString = Environment.ExpandEnvironmentVariables(ConfigHelper.GetConnectionString());
             OpenIfMemoryDb();
-            logger?.LogInformation($"Starting instance number {Id} from RegisterActivityDbContext");
+            this.logger?.LogInformation($"Starting instance number {Id} from RegisterActivityDbContext");
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RegisterActivityDbContext"/> class.
         /// </summary>
         /// <param name="options">The options.</param>
-        public RegisterActivityDbContext(DbContextOptions<RegisterActivityDbContext> options) : base(options)
+        /// <param name="logger">Logger</param>
+        public RegisterActivityDbContext(DbContextOptions<RegisterActivityDbContext> options, ILogger logger = null) : base(options)
         {
             Id = ++id;
-            PrepareHandlers();
+            this.logger = logger;
             connectionString = options.Extensions.OfType<RelationalOptionsExtension>().FirstOrDefault()?.ConnectionString;
             OpenIfMemoryDb();
-            logger?.LogInformation($"Starting instance number {Id} from RegisterActivityDbContext (with options)");
-        }
-
-        /// <summary>
-        /// Sets the logger factory
-        /// </summary>
-        public static void SetLoggerFactory(ILoggerFactory loggerFactory)
-        {
-            // loggerFactory could be null, it's ok
-            RegisterActivityDbContext.loggerFactory = loggerFactory;
-            logger = loggerFactory?.CreateLogger<RegisterActivityDbContext>();
-            logger?.LogInformation("Starting Loggin at RegisterActivityDbContext");
+            this.logger?.LogInformation($"Starting instance number {Id} from RegisterActivityDbContext (with options)");
         }
 
         /// <summary>
@@ -93,12 +82,6 @@ namespace Topelab.RegisterActivity.Adapters.Context
         {
             if (!optionsBuilder.IsConfigured)
             {
-                if (loggerFactory != null)
-                {
-                    optionsBuilder.UseLoggerFactory(loggerFactory);
-                }
-
-                connectionString ??= Environment.ExpandEnvironmentVariables(ConfigHelper.GetConnectionString());
                 optionsBuilder.UseSqlite(connectionString);
             }
         }
@@ -123,18 +106,10 @@ namespace Topelab.RegisterActivity.Adapters.Context
 
         private void OpenIfMemoryDb()
         {
-            connectionString ??= Environment.ExpandEnvironmentVariables(ConfigHelper.GetConnectionString());
             if (connectionString.Contains(":memory:"))
             {
                 Database.OpenConnection();
             }
-        }
-
-        private void PrepareHandlers()
-        {
-            SavingChanges += (s, e) => logger?.LogInformation("Running Before Save Changes");
-            SavedChanges += (s, e) => logger?.LogInformation("Running After Save Changes");
-            SaveChangesFailed += (s, e) => logger?.LogError("Error Saving Changes: {Message}", e.Exception.Message);
         }
     }
 }

@@ -1,0 +1,72 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30104.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01-Domain", "01-Domain", "{8DB8B1B4-2B1B-49A1-AA1A-FC3132B57506}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03-Adapters", "03-Adapters", "{EE674528-FB4C-4E12-86C4-E330F2D3104D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04-Business", "04-Business", "{41BE1425-44C8-4BDD-A410-BB962F6E7B3E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "10-Presentation", "10-Presentation", "{3F376B1A-AA00-49E6-94EE-0FBC71D47CAB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "99-Tools", "99-Tools", "{F9860139-4FA6-4893-9A11-83864E148E69}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D67B130E-2B07-4E1D-8D6F-9E80872E60DA}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		create-initial-migration.cmd = create-initial-migration.cmd
+		readme.md = readme.md
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Topelab.RegisterActivity.Domain", "Topelab.RegisterActivity.Domain\Topelab.RegisterActivity.Domain.csproj", "{A394A479-4740-492E-B32A-D6E4AB4EB129}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Topelab.RegisterActivity.Adapters", "Topelab.RegisterActivity.Adapters\Topelab.RegisterActivity.Adapters.csproj", "{1B6D6DED-8315-435F-823E-FD114AE238D0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Topelab.RegisterActivity.Adapters.Tests", "Topelab.RegisterActivity.Adapters.Tests\Topelab.RegisterActivity.Adapters.Tests.csproj", "{BA5E0CB2-09E5-4F42-A4CE-7106D3D71CA2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Topelab.RegisterActivity.Tools", "Topelab.RegisterActivity.Tools\Topelab.RegisterActivity.Tools.csproj", "{05AFB517-5158-4F84-AC43-B5411E0E6A0E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Topelab.RegisterActivity.Business", "Topelab.RegisterActivity.Business\Topelab.RegisterActivity.Business.csproj", "{6686FB23-7E10-4A2B-BA61-37D5931DC109}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A394A479-4740-492E-B32A-D6E4AB4EB129}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A394A479-4740-492E-B32A-D6E4AB4EB129}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A394A479-4740-492E-B32A-D6E4AB4EB129}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A394A479-4740-492E-B32A-D6E4AB4EB129}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B6D6DED-8315-435F-823E-FD114AE238D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B6D6DED-8315-435F-823E-FD114AE238D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B6D6DED-8315-435F-823E-FD114AE238D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B6D6DED-8315-435F-823E-FD114AE238D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA5E0CB2-09E5-4F42-A4CE-7106D3D71CA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA5E0CB2-09E5-4F42-A4CE-7106D3D71CA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA5E0CB2-09E5-4F42-A4CE-7106D3D71CA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA5E0CB2-09E5-4F42-A4CE-7106D3D71CA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05AFB517-5158-4F84-AC43-B5411E0E6A0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05AFB517-5158-4F84-AC43-B5411E0E6A0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05AFB517-5158-4F84-AC43-B5411E0E6A0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05AFB517-5158-4F84-AC43-B5411E0E6A0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6686FB23-7E10-4A2B-BA61-37D5931DC109}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6686FB23-7E10-4A2B-BA61-37D5931DC109}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6686FB23-7E10-4A2B-BA61-37D5931DC109}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6686FB23-7E10-4A2B-BA61-37D5931DC109}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A394A479-4740-492E-B32A-D6E4AB4EB129} = {8DB8B1B4-2B1B-49A1-AA1A-FC3132B57506}
+		{1B6D6DED-8315-435F-823E-FD114AE238D0} = {EE674528-FB4C-4E12-86C4-E330F2D3104D}
+		{BA5E0CB2-09E5-4F42-A4CE-7106D3D71CA2} = {EE674528-FB4C-4E12-86C4-E330F2D3104D}
+		{05AFB517-5158-4F84-AC43-B5411E0E6A0E} = {F9860139-4FA6-4893-9A11-83864E148E69}
+		{6686FB23-7E10-4A2B-BA61-37D5931DC109} = {41BE1425-44C8-4BDD-A410-BB962F6E7B3E}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D88ABEC4-1E7C-4B3E-8DB3-484BEC690AEF}
+	EndGlobalSection
+EndGlobal

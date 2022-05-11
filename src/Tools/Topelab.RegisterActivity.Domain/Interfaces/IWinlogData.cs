@@ -40,7 +40,7 @@ namespace Topelab.RegisterActivity.Domain.Interfaces
         /// <summary>
         /// Total time
         /// </summary>
-        decimal TotalTime { get; set; }
+        int TotalTime { get; set; }
 
         /// <summary>
         /// Exported

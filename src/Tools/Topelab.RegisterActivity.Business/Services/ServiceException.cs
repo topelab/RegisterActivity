@@ -31,5 +31,21 @@ namespace Topelab.RegisterActivity.Business.Services
         {
             logService.Error(message, memberName, sourceFilePath);
         }
+
+        /// <summary>
+        /// Initializes a new instance of the Service Exception class with params.
+        /// </summary>
+        public ServiceException() : base()
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the Service Exception class with params.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <param name="innerException">Inner exception.</param>
+        public ServiceException(string message, Exception innerException) : base(message, innerException)
+        {
+        }
     }
 }

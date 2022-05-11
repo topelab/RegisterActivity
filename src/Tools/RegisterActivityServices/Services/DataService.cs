@@ -1,29 +1,22 @@
-﻿using Microsoft.EntityFrameworkCore;
 using RegisterActivityServices.DTO;
-using RegisterActivityServices.Factories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Topelab.RegisterActivity.Adapters.Context;
 using Topelab.RegisterActivity.Adapters.Interfaces;
 using Topelab.RegisterActivity.Domain.Entities;
-using Topelab.Core.Resolver.Interfaces;
 
 namespace RegisterActivityServices.Services
 {
     public class DataService : IDataService
     {
-        private readonly DbContextOptions<RegisterActivityDbContext> options;
-        private readonly IResolver resolver;
         private readonly Dictionary<int, ProcessDTO> processData;
-
+        private readonly IRegisterActivityDbContextFactory registerActivityDbContextFactory;
         private ProcessDTO lastProcess = null;
 
-        public DataService(IResolver resolver, IOptionsFactory optionsFactory)
+        public DataService(IRegisterActivityDbContextFactory registerActivityDbContextFactory)
         {
-            this.resolver = resolver ?? throw new ArgumentNullException(nameof(resolver));
-            options = optionsFactory.Create(Constants.ConnStringKey);
             processData = new Dictionary<int, ProcessDTO>();
+            this.registerActivityDbContextFactory = registerActivityDbContextFactory ?? throw new ArgumentNullException(nameof(registerActivityDbContextFactory));
         }
 
         public void CalculateData(ProcessDTO currentProcess, Action<ProcessDTO> afterSave = null)
@@ -54,7 +47,7 @@ namespace RegisterActivityServices.Services
 
         private void SaveData(ProcessDTO process)
         {
-            using var db = resolver.Get<IRegisterActivityDbContext, DbContextOptions<RegisterActivityDbContext>>(options);
+            using var db = registerActivityDbContextFactory.Create();
             var winlog = db.Winlog.Where(r => r.HashCode == process.GetHashCode()).OrderByDescending(r => r.StartTime).FirstOrDefault();
 
             if (winlog != null)
