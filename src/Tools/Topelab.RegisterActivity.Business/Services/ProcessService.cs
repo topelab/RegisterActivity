@@ -45,9 +45,7 @@ namespace Topelab.RegisterActivity.Business.Services
                     if (activeWindow != null && processId > 0)
                     {
                         var process = Process.GetProcessById(processId);
-                        ProcessDTO currentProcess = new(process, activeWindow);
-                        var discount = process.StartTime > DateTime.Now.AddMilliseconds(-interval) ? (DateTime.Now - process.StartTime).TotalMilliseconds : interval;
-                        currentProcess.LastTimeActive = DateTime.Now.AddMilliseconds(-discount);
+                        ProcessDTO currentProcess = new(process, activeWindow, interval);
                         onNewProcesses?.Invoke(currentProcess);
                     }
                 }

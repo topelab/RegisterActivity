@@ -62,22 +62,9 @@ namespace Topelab.RegisterActivity.Business.Services.Entities
         public int Save(Winlog winlogToSave)
         {
             using var db = contextFactory.Create();
-            var winlog = db.Winlog.Where(r => r.HashCode == winlogToSave.HashCode).OrderByDescending(r => r.StartTime).FirstOrDefault();
-
-            if (winlog != null)
-            {
-                winlog.TotalTime = winlogToSave.TotalTime;
-                winlog.EndTime = DateTime.Now.ToString("s");
-                db.Update(winlog);
-            }
-            else
-            {
-                winlog = winlogToSave;
-                db.Add(winlog);
-            }
-
+            db.Add(winlogToSave);
             db.SaveChanges();
-            return winlog.LocalId;
+            return winlogToSave.LocalId;
         }
 
     }

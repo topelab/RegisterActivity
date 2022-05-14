@@ -3,6 +3,7 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Topelab.Core.Helpers.Extensions;
 using Topelab.RegisterActivity.Business.DTO;
 using Topelab.RegisterActivity.Business.Services;
 using Topelab.RegisterActivity.Business.Services.Entities;
@@ -32,6 +33,7 @@ namespace Topelab.RegisterActivity.Business.Test.Services
                 {
                     w.LocalId = ++id;
                     mockWinlogStack.Push(w);
+                    Debug.Print(w.ToJSon());
                     return id;
                 });
         }
@@ -50,13 +52,19 @@ namespace Topelab.RegisterActivity.Business.Test.Services
             var process = Process.GetCurrentProcess();
             var lastTimeActive = DateTime.Now.AddMinutes(-10);
             ProcessDTO currentProcess = new(process, "DataServiceTest") { LastTimeActive = lastTimeActive };
-            ProcessDTO currentProcess2 = new(process, "DataServiceTest2") { LastTimeActive = lastTimeActive };
+            ProcessDTO currentProcess2 = new(process, "DataServiceTest") { LastTimeActive = lastTimeActive };
+            ProcessDTO currentProcess3 = new(process, "DataServiceTest") { LastTimeActive = lastTimeActive };
+            ProcessDTO currentProcess4 = new(process, "DataServiceTest") { LastTimeActive = lastTimeActive };
+            ProcessDTO currentProcess5 = new(process, "DataServiceTest2") { LastTimeActive = lastTimeActive };
             
             Action<ProcessDTO> afterSave = null;
 
             // Act
             service.CalculateData(currentProcess, afterSave);
             service.CalculateData(currentProcess2, afterSave);
+            service.CalculateData(currentProcess3, afterSave);
+            service.CalculateData(currentProcess4, afterSave);
+            service.CalculateData(currentProcess5, afterSave);
 
             // Assert
             Assert.IsTrue(mockWinlogStack.Peek().TotalTime > 0);
