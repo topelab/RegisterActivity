@@ -24,8 +24,10 @@ namespace Topelab.RegisterActivity.Business.Services
             var hashCode = currentProcess.GetHashCode();
             if (processData.TryGetValue(hashCode, out var process))
             {
-                currentProcess = process;
+                currentProcess.Duration = process.Duration;
+                currentProcess.StartTime = process.StartTime;
             }
+
             var lastMoment = currentProcess.LastTimeActive ?? DateTime.Now;
             currentProcess.LastTimeActive = DateTime.Now;
             currentProcess.Duration += DateTime.Now - lastMoment;
@@ -37,7 +39,7 @@ namespace Topelab.RegisterActivity.Business.Services
                 {
                     lastProcess.LastTimeActive = null;
                     SaveData(lastProcess);
-                    processData[lastHashCode] = lastProcess;
+                    processData.Remove(lastHashCode);
                     afterSave?.Invoke(lastProcess);
                 }
             }
@@ -54,7 +56,7 @@ namespace Topelab.RegisterActivity.Business.Services
         {
             return new Winlog
             {
-                EndTime = DateTime.Now.ToString("s"),
+                EndTime = DateTime.Now.AddMilliseconds(-item.Discount).ToString("s"),
                 StartTime = item.StartTime.ToString("s"),
                 Program = item.ProcessName,
                 Title = item.MainWindowTitle,

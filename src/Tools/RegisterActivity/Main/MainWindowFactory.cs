@@ -42,7 +42,7 @@ namespace RegisterActivity.Main
 
         private void RegisterData(ProcessDTO currentPocess)
         {
-            dataService.CalculateData(currentPocess, o => mainWindowVM.AddMessage(o.MainWindowTitle));
+            dataService.CalculateData(currentPocess, o => mainWindowVM.AddMessage($"{o.StartTime:g} - {o.MainWindowTitle}"));
         }
 
         private void Current_Exit(object sender, System.Windows.ExitEventArgs e)
