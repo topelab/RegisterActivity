@@ -4,5 +4,6 @@ namespace Topelab.RegisterActivity.Business.DTO
     {
         public const string ConnStringKey = "localserver";
         public const string OutputDirectory = "OutputDirectory";
+        public const string OutputFileName = "OutputFileName";
     }
 }
