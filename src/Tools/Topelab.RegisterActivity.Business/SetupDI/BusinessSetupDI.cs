@@ -1,6 +1,7 @@
 using Topelab.Core.Resolver.Entities;
 using Topelab.RegisterActivity.Adapters.Context;
 using Topelab.RegisterActivity.Adapters.Interfaces;
+using Topelab.RegisterActivity.Business.Factories;
 using Topelab.RegisterActivity.Business.Services;
 using Topelab.RegisterActivity.Business.Services.Entities;
 using Topelab.RegisterActivity.Business.Services.Interfaces;
@@ -22,6 +23,7 @@ namespace Topelab.RegisterActivity.Business.SetupDI
             return new ResolveInfoCollection()
             // Business Dependencies for Winlog
             .AddSingleton<IWinlogService, WinlogService>()
+            .AddSingleton<IProcessDTOFactory, ProcessDTOFactory>()
 
             // Other dependencies
             .AddSingleton<ILogService, LogService>()
