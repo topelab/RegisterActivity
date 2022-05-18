@@ -6,7 +6,7 @@ namespace Topelab.RegisterActivity.Business.Factories
 {
     public class ProcessDTOFactory : IProcessDTOFactory
     {
-        public ProcessDTO Create(Process p, string defaultTitle, double interval)
+        public ProcessDTO Create(Process p, string defaultTitle, DateTime when, double msToDiscount = 0)
         {
             ProcessDTO processDTO = new()
             {
@@ -15,8 +15,8 @@ namespace Topelab.RegisterActivity.Business.Factories
                 MainWindowTitle = string.IsNullOrWhiteSpace(p.MainWindowTitle) ? defaultTitle : p.MainWindowTitle,
                 ProcessName = p.ProcessName
             };
-            var discount = p.StartTime > DateTime.Now.AddMilliseconds(-interval) ? (DateTime.Now - p.StartTime).TotalMilliseconds : interval;
-            processDTO.LastTimeActive = DateTime.Now.AddMilliseconds(-discount);
+            var discount = p.StartTime > when.AddMilliseconds(-msToDiscount) ? (when - p.StartTime).TotalMilliseconds : msToDiscount;
+            processDTO.LastTimeActive = when.AddMilliseconds(-discount);
             processDTO.Discount = discount;
             processDTO.StartTime = processDTO.LastTimeActive.Value;
             try

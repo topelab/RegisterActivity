@@ -54,11 +54,11 @@ namespace Topelab.RegisterActivity.Business.Test.Services
             var lastTimeActive = DateTime.Now.AddMinutes(-10);
             var processFactory = new ProcessDTOFactory();
 
-            ProcessDTO currentProcess = processFactory.Create(process, "DataServiceTest", 1000);
-            ProcessDTO currentProcess2 = processFactory.Create(process, "DataServiceTest", 1000);
-            ProcessDTO currentProcess3 = processFactory.Create(process, "DataServiceTest", 1000);
-            ProcessDTO currentProcess4 = processFactory.Create(process, "DataServiceTest", 1000);
-            ProcessDTO currentProcess5 = processFactory.Create(process, "DataServiceTest2", 1000);
+            ProcessDTO currentProcess = processFactory.Create(process, "DataServiceTest", lastTimeActive, 1000);
+            ProcessDTO currentProcess2 = processFactory.Create(process, "DataServiceTest", lastTimeActive, 1000);
+            ProcessDTO currentProcess3 = processFactory.Create(process, "DataServiceTest", lastTimeActive, 1000);
+            ProcessDTO currentProcess4 = processFactory.Create(process, "DataServiceTest", lastTimeActive, 1000);
+            ProcessDTO currentProcess5 = processFactory.Create(process, "DataServiceTest2", lastTimeActive, 1000);
             
             Action<ProcessDTO> afterSave = null;
 

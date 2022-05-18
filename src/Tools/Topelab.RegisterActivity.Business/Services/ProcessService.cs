@@ -49,7 +49,7 @@ namespace Topelab.RegisterActivity.Business.Services
                     if (activeWindow != null && processId > 0)
                     {
                         var process = Process.GetProcessById(processId);
-                        ProcessDTO currentProcess = processDTOFactory.Create(process, activeWindow, timer.Interval);
+                        ProcessDTO currentProcess = processDTOFactory.Create(process, activeWindow, DateTime.Now, timer.Interval);
                         onNewProcesses?.Invoke(currentProcess);
                     }
                 }
