@@ -31,14 +31,25 @@ namespace RegisterActivity.Main
         private void PrepareWindow()
         {
             Closing += MainWindow_Closing;
+            this.mainWindowVM.PropertyChanged += OnMainWindowVMPropertyChanged;
 
             notifyIcon = new System.Windows.Forms.NotifyIcon();
             notifyIcon.DoubleClick += (s, args) => ShowMainWindow();
             notifyIcon.Icon = new System.Drawing.Icon("Resources/register-activity-70.ico");
             notifyIcon.Visible = true;
-            notifyIcon.BalloonTipText = "Register Activity";
 
             CreateContextMenu();
+        }
+
+        private void OnMainWindowVMPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            switch(e.PropertyName)
+            {
+                case nameof(MainWindowVM.Title):
+                    notifyIcon.Text = mainWindowVM.Title;
+                    break;
+            }
+            this.mainWindowVM.PropertyChanged -= OnMainWindowVMPropertyChanged;
         }
 
         private void CreateContextMenu()

@@ -1,34 +1,35 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<OutputType>WinExe</OutputType>
-		<TargetFramework>net6.0-windows</TargetFramework>
-		<ApplicationIcon>Resources\register-activity-70.ico</ApplicationIcon>
-		<UseWindowsForms>true</UseWindowsForms>
-		<UseWPF>true</UseWPF>
-	</PropertyGroup>
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <ApplicationIcon>Resources\register-activity-70.ico</ApplicationIcon>
+    <UseWindowsForms>true</UseWindowsForms>
+    <UseWPF>true</UseWPF>
+    <Version>1.0.122.521</Version>
+  </PropertyGroup>
 
-	<ItemGroup>
-		<Content Include="Resources\register-activity-70.ico">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
-	</ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\register-activity-70.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 
-	<ItemGroup>
-	  <PackageReference Include="NLog.Extensions.Logging" Version="1.7.4" />
-	</ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="NLog.Extensions.Logging" Version="1.7.4" />
+  </ItemGroup>
 
-	<ItemGroup>
-	  <ProjectReference Include="..\Topelab.RegisterActivity.Business\Topelab.RegisterActivity.Business.csproj" />
-	</ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Topelab.RegisterActivity.Business\Topelab.RegisterActivity.Business.csproj" />
+  </ItemGroup>
 
-	<ItemGroup>
-		<None Update="appsettings.json">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</None>
-		<None Update="data\ActivitiesDB.db">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</None>
-	</ItemGroup>
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="data\ActivitiesDB.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 
 </Project>
