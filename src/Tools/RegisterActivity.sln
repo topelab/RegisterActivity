@@ -15,7 +15,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Topelab.RegisterActivity.Ad
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Topelab.RegisterActivity.Tools", "Topelab.RegisterActivity.Tools\Topelab.RegisterActivity.Tools.csproj", "{75CAC53F-11C6-4CA8-BCD0-10908A712FE9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Topelab.RegisterActivity.Business.Test", "Topelab.RegisterActivity.Business.Test\Topelab.RegisterActivity.Business.Test.csproj", "{D7FE9081-F458-4989-A9CC-791B7C1F6A01}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Topelab.RegisterActivity.Business.Test", "Topelab.RegisterActivity.Business.Test\Topelab.RegisterActivity.Business.Test.csproj", "{D7FE9081-F458-4989-A9CC-791B7C1F6A01}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{374D7EBA-CE89-48AC-B64F-B07F4EDCCB3D}"
+	ProjectSection(SolutionItems) = preProject
+		readme.md = readme.md
+		version.txt = version.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
