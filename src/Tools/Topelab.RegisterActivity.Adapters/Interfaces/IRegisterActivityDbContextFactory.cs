@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Topelab.RegisterActivity.Adapters.Context;
 
 namespace Topelab.RegisterActivity.Adapters.Interfaces

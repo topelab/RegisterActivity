@@ -1,4 +1,6 @@
+using System;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Topelab.RegisterActivity.Domain.Entities;
 
 namespace Topelab.RegisterActivity.Adapters.Builders

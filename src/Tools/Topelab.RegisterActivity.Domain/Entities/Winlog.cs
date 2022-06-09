@@ -1,4 +1,7 @@
+using System;
+using System.Collections.Generic;
 using Topelab.RegisterActivity.Domain.Interfaces;
+using Topelab.RegisterActivity.Domain.Collections;
 
 namespace Topelab.RegisterActivity.Domain.Entities
 {

@@ -1,11 +1,11 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using Topelab.RegisterActivity.Domain.Entities;
 using Topelab.RegisterActivity.Adapters.Builders;
 using Topelab.RegisterActivity.Adapters.Interfaces;
-using Topelab.RegisterActivity.Domain.Entities;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace Topelab.RegisterActivity.Adapters.Context
 {

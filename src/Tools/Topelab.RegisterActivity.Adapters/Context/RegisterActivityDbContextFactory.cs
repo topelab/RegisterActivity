@@ -5,6 +5,9 @@ using Topelab.RegisterActivity.Adapters.Interfaces;
 
 namespace Topelab.RegisterActivity.Adapters.Context
 {
+    /// <summary>
+    /// Context factory for RegisterActivity
+    /// </summary>
     public class RegisterActivityDbContextFactory : IRegisterActivityDbContextFactory
     {
         private readonly ILoggerFactory loggerFactory;
