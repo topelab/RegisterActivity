@@ -1,8 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using Topelab.RegisterActivity.Business.DTO;
+using Topelab.RegisterActivity.Business.Enums;
 using Topelab.RegisterActivity.Business.Services.Entities;
 
 namespace Topelab.RegisterActivity.Business.Services
@@ -10,14 +11,17 @@ namespace Topelab.RegisterActivity.Business.Services
     public class ExportService : IExportService
     {
         private readonly IWinlogService winlogService;
-        private readonly IExportCsvService csvService;
-        private readonly IExportExcelService excelService;
+        private readonly Dictionary<ExportFormat, IExportFileService> exportServices = new Dictionary<ExportFormat, IExportFileService>();
+        private readonly Dictionary<ExportFormat, string> exportExtensions = new Dictionary<ExportFormat, string>();
 
         public ExportService(IWinlogService winlogReaderService, IExportCsvService csvService, IExportExcelService excelService)
         {
             winlogService = winlogReaderService ?? throw new ArgumentNullException(nameof(winlogReaderService));
-            this.csvService = csvService ?? throw new ArgumentNullException(nameof(csvService));
-            this.excelService = excelService ?? throw new ArgumentNullException(nameof(excelService));
+            exportServices.Add(ExportFormat.CSV, csvService ?? throw new ArgumentNullException(nameof(csvService)));
+            exportServices.Add(ExportFormat.Excel, excelService ?? throw new ArgumentNullException(nameof(excelService)));
+
+            exportExtensions.Add(ExportFormat.CSV, "csv");
+            exportExtensions.Add(ExportFormat.Excel, "xlsx");
         }
 
         public void Start(ExportFormat format)
@@ -28,19 +32,10 @@ namespace Topelab.RegisterActivity.Business.Services
             var filePath = ConfigHelper.Config[Constants.OutputDirectory] ?? Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
             var list = winlogService.GetTimeLineEvents();
-            var outputFile = Path.Combine(filePath, outputFileName);
+            var outputFile = string.Concat(Path.Combine(filePath, outputFileName), ".", exportExtensions[format]);
+            var fileService = exportServices[format];
 
-            switch (format)
-            {
-                case ExportFormat.CSV:
-                    outputFile += ".csv";
-                    csvService.WriteToCSV(list, outputFile);
-                    break;
-                case ExportFormat.Excel:
-                    outputFile += ".xlsx";
-                    excelService.WriteToExcel(list, outputFile);
-                    break;
-            }
+            fileService.WriteToFile(list, outputFile);
 
             Process process = new();
             process.StartInfo.FileName = "cmd";

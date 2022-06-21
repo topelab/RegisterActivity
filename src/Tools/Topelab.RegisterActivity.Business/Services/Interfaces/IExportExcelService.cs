@@ -1,9 +1,6 @@
-﻿using System.Collections.Generic;
-
 namespace Topelab.RegisterActivity.Business.Services
 {
-    public interface IExportExcelService
+    public interface IExportExcelService : IExportFileService
     {
-        void WriteToExcel<T>(IEnumerable<T> datos, string outputFile) where T : class;
     }
 }

@@ -8,7 +8,7 @@ namespace Topelab.RegisterActivity.Business.Services
 {
     public class ExportCsvService : IExportCsvService
     {
-        public void WriteToCSV<T>(IEnumerable<T> datos, string outputFile) where T : class
+        public void WriteToFile<T>(IEnumerable<T> datos, string outputFile) where T : class
         {
             var content = ToCsv(datos);
             File.WriteAllText(outputFile, content);
@@ -16,7 +16,7 @@ namespace Topelab.RegisterActivity.Business.Services
 
         private const string Separator = ",";
 
-        public string ToCsv<T>(IEnumerable<T> items)
+        private string ToCsv<T>(IEnumerable<T> items)
             where T : class
         {
             var csvBuilder = new StringBuilder();

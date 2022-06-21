@@ -1,6 +1,7 @@
 using System;
 using Topelab.Core.Resolver.Interfaces;
 using Topelab.RegisterActivity.Business.DTO;
+using Topelab.RegisterActivity.Business.Enums;
 using Topelab.RegisterActivity.Business.Services;
 using Topelab.RegisterActivity.Domain.Base;
 

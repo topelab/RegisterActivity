@@ -1,4 +1,4 @@
-﻿using OfficeOpenXml;
+using OfficeOpenXml;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -6,7 +6,7 @@ namespace Topelab.RegisterActivity.Business.Services
 {
     public class ExportExcelService : IExportExcelService
     {
-        public void WriteToExcel<T>(IEnumerable<T> datos, string outputFile) where T : class
+        public void WriteToFile<T>(IEnumerable<T> datos, string outputFile) where T : class
         {
             var hoja = typeof(T).Name;
 
