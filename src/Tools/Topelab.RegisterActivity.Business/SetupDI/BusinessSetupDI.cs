@@ -28,7 +28,8 @@ namespace Topelab.RegisterActivity.Business.SetupDI
             // Other dependencies
             .AddSingleton<ILogService, LogService>()
             .AddSingleton<ICriteriaService, CriteriaService>()
-            .AddSingleton<IRegisterActivityDbContextFactory, RegisterActivityDbContextFactory>();
+            .AddSingleton<IRegisterActivityDbContextFactory, RegisterActivityDbContextFactory>()
+            .AddSingleton<IExportFileServiceResolver, ExportFileServiceResolver>();
         }
     }
 }

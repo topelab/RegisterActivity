@@ -2,13 +2,13 @@
 
 RegisterActiviy is a small application designed to record the time spent on each of the open applications while you work on your PC. As time passes, the title of the window, the name of the executable, the initial and final time that the application has been in the foreground are recorded.
 
-# Getting started
+# First steps
 
-## Building
+## Build solution
 
 Simply open the solution with Visual Studio 2022 and build it. The main project is *RegisterActity*, it is the one that should be executed.
 
-## Settings
+## Adjust settings
 
 The application is configured through the *appsettings.json* file, whose main keys are "ConnectionStrings:localserver", "OutputDirectory" and "OutputFileName"
 
