@@ -11,6 +11,10 @@ namespace Topelab.RegisterActivity.Business.Services
         public void WriteToFile<T>(IEnumerable<T> datos, string outputFile) where T : class
         {
             var content = ToCsv(datos);
+            if (!Directory.Exists(Path.GetDirectoryName(outputFile)))
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(outputFile));
+            }
             File.WriteAllText(outputFile, content);
         }
 

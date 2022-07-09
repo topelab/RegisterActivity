@@ -1,5 +1,6 @@
 using OfficeOpenXml;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace Topelab.RegisterActivity.Business.Services
@@ -8,6 +9,11 @@ namespace Topelab.RegisterActivity.Business.Services
     {
         public void WriteToFile<T>(IEnumerable<T> datos, string outputFile) where T : class
         {
+            if (!Directory.Exists(Path.GetDirectoryName(outputFile)))
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(outputFile));
+            }
+
             var hoja = typeof(T).Name;
 
             using var pack = new ExcelPackage(new System.IO.FileInfo(outputFile));

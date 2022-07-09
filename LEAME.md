@@ -1,6 +1,6 @@
 # Introducción
 
-RegisterActiviy es una pequeña aplicación destinada a registrar el tiempo que se dedica a cada una de las aplicaciones abiertas mientras trabajas con el PC. Conforme el tiempo va pasando, se registra el título de la ventana, el nombre del ejecutable, la hora inicial y final que la apliación ha estado en primer plano.
+RegisterActiviy es una pequeña aplicación destinada a registrar el tiempo que se dedica a cada una de las aplicaciones abiertas mientras trabajas con el PC. Conforme el tiempo va pasando, se registra el título de la ventana, el nombre del ejecutable, la hora inicial y final que la aplicación ha estado en primer plano.
 
 # Primeros pasos
 
