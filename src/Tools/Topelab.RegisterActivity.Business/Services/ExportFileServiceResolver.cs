@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using Topelab.Core.Helpers.Extensions;
+using Topelab.Core.Resolver.Interfaces;
 using Topelab.RegisterActivity.Business.Enums;
 using Topelab.RegisterActivity.Business.Services.Interfaces;
 
@@ -16,15 +18,14 @@ namespace Topelab.RegisterActivity.Business.Services
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="csvService">CSV File export service</param>
-        /// <param name="excelService">Excel File export service</param>
-        public ExportFileServiceResolver(IExportCsvService csvService, IExportExcelService excelService)
+        /// <param name="resolver">Resolver for DI</param>
+        public ExportFileServiceResolver(IResolver resolver)
         {
-            exportServices.Add(ExportFormat.CSV, csvService ?? throw new ArgumentNullException(nameof(csvService)));
-            exportExtensions.Add(ExportFormat.CSV, "csv");
-
-            exportServices.Add(ExportFormat.Excel, excelService ?? throw new ArgumentNullException(nameof(excelService)));
-            exportExtensions.Add(ExportFormat.Excel, "xlsx");
+            foreach (var value in Enum.GetValues<ExportFormat>())
+            {
+                exportServices.Add(value, resolver.Get<IExportFileService>(value.ToString()));
+                exportExtensions.Add(value, value.GetDescription());
+            }
         }
 
         /// <summary>

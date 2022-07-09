@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Topelab.RegisterActivity.Business.Services
 {
-    public class ExportExcelService : IExportExcelService
+    public class ExportExcelService : IExportFileService
     {
         public void WriteToFile<T>(IEnumerable<T> datos, string outputFile) where T : class
         {

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Topelab.RegisterActivity.Business.Services
 {
-    public class ExportCsvService : IExportCsvService
+    public class ExportCsvService : IExportFileService
     {
         public void WriteToFile<T>(IEnumerable<T> datos, string outputFile) where T : class
         {

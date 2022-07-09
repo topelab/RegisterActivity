@@ -3,6 +3,7 @@ using NLog.Extensions.Logging;
 using RegisterActivity.Main;
 using Topelab.Core.Resolver.Entities;
 using Topelab.Core.Resolver.Interfaces;
+using Topelab.RegisterActivity.Business.Enums;
 using Topelab.RegisterActivity.Business.Services;
 using Topelab.RegisterActivity.Business.Services.Entities;
 using Topelab.RegisterActivity.Business.SetupDI;
@@ -18,8 +19,8 @@ namespace RegisterActivity
                 .AddSingleton<IProcessService, ProcessService>()
                 .AddSingleton<IDataService, DataService>()
                 .AddSingleton<IExportService, ExportService>()
-                .AddSingleton<IExportCsvService, ExportCsvService>()
-                .AddSingleton<IExportExcelService, ExportExcelService>()
+                .AddSingleton<IExportFileService, ExportCsvService>(ExportFormat.CSV.ToString())
+                .AddSingleton<IExportFileService, ExportExcelService>(ExportFormat.Excel.ToString())
                 .AddSingleton<IWinlogService, WinlogService>()
                 .AddSingleton<ILoggerFactory, LoggerFactory>()
                 .AddFactory(s => GetLogger(s))

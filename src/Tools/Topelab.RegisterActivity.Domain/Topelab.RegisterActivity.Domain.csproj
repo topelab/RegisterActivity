@@ -6,8 +6,8 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Topelab.Core.Domain" version="1.4.1" />
-    <PackageReference Include="Topelab.Core.Helpers" version="1.4.1" />
+    <PackageReference Include="Topelab.Core.Domain" version="1.4.3" />
+    <PackageReference Include="Topelab.Core.Helpers" version="1.4.3" />
     <PackageReference Include="Topelab.Core.Resolver.Microsoft" Version="1.4.0" />
   </ItemGroup>
 </Project>
