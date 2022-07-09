@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel;
 using System.Windows;
-using Topelab.RegisterActivity.Business.DTO;
+using Topelab.RegisterActivity.Business.Enums;
 
 namespace RegisterActivity.Main
 {

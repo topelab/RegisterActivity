@@ -17,11 +17,22 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Topelab.RegisterActivity.To
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Topelab.RegisterActivity.Business.Test", "Topelab.RegisterActivity.Business.Test\Topelab.RegisterActivity.Business.Test.csproj", "{D7FE9081-F458-4989-A9CC-791B7C1F6A01}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{374D7EBA-CE89-48AC-B64F-B07F4EDCCB3D}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00 - SolutionItems", "00 - SolutionItems", "{374D7EBA-CE89-48AC-B64F-B07F4EDCCB3D}"
 	ProjectSection(SolutionItems) = preProject
+		..\..\LEAME.md = ..\..\LEAME.md
 		readme.md = readme.md
 		version.txt = version.txt
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "10 - Domain", "10 - Domain", "{5D7677CF-AEB5-42CF-A4F4-446DA8430427}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "20 - Adapter", "20 - Adapter", "{F6306A81-0364-46D7-AB9A-A84649AFA6CC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "30 - Business", "30 - Business", "{91ED1459-C1EB-45A9-9412-B36E1CD0C63F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "90 - Other", "90 - Other", "{D3FE9D66-951A-4823-8279-2FF50C9D45B5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "40 - Presentation", "40 - Presentation", "{A20A0F2B-DF49-4C94-B581-15E533F4B9C3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -60,6 +71,15 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AFF9490B-8D3F-4BD6-8E8C-011E11FD5A2C} = {A20A0F2B-DF49-4C94-B581-15E533F4B9C3}
+		{09BE6FBA-FC89-4F6F-99E3-BD2FFCEF5B98} = {5D7677CF-AEB5-42CF-A4F4-446DA8430427}
+		{752B4110-4A0E-4AB1-8B28-ED9BC862351E} = {F6306A81-0364-46D7-AB9A-A84649AFA6CC}
+		{0C3C2A17-EFC6-441E-9CED-488F6172DA4B} = {91ED1459-C1EB-45A9-9412-B36E1CD0C63F}
+		{1910D1F6-787D-427D-A3DB-FA64D0A1CDEF} = {F6306A81-0364-46D7-AB9A-A84649AFA6CC}
+		{75CAC53F-11C6-4CA8-BCD0-10908A712FE9} = {D3FE9D66-951A-4823-8279-2FF50C9D45B5}
+		{D7FE9081-F458-4989-A9CC-791B7C1F6A01} = {91ED1459-C1EB-45A9-9412-B36E1CD0C63F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B69BA680-B791-4CA8-9875-03C75FA53E73}

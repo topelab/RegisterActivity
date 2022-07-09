@@ -6,17 +6,21 @@ using System.Text;
 
 namespace Topelab.RegisterActivity.Business.Services
 {
-    public class ExportCsvService : IExportCsvService
+    public class ExportCsvService : IExportFileService
     {
-        public void WriteToCSV<T>(IEnumerable<T> datos, string outputFile) where T : class
+        public void WriteToFile<T>(IEnumerable<T> datos, string outputFile) where T : class
         {
             var content = ToCsv(datos);
+            if (!Directory.Exists(Path.GetDirectoryName(outputFile)))
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(outputFile));
+            }
             File.WriteAllText(outputFile, content);
         }
 
         private const string Separator = ",";
 
-        public string ToCsv<T>(IEnumerable<T> items)
+        private string ToCsv<T>(IEnumerable<T> items)
             where T : class
         {
             var csvBuilder = new StringBuilder();

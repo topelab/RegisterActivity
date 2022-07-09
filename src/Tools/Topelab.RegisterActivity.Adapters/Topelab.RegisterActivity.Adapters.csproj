@@ -1,13 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <Version>1.1.0</Version>
+    <Version>1.1.1</Version>
     <DocumentationFile>bin\$(Configuration)\$(AssemblyName).xml</DocumentationFile>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.5" />
-    <PackageReference Include="Topelab.Core.Adapters" Version="1.4.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.6" />
+    <PackageReference Include="Topelab.Core.Adapters" Version="1.4.3" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Topelab.RegisterActivity.Domain\Topelab.RegisterActivity.Domain.csproj" />

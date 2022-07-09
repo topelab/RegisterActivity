@@ -1,4 +1,4 @@
-# Topelab.RegisterActivity para Topeinfo
+# RegisterActivity para Topelab
 
 ## Descripción
 

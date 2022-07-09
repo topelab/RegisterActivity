@@ -1,20 +1,38 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+# Introduction
 
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+RegisterActiviy is a small application designed to record the time spent on each of the open applications while you work on your PC. As time passes, the title of the window, the name of the executable, the initial and final time that the application has been in the foreground are recorded.
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+# First steps
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+## Build solution
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+Simply open the solution with Visual Studio 2022 and build it. The main project is *RegisterActity*, it is the one that should be executed.
+
+## Adjust settings
+
+The application is configured through the *appsettings.json* file, whose main keys are "ConnectionStrings:localserver", "OutputDirectory" and "OutputFileName"
+
+```json
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Warning"
+    }
+  },
+  "AllowedHosts": "*",
+  "ConnectionStrings": {
+    "localserver": "Data Source=data\\ActivitiesDB.db;"
+  },
+  "OutputDirectory": "C:\\Data\\RegisterActivity",
+  "OutputFileName": "ActivitiesDB",
+  "EPPlus": {
+    "ExcelPackage": {
+      "LicenseContext": "NonCommercial"
+    }
+  }
+}
+```
+
+- **ConnectionStrings:localserver**: You must indicate a connection string for SQLite, it can be relative to the folder where *RegisterActivity* is executed
+- **OutputDirectory**: Indicates the path where the data that we export will be saved
+- **OutputFileName**: Indicates the name of the file that will be used when exporting (without extension)

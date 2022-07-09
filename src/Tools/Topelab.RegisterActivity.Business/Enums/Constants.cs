@@ -1,4 +1,4 @@
-namespace Topelab.RegisterActivity.Business.DTO
+namespace Topelab.RegisterActivity.Business.Enums
 {
     public class Constants
     {
