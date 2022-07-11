@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using System.Windows.Threading;
 using Topelab.RegisterActivity.Domain.Base;
@@ -42,11 +42,6 @@ namespace RegisterActivity.Main
                     Messages.RemoveAt(Messages.Count - 1);
                 }
             });
-        }
-
-        public void SetCommands(ICommand exportCommand)
-        {
-            this.exportCommand = exportCommand;
         }
     }
 }
