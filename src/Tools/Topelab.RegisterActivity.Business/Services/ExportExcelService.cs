@@ -16,7 +16,7 @@ namespace Topelab.RegisterActivity.Business.Services
 
             var hoja = typeof(T).Name;
 
-            using var pack = new ExcelPackage(new System.IO.FileInfo(outputFile));
+            using var pack = new ExcelPackage(new FileInfo(outputFile));
             var old = pack.Workbook.Worksheets.FirstOrDefault(w => w.Name == hoja);
             if (old != null)
             {

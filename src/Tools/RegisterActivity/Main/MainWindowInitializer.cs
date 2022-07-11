@@ -1,55 +1,57 @@
 using System;
 using System.Reflection;
-using System.Windows.Input;
-using Topelab.Core.Resolver.Interfaces;
 using Topelab.RegisterActivity.Business.DTO;
 using Topelab.RegisterActivity.Business.Enums;
 using Topelab.RegisterActivity.Business.Services;
+using Topelab.RegisterActivity.Domain.Factories;
 
 namespace RegisterActivity.Main
 {
     internal class MainWindowInitializer : IMainWindowInitializer
     {
-        private readonly IResolver resolver;
         private readonly IProcessService processService;
         private readonly IDataService dataService;
         private readonly IExportService exportService;
+        private readonly ICommandFactory commandFactory;
 
-        private MainWindowVM mainWindowVM;
 
-
-        public MainWindowInitializer(IResolver resolver, IProcessService processService, IDataService dataService, IExportService exportService)
+        public MainWindowInitializer(IProcessService processService, IDataService dataService, IExportService exportService, ICommandFactory commandFactory)
         {
-            this.resolver = resolver ?? throw new ArgumentNullException(nameof(resolver));
-            this.processService = processService ?? throw new System.ArgumentNullException(nameof(processService));
-            this.dataService = dataService ?? throw new System.ArgumentNullException(nameof(dataService));
-            this.exportService = exportService ?? throw new System.ArgumentNullException(nameof(exportService));
+            this.processService = processService ?? throw new ArgumentNullException(nameof(processService));
+            this.dataService = dataService ?? throw new ArgumentNullException(nameof(dataService));
+            this.exportService = exportService ?? throw new ArgumentNullException(nameof(exportService));
+            this.commandFactory = commandFactory ?? throw new ArgumentNullException(nameof(commandFactory));
         }
 
         public void Initialize(MainWindowVM mainWindowVM)
         {
-            this.mainWindowVM = mainWindowVM;
-            var version = Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion;
-            mainWindowVM.Title = $"Register activities ({version})";
+            SetTitle(mainWindowVM);
+            SetCommands(mainWindowVM);
+            StartServices(mainWindowVM);
+        }
 
-
-            var exportCommand = resolver.Get<ICommand, Action<ExportFormat>>(MainCommandsEnum.ExportCommand.ToString(), exportService.Start);
-            mainWindowVM.SetCommands(exportCommand);
-
+        private void StartServices(MainWindowVM mainWindowVM)
+        {
+            Action<ProcessDTO> RegisterData = currentPocess => dataService.CalculateData(currentPocess, o => mainWindowVM.AddMessage($"{o.StartTime:g} - {o.MainWindowTitle}"));
             processService.Start(RegisterData);
             App.Current.Exit += Current_Exit;
         }
 
-        private void RegisterData(ProcessDTO currentPocess)
+        private void SetCommands(MainWindowVM mainWindowVM)
         {
-            dataService.CalculateData(currentPocess, o => mainWindowVM.AddMessage($"{o.StartTime:g} - {o.MainWindowTitle}"));
+            mainWindowVM.ExportCommand = commandFactory.Create<ExportFormat>(exportService.Start);
+        }
+
+        private void SetTitle(MainWindowVM mainWindowVM)
+        {
+            var version = Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion;
+            mainWindowVM.Title = $"Register activities ({version})";
         }
 
         private void Current_Exit(object sender, System.Windows.ExitEventArgs e)
         {
             App.Current.Exit -= Current_Exit;
             processService.Stop();
-
         }
     }
 }

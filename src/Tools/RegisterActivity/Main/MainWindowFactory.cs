@@ -20,8 +20,8 @@ namespace RegisterActivity.Main
         public MainWindow Create()
         {
             mainWindowVM = resolver.Get<MainWindowVM>();
+            mainWindowInitializer.Initialize(mainWindowVM);
             mainWindow = resolver.Get<MainWindow, MainWindowVM>(mainWindowVM);
-            mainWindowInitializer.Initialize(mainWindow.WindowVM);
             return mainWindow;
         }
     }
