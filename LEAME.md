@@ -37,5 +37,11 @@ La aplicación se configura a través del fichero *appsettings.json*, cuyas clav
 - **OutputDirectory**: Indica la ruta donde se guardarán los datos que exportemos, por defecto es la carpeta "Documentos" del usuario.
 - **OutputFileName**: Indica el nombre del fichero que se usará al exportar (sin extensión), por defecto es el mismo nombre que el nombre de la base de datos.
 
-## Abrir la aplicación
+## Uso de la aplicación
+
+Una vez hayamos ajustado la configuración, deberíamos poder abrirla sin problemas. Se añadirá un icono en el área de notificación de la barra de tareas al que podemos hacer doble clic y ver los que se  registrando.
+
+Con el botón derecho haciendo clic encima del icono, podemos acceder a un menú sencillo desde el cual podemos exportar a CSV o EXCEL los datos registrados en la base de datos.
+
+
 

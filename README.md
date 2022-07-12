@@ -36,3 +36,9 @@ The application is configured through the *appsettings.json* file, whose main ke
 - **ConnectionStrings:localserver**: You must indicate a connection string for SQLite, it can be relative to the folder where *RegisterActivity* is executed
 - **OutputDirectory**: Indicates the path where the data that we export will be saved
 - **OutputFileName**: Indicates the name of the file that will be used when exporting (without extension)
+
+## Application Usage
+
+Once we have adjusted the configuration, we should be able to open it without problems. An icon will be added to the notification area of the task bar that we can double click and see what is being registered.
+
+With the right button clicking on the icon, we can access a simple menu from which we can export the data recorded in the database to CSV or EXCEL.

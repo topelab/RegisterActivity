@@ -21,6 +21,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00 - SolutionItems", "00 - 
 	ProjectSection(SolutionItems) = preProject
 		..\..\LEAME.md = ..\..\LEAME.md
 		readme.md = readme.md
+		..\..\README.md = ..\..\README.md
 		version.txt = version.txt
 	EndProjectSection
 EndProject
