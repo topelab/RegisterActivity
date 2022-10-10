@@ -5,6 +5,7 @@ using System;
 using System.Windows.Input;
 using Topelab.Core.Resolver.Entities;
 using Topelab.Core.Resolver.Interfaces;
+using Topelab.RegisterActivity.Adapters.SetupDI;
 using Topelab.RegisterActivity.Business.Enums;
 using Topelab.RegisterActivity.Business.Services;
 using Topelab.RegisterActivity.Business.Services.Entities;
@@ -20,6 +21,7 @@ namespace RegisterActivity
         {
             return new ResolveInfoCollection()
                 .AddCollection(DomainSetupDI.ModuleDependencies)
+                .AddCollection(AdaptersSetupDI.ModuleDependencies)
                 .AddCollection(BusinessSetupDI.ModuleDependencies)
                 .AddSingleton<IProcessService, ProcessService>()
                 .AddSingleton<IDataService, DataService>()

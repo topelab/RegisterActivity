@@ -51,6 +51,10 @@ namespace Topelab.RegisterActivity.Adapters.Interfaces
         /// The database.
         /// </value>
         DatabaseFacade Database { get; }
+        /// <summary>
+        /// Actions queue
+        /// </summary>
+        Queue<Action> Actions { get; }
 
         /// <summary>
         /// An event fired at the beginning of a call to SaveChanges or SaveChangesAsync
@@ -287,5 +291,33 @@ namespace Topelab.RegisterActivity.Adapters.Interfaces
         /// <param name="entities">The entities.</param>
         void UpdateRange([NotNull] IEnumerable<object> entities);
 
+        /// <summary>
+        /// Set event actions when saving changes on db context
+        /// </summary>
+        /// <param name="actions">One or more even actions</param>
+        void WhenSavingChanges(params EventHandler<SavingChangesEventArgs>[] actions);
+        /// <summary>
+        /// Set event actions when saved changes on db context
+        /// </summary>
+        /// <param name="actions">One or more even actions</param>
+        void WhenSavedChanges(params EventHandler<SavedChangesEventArgs>[] actions);
+
+        /// <summary>
+        /// Add an action to actions queue
+        /// </summary>
+        /// <param name="action">Action</param>
+        void AddAction(Action action);
+        /// <summary>
+        /// Clear all added actions
+        /// </summary>
+        void ClearActions();
+        /// <summary>
+        /// Disable events
+        /// </summary>
+        void DisableEvents();
+        /// <summary>
+        /// Enable events
+        /// </summary>
+        void EnableEvents();
     }
 }

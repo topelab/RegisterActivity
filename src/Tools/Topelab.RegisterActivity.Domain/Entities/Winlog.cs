@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using Topelab.RegisterActivity.Domain.Interfaces;
 using Topelab.RegisterActivity.Domain.Collections;
 
@@ -47,7 +46,7 @@ namespace Topelab.RegisterActivity.Domain.Entities
             Initialize();
         }
 
-        // Atributos
+        /************ Properties *************/
 
         /// <summary>
         /// Local id
@@ -55,21 +54,8 @@ namespace Topelab.RegisterActivity.Domain.Entities
         public int LocalId
         {
             get => localId;
-            set
-            {
-                if (localId != value)
-                {
-                    localId = value;
-                    OnLocalIdChanged();
-                }
-            }
+            set => SetProperty(ref localId, value, OnLocalIdChanged, whenLocalIdCanChange);
         }
-
-        /// <summary>
-        /// Called when LocalId changed its value
-        /// </summary>
-        /// <returns></returns>
-        partial void OnLocalIdChanged();
 
         /// <summary>
         /// Hash code
@@ -77,21 +63,8 @@ namespace Topelab.RegisterActivity.Domain.Entities
         public int HashCode
         {
             get => hashCode;
-            set
-            {
-                if (hashCode != value)
-                {
-                    hashCode = value;
-                    OnHashCodeChanged();
-                }
-            }
+            set => SetProperty(ref hashCode, value, OnHashCodeChanged, whenHashCodeCanChange);
         }
-
-        /// <summary>
-        /// Called when HashCode changed its value
-        /// </summary>
-        /// <returns></returns>
-        partial void OnHashCodeChanged();
 
         /// <summary>
         /// Program
@@ -99,21 +72,8 @@ namespace Topelab.RegisterActivity.Domain.Entities
         public string Program
         {
             get => program;
-            set
-            {
-                if (program != value)
-                {
-                    program = value;
-                    OnProgramChanged();
-                }
-            }
+            set => SetProperty(ref program, value, OnProgramChanged, whenProgramCanChange);
         }
-
-        /// <summary>
-        /// Called when Program changed its value
-        /// </summary>
-        /// <returns></returns>
-        partial void OnProgramChanged();
 
         /// <summary>
         /// Filename
@@ -121,21 +81,8 @@ namespace Topelab.RegisterActivity.Domain.Entities
         public string Filename
         {
             get => filename;
-            set
-            {
-                if (filename != value)
-                {
-                    filename = value;
-                    OnFilenameChanged();
-                }
-            }
+            set => SetProperty(ref filename, value, OnFilenameChanged, whenFilenameCanChange);
         }
-
-        /// <summary>
-        /// Called when Filename changed its value
-        /// </summary>
-        /// <returns></returns>
-        partial void OnFilenameChanged();
 
         /// <summary>
         /// Title
@@ -143,21 +90,8 @@ namespace Topelab.RegisterActivity.Domain.Entities
         public string Title
         {
             get => title;
-            set
-            {
-                if (title != value)
-                {
-                    title = value;
-                    OnTitleChanged();
-                }
-            }
+            set => SetProperty(ref title, value, OnTitleChanged, whenTitleCanChange);
         }
-
-        /// <summary>
-        /// Called when Title changed its value
-        /// </summary>
-        /// <returns></returns>
-        partial void OnTitleChanged();
 
         /// <summary>
         /// Start time
@@ -165,21 +99,8 @@ namespace Topelab.RegisterActivity.Domain.Entities
         public string StartTime
         {
             get => startTime;
-            set
-            {
-                if (startTime != value)
-                {
-                    startTime = value;
-                    OnStartTimeChanged();
-                }
-            }
+            set => SetProperty(ref startTime, value, OnStartTimeChanged, whenStartTimeCanChange);
         }
-
-        /// <summary>
-        /// Called when StartTime changed its value
-        /// </summary>
-        /// <returns></returns>
-        partial void OnStartTimeChanged();
 
         /// <summary>
         /// End time
@@ -187,21 +108,8 @@ namespace Topelab.RegisterActivity.Domain.Entities
         public string EndTime
         {
             get => endTime;
-            set
-            {
-                if (endTime != value)
-                {
-                    endTime = value;
-                    OnEndTimeChanged();
-                }
-            }
+            set => SetProperty(ref endTime, value, OnEndTimeChanged, whenEndTimeCanChange);
         }
-
-        /// <summary>
-        /// Called when EndTime changed its value
-        /// </summary>
-        /// <returns></returns>
-        partial void OnEndTimeChanged();
 
         /// <summary>
         /// Total time
@@ -209,21 +117,8 @@ namespace Topelab.RegisterActivity.Domain.Entities
         public int TotalTime
         {
             get => totalTime;
-            set
-            {
-                if (totalTime != value)
-                {
-                    totalTime = value;
-                    OnTotalTimeChanged();
-                }
-            }
+            set => SetProperty(ref totalTime, value, OnTotalTimeChanged, whenTotalTimeCanChange);
         }
-
-        /// <summary>
-        /// Called when TotalTime changed its value
-        /// </summary>
-        /// <returns></returns>
-        partial void OnTotalTimeChanged();
 
         /// <summary>
         /// Exported
@@ -231,31 +126,26 @@ namespace Topelab.RegisterActivity.Domain.Entities
         public int? Exported
         {
             get => exported;
-            set
-            {
-                if (exported != value)
-                {
-                    exported = value;
-                    OnExportedChanged();
-                }
-            }
+            set => SetProperty(ref exported, value, OnExportedChanged, whenExportedCanChange);
         }
-
-        /// <summary>
-        /// Called when Exported changed its value
-        /// </summary>
-        /// <returns></returns>
-        partial void OnExportedChanged();
-
 
         private void Initialize()
         {
-            OnWinlogInitialized();
+            OnInitialized();
+            OnInitialized(this);
         }
 
-        /// <summary>
-        /// Called when Winlog initialized
-        /// </summary>
-        partial void OnWinlogInitialized();
+        partial void OnInitialized();
+
+        partial void OnLocalIdChanged();
+        partial void OnHashCodeChanged();
+        partial void OnProgramChanged();
+        partial void OnFilenameChanged();
+        partial void OnTitleChanged();
+        partial void OnStartTimeChanged();
+        partial void OnEndTimeChanged();
+        partial void OnTotalTimeChanged();
+        partial void OnExportedChanged();
+
     }
 }

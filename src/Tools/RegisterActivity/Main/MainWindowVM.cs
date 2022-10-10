@@ -5,7 +5,7 @@ using Topelab.RegisterActivity.Domain.Base;
 
 namespace RegisterActivity.Main
 {
-    public class MainWindowVM : BaseModel
+    public class MainWindowVM : BaseModel<string>
     {
         public ObservableCollection<string> Messages { get; }
 
