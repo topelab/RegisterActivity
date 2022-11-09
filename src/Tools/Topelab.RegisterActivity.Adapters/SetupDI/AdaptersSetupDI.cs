@@ -19,7 +19,7 @@ namespace Topelab.RegisterActivity.Adapters.SetupDI
         private static ResolveInfoCollection BaseDependencies()
         {
             return new ResolveInfoCollection()
-                .AddScoped<ILoggerFactory, LoggerFactory>()
+                .AddSingleton<ILoggerFactory, LoggerFactory>()
                 .AddScoped<IRegisterActivityDbContextOptionsFactory, RegisterActivityDbContextOptionsFactory>()
                 .AddScoped<IRegisterActivityDbContextFactory, RegisterActivityDbContextFactory>()
                 .AddScoped<IRegisterActivityDbContext, RegisterActivityDbContext>(typeof(DbContextOptions<RegisterActivityDbContext>), typeof(ILogger));

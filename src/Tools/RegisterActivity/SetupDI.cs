@@ -32,8 +32,8 @@ namespace RegisterActivity
                 .AddSingleton<IWinlogService, WinlogService>()
                 .AddSingleton<ILoggerFactory, LoggerFactory>()
                 .AddFactory(s => GetLogger(s))
-                .Add<IMainWindowFactory, MainWindowFactory>()
-                .Add<IMainWindowInitializer, MainWindowInitializer>()
+                .AddTransient<IMainWindowFactory, MainWindowFactory>()
+                .AddTransient<IMainWindowInitializer, MainWindowInitializer>()
                 .AddSelf<MainWindow>(typeof(MainWindowVM))
                 .AddSelf<MainWindowVM>()
                 ;
