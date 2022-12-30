@@ -1,4 +1,4 @@
-namespace Topelab.RegisterActivity.Tools.Actions
+namespace Topelab.RegisterActivity.Business.Actions
 {
     public interface IAction
     {

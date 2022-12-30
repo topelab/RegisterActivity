@@ -2,7 +2,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using Topelab.RegisterActivity.Adapters.Interfaces;
 
-namespace Topelab.RegisterActivity.Tools.Actions
+namespace Topelab.RegisterActivity.Business.Actions
 {
     public class CanConnectAction : BaseAction
     {
@@ -15,7 +15,7 @@ namespace Topelab.RegisterActivity.Tools.Actions
             using var db = dbContextFactory.Create();
             try
             {
-                logger.LogInformation("Trying to create database on {ProviderName}", db.Database.ProviderName);
+                logger.LogInformation("Trying to connect to database on {ProviderName}", db.Database.ProviderName);
                 var canConnect = db.Database.CanConnect();
                 logger.LogInformation("Database {Connected}", canConnect ? "can be connected" : "not exists");
 
@@ -23,7 +23,7 @@ namespace Topelab.RegisterActivity.Tools.Actions
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, "Error on start CreateAction");
+                logger.LogError(ex, "Error on start CanConnectAction");
             }
 
             return false;

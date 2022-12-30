@@ -1,5 +1,5 @@
 using Microsoft.Extensions.Logging;
-using Topelab.RegisterActivity.Tools.Actions;
+using Topelab.RegisterActivity.Business.Actions;
 
 namespace Topelab.RegisterActivity.Tools
 {
@@ -18,6 +18,10 @@ namespace Topelab.RegisterActivity.Tools
                 case "create":
                     logger.LogInformation("Creating DB...");
                     action = resolver.Get<CreateAction>();
+                    break;
+                case "delete":
+                    logger.LogInformation("Deleting DB...");
+                    action = resolver.Get<DeleteAction>();
                     break;
                 case "migrate":
                     logger.LogInformation("Migrating DB...");

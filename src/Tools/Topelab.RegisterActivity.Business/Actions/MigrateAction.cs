@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using Topelab.RegisterActivity.Adapters.Interfaces;
 
-namespace Topelab.RegisterActivity.Tools.Actions
+namespace Topelab.RegisterActivity.Business.Actions
 {
     public class MigrateAction : BaseAction
     {

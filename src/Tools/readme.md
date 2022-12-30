@@ -2,7 +2,7 @@
 
 ## Descripción
 
-Módulo Topelab.RegisterActivity creado con L2 Data2Code v2.13.4 (DB: sqlite) y con la versión 3.2.24 de la plantilla **CleanArchitectureWithEFCore7** (de doble paso) con las siguientes capas de Clean Architecture:
+Módulo Topelab.RegisterActivity creado con L2 Data2Code v2.13.8 (DB: sqlite) y con la versión 3.2.32 de la plantilla **CleanArchitectureWithEFCore7** (de doble paso) con las siguientes capas de Clean Architecture:
 
 - Domain
 - Adapters
