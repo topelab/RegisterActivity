@@ -5,7 +5,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NLog" Version="5.1.1" />
-    <PackageReference Include="EPPlus" Version="6.1.1" />
-    <PackageReference Include="Topelab.RegisterActivity.Adapters" Version="3.3.7" />
+    <PackageReference Include="EPPlus" Version="6.1.2" />
+    <PackageReference Include="Topelab.RegisterActivity.Adapters" Version="3.3.8" />
   </ItemGroup>
 </Project>
