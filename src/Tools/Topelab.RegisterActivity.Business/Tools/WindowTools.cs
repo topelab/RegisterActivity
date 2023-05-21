@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Topelab.RegisterActivity.Business.Tools
 {
-    internal class WindowTools
+    internal static class WindowTools
     {
         [DllImport("user32.dll")]
         internal static extern IntPtr GetForegroundWindow();

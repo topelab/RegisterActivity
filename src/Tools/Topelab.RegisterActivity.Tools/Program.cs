@@ -3,7 +3,7 @@ using Topelab.RegisterActivity.Business.Actions;
 
 namespace Topelab.RegisterActivity.Tools
 {
-    class Program
+    static class Program
     {
         static void Main(string[] args)
         {

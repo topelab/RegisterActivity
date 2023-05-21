@@ -14,7 +14,6 @@ namespace RegisterActivity.Main
         private readonly IExportService exportService;
         private readonly ICommandFactory commandFactory;
 
-
         public MainWindowInitializer(IProcessService processService, IDataService dataService, IExportService exportService, ICommandFactory commandFactory)
         {
             this.processService = processService ?? throw new ArgumentNullException(nameof(processService));

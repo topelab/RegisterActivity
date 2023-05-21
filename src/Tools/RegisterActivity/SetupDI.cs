@@ -15,7 +15,7 @@ using Topelab.RegisterActivity.Domain.SetupDI;
 
 namespace RegisterActivity
 {
-    internal class SetupDI
+    internal static class SetupDI
     {
         public static ResolveInfoCollection Register()
         {
@@ -26,8 +26,8 @@ namespace RegisterActivity
                 .AddSingleton<IProcessService, ProcessService>()
                 .AddSingleton<IDataService, DataService>()
                 .AddSingleton<IExportService, ExportService>()
-                .AddSingleton<IExportFileService, ExportCsvService>(ExportFormat.CSV.ToString())
-                .AddSingleton<IExportFileService, ExportExcelService>(ExportFormat.Excel.ToString())
+                .AddSingleton<IExportFileService, ExportCsvService>(nameof(ExportFormat.CSV))
+                .AddSingleton<IExportFileService, ExportExcelService>(nameof(ExportFormat.Excel))
                 .AddSingleton<ICommand, BaseCommand<ExportFormat>>(nameof(ExportFormat), typeof(Action<ExportFormat>))
                 .AddSingleton<IWinlogService, WinlogService>()
                 .AddSingleton<ILoggerFactory, LoggerFactory>()
