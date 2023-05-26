@@ -1,6 +1,7 @@
 using NLog;
 using System;
 using System.Runtime.CompilerServices;
+using Topelab.Core.Resolver.Interfaces;
 using Topelab.RegisterActivity.Business.Enums;
 
 namespace Topelab.RegisterActivity.Business.Services
@@ -10,7 +11,16 @@ namespace Topelab.RegisterActivity.Business.Services
     /// </summary>
     public static class LogServiceStaticImpl
     {
-        private static readonly ILogger _logger = LogManager.GetCurrentClassLogger();
+        private static ILogger _logger;
+        private static string terminal;
+        private static string usuario;
+
+        public static void Initializer(IResolver resolver)
+        {
+            _logger = resolver.Get<ILogger>();
+            terminal = $"{Environment.GetEnvironmentVariable("CLIENTNAME")} {Environment.GetEnvironmentVariable("COMPUTERNAME")}".Trim();
+            usuario = Environment.GetEnvironmentVariable("USERNAME");
+        }
 
         /// <summary>
         /// Gets the last error.
@@ -25,6 +35,7 @@ namespace Topelab.RegisterActivity.Business.Services
         /// </value>
         public static bool HasErrors => !string.IsNullOrWhiteSpace(LastError);
 
+
         /// <summary>
         /// Logs the specified text.
         /// </summary>
@@ -36,11 +47,8 @@ namespace Topelab.RegisterActivity.Business.Services
                      [CallerMemberName] string memberName = "",
                      [CallerFilePath] string sourceFilePath = "")
         {
-            var Terminal = $"{Environment.GetEnvironmentVariable("CLIENTNAME")} {Environment.GetEnvironmentVariable("COMPUTERNAME")}".Trim();
-            var Usuario = Environment.GetEnvironmentVariable("USERNAME");
-
             var module = $"{System.IO.Path.GetFileNameWithoutExtension(sourceFilePath)}.{memberName}";
-            var output = $"{Usuario} {Terminal} {module}: {text}";
+            var output = $"{usuario} {terminal} {module}: {text}";
 
             LastError = string.Empty;
             switch (tipo)

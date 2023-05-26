@@ -1,3 +1,4 @@
+using NLog;
 using Topelab.Core.Resolver.Entities;
 using Topelab.RegisterActivity.Adapters.Context;
 using Topelab.RegisterActivity.Adapters.Interfaces;
@@ -26,10 +27,14 @@ namespace Topelab.RegisterActivity.Business.SetupDI
             .AddSingleton<IProcessDTOFactory, ProcessDTOFactory>()
 
             // Other dependencies
+            .AddInstance<ILogger>(LogManager.GetCurrentClassLogger())
             .AddSingleton<ILogService, LogService>()
             .AddSingleton<ICriteriaService, CriteriaService>()
             .AddSingleton<IRegisterActivityDbContextFactory, RegisterActivityDbContextFactory>()
-            .AddSingleton<IExportFileServiceResolver, ExportFileServiceResolver>();
+            .AddSingleton<IExportFileServiceResolver, ExportFileServiceResolver>()
+
+            // Static initialitzers
+            .AddInitializer(LogServiceStaticImpl.Initializer);
         }
     }
 }
