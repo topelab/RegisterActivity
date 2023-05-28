@@ -31,7 +31,8 @@ namespace RegisterActivity.Main
 
         private void StartServices(MainWindowVM mainWindowVM)
         {
-            Action<ProcessDTO> RegisterData = currentPocess => dataService.CalculateData(currentPocess, o => mainWindowVM.AddMessage($"{o.StartTime:g} - {o.MainWindowTitle}"));
+            Environment.SetEnvironmentVariable("YEAR", DateTime.Now.Year.ToString());
+            void RegisterData(ProcessDTO currentProcess) => dataService.CalculateData(currentProcess, o => mainWindowVM.AddMessage($"{o.StartTime:g} - {o.MainWindowTitle}"));
             processService.Start(RegisterData);
             App.Current.Exit += Current_Exit;
         }

@@ -26,7 +26,7 @@ namespace Topelab.RegisterActivity.Business.Services
 
             var dbFileName = ConfigHelper.GetConnectionString(Constants.ConnStringKey).GetPart("Data Source");
             var filename = $"{Path.GetFileNameWithoutExtension(dbFileName)}";
-            var outputFileName = ConfigHelper.Config[Constants.OutputFileName] ?? filename;
+            var outputFileName = Environment.ExpandEnvironmentVariables(ConfigHelper.Config[Constants.OutputFileName] ?? filename);
             var filePath = ConfigHelper.Config[Constants.OutputDirectory] ?? Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
             var list = winlogService.GetTimeLineEvents();
