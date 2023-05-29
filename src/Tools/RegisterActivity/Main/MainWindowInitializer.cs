@@ -1,5 +1,6 @@
 using System;
 using System.Reflection;
+using Topelab.RegisterActivity.Adapters.Interfaces;
 using Topelab.RegisterActivity.Business.DTO;
 using Topelab.RegisterActivity.Business.Enums;
 using Topelab.RegisterActivity.Business.Services;
@@ -13,25 +14,36 @@ namespace RegisterActivity.Main
         private readonly IDataService dataService;
         private readonly IExportService exportService;
         private readonly ICommandFactory commandFactory;
+        private readonly IRegisterActivityDbContextFactory dbContextFactory;
 
-        public MainWindowInitializer(IProcessService processService, IDataService dataService, IExportService exportService, ICommandFactory commandFactory)
+        public MainWindowInitializer(IProcessService processService, IDataService dataService, IExportService exportService, ICommandFactory commandFactory, IRegisterActivityDbContextFactory dbContextFactory)
         {
             this.processService = processService ?? throw new ArgumentNullException(nameof(processService));
             this.dataService = dataService ?? throw new ArgumentNullException(nameof(dataService));
             this.exportService = exportService ?? throw new ArgumentNullException(nameof(exportService));
             this.commandFactory = commandFactory ?? throw new ArgumentNullException(nameof(commandFactory));
+            this.dbContextFactory = dbContextFactory ?? throw new ArgumentNullException(nameof(dbContextFactory));
         }
 
         public void Initialize(MainWindowVM mainWindowVM)
         {
             SetTitle(mainWindowVM);
             SetCommands(mainWindowVM);
+            InitializeData();
             StartServices(mainWindowVM);
+        }
+
+        private void InitializeData()
+        {
+            Environment.SetEnvironmentVariable("YEAR", DateTime.Now.ToString("yyyy"));
+            Environment.SetEnvironmentVariable("MONTH", DateTime.Now.ToString("MM"));
+            Environment.SetEnvironmentVariable("DAY", DateTime.Now.ToString("dd"));
+            using var db = dbContextFactory.Create();
+            db.Database.EnsureCreated();
         }
 
         private void StartServices(MainWindowVM mainWindowVM)
         {
-            Environment.SetEnvironmentVariable("YEAR", DateTime.Now.Year.ToString());
             void RegisterData(ProcessDTO currentProcess) => dataService.CalculateData(currentProcess, o => mainWindowVM.AddMessage($"{o.StartTime:g} - {o.MainWindowTitle}"));
             processService.Start(RegisterData);
             App.Current.Exit += Current_Exit;
