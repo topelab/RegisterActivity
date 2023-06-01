@@ -34,8 +34,8 @@ The application is configured through the *appsettings.json* file, whose main ke
 ```
 
 - **ConnectionStrings:localserver**: You must indicate a connection string for SQLite, it can be relative to the folder where *RegisterActivity* is executed
-- **OutputDirectory**: Indicates the path where the data that we export will be saved
-- **OutputFileName**: Indicates the name of the file that will be used when exporting (without extension)
+- **OutputDirectory**: Indicates the path where the exported data will be saved
+- **OutputFileName**: Indicates the exported data's file name (without extension)
 
 All inputs support the use of environment variables defined in the system (to use them, put them between `%` and `%`) and those created in the application:
 

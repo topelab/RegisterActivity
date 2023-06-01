@@ -29,22 +29,32 @@ namespace RegisterActivity.Main
         {
             SetTitle(mainWindowVM);
             SetCommands(mainWindowVM);
-            InitializeData();
             StartServices(mainWindowVM);
         }
 
-        private void InitializeData()
+        private DateTime lastDate;
+
+        private void UpdateEnvironment(DateTime date)
         {
-            Environment.SetEnvironmentVariable("YEAR", DateTime.Now.ToString("yyyy"));
-            Environment.SetEnvironmentVariable("MONTH", DateTime.Now.ToString("MM"));
-            Environment.SetEnvironmentVariable("DAY", DateTime.Now.ToString("dd"));
-            using var db = dbContextFactory.Create();
-            db.Database.EnsureCreated();
+            if (date.Date > lastDate)
+            {
+                lastDate = date.Date;
+                Environment.SetEnvironmentVariable("YEAR", date.ToString("yyyy"));
+                Environment.SetEnvironmentVariable("MONTH", date.ToString("MM"));
+                Environment.SetEnvironmentVariable("DAY", date.ToString("dd"));
+                using var db = dbContextFactory.Create();
+                db.Database.EnsureCreated();
+            }
         }
 
         private void StartServices(MainWindowVM mainWindowVM)
         {
-            void RegisterData(ProcessDTO currentProcess) => dataService.CalculateData(currentProcess, o => mainWindowVM.AddMessage($"{o.StartTime:g} - {o.MainWindowTitle}"));
+            void RegisterData(ProcessDTO currentProcess)
+            {
+                UpdateEnvironment(DateTime.Today);
+                dataService.CalculateData(currentProcess, o => mainWindowVM.AddMessage($"{o.StartTime:g} - {o.MainWindowTitle}"));
+            }
+
             processService.Start(RegisterData);
             App.Current.Exit += Current_Exit;
         }
