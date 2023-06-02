@@ -27,11 +27,11 @@ namespace Topelab.RegisterActivity.Business.Factories
         /// <param name="connString">Connection string</param>
         public DbContextOptions<RegisterActivityDbContext> Create(string connString)
         {
+            connString = Environment.ExpandEnvironmentVariables(connString);
             if (!optionsCache.TryGetValue(connString, out var dbContextOptions))
             {
-                var connStringExpanded = Environment.ExpandEnvironmentVariables(connString);
                 dbContextOptions = new DbContextOptionsBuilder<RegisterActivityDbContext>()
-                    .UseSqlite(connStringExpanded)
+                    .UseSqlite(connString)
                     .Options;
                 optionsCache.Add(connString, dbContextOptions);
             }
