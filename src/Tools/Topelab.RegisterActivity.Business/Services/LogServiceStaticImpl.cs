@@ -1,4 +1,4 @@
-using NLog;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Runtime.CompilerServices;
 using Topelab.Core.Resolver.Interfaces;
@@ -54,20 +54,20 @@ namespace Topelab.RegisterActivity.Business.Services
             switch (tipo)
             {
                 case LogType.Trace:
-                    _logger.Trace(output);
+                    _logger.LogTrace(output);
                     break;
                 case LogType.Info:
-                    _logger.Info(output);
+                    _logger.LogInformation(output);
                     break;
                 case LogType.Warnning:
-                    _logger.Warn(output);
+                    _logger.LogWarning(output);
                     break;
                 case LogType.Error:
-                    _logger.Error(output);
+                    _logger.LogError(output);
                     LastError = text;
                     break;
                 case LogType.Critical:
-                    _logger.Error(output);
+                    _logger.LogCritical(output);
                     LastError = text;
                     break;
 
