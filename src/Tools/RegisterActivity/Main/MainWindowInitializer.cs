@@ -12,11 +12,11 @@ namespace RegisterActivity.Main
     {
         private readonly IProcessService processService;
         private readonly IDataService dataService;
-        private readonly IExportService exportService;
+        private readonly IExportDataService exportService;
         private readonly ICommandFactory commandFactory;
         private readonly IRegisterActivityDbContextFactory dbContextFactory;
 
-        public MainWindowInitializer(IProcessService processService, IDataService dataService, IExportService exportService, ICommandFactory commandFactory, IRegisterActivityDbContextFactory dbContextFactory)
+        public MainWindowInitializer(IProcessService processService, IDataService dataService, IExportDataService exportService, ICommandFactory commandFactory, IRegisterActivityDbContextFactory dbContextFactory)
         {
             this.processService = processService ?? throw new ArgumentNullException(nameof(processService));
             this.dataService = dataService ?? throw new ArgumentNullException(nameof(dataService));

@@ -1,16 +1,17 @@
 using Microsoft.Extensions.Logging;
 using NLog.Extensions.Logging;
+using RegisterActivity.Base;
 using RegisterActivity.Main;
 using System;
 using System.Windows.Input;
 using Topelab.Core.Resolver.Entities;
 using Topelab.Core.Resolver.Interfaces;
 using Topelab.RegisterActivity.Adapters.SetupDI;
+using Topelab.RegisterActivity.BaseBusiness.SetupDI;
 using Topelab.RegisterActivity.Business.Enums;
 using Topelab.RegisterActivity.Business.Services;
 using Topelab.RegisterActivity.Business.Services.Entities;
 using Topelab.RegisterActivity.Business.SetupDI;
-using Topelab.RegisterActivity.Domain.Base;
 using Topelab.RegisterActivity.Domain.SetupDI;
 
 namespace RegisterActivity
@@ -22,6 +23,7 @@ namespace RegisterActivity
             return new ResolveInfoCollection()
                 .AddCollection(DomainSetupDI.ModuleDependencies)
                 .AddCollection(AdaptersSetupDI.ModuleDependencies)
+                .AddCollection(BaseBusinessSetupDI.ModuleDependencies)
                 .AddCollection(BusinessSetupDI.ModuleDependencies)
                 .AddSingleton<IProcessService, ProcessService>()
                 .AddSingleton<IDataService, DataService>()

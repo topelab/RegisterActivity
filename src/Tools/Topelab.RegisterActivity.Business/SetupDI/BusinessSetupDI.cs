@@ -26,14 +26,10 @@ namespace Topelab.RegisterActivity.Business.SetupDI
             .AddSingleton<IProcessDTOFactory, ProcessDTOFactory>()
 
             // Other dependencies
-            .AddSingleton<ILogService, LogService>()
-            .AddSingleton<ICriteriaService, CriteriaService>()
             .AddSingleton<IRegisterActivityDbContextFactory, RegisterActivityDbContextFactory>()
             .AddScoped<IRegisterActivityDbContextOptionsFactory, RegisterActivityDbContextEnvironmentFactory>()
             .AddSingleton<IExportFileServiceResolver, ExportFileServiceResolver>()
-
-            // Static initializers
-            .AddInitializer(LogServiceStaticImpl.Initializer);
+            ;
         }
     }
 }

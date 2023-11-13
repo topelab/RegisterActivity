@@ -1,6 +1,6 @@
 using System.Collections.Generic;
+using Topelab.RegisterActivity.BaseBusiness.Services.Interfaces;
 using Topelab.RegisterActivity.Business.DTO;
-using Topelab.RegisterActivity.Business.Services.Interfaces;
 using Topelab.RegisterActivity.Domain.Entities;
 
 namespace Topelab.RegisterActivity.Business.Services.Entities

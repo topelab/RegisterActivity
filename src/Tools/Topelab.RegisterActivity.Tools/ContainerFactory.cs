@@ -6,7 +6,7 @@ using Topelab.Core.Resolver.Microsoft;
 using Topelab.RegisterActivity.Adapters.Context;
 using Topelab.RegisterActivity.Adapters.Interfaces;
 using Topelab.RegisterActivity.Adapters.SetupDI;
-using Topelab.RegisterActivity.Business.Actions;
+using Topelab.RegisterActivity.BaseBusiness.Actions;
 
 namespace Topelab.RegisterActivity.Tools
 {

@@ -1,9 +1,9 @@
 using System;
 using System.Diagnostics;
 using System.Timers;
+using Topelab.RegisterActivity.BaseBusiness.Services.Interfaces;
 using Topelab.RegisterActivity.Business.DTO;
 using Topelab.RegisterActivity.Business.Factories;
-using Topelab.RegisterActivity.Business.Services.Interfaces;
 using Topelab.RegisterActivity.Business.Tools;
 
 namespace Topelab.RegisterActivity.Business.Services
@@ -55,7 +55,7 @@ namespace Topelab.RegisterActivity.Business.Services
                         onNewProcesses?.Invoke(currentProcess);
                     }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     logService.Error(ex.Message);
                 }

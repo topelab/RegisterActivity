@@ -1,5 +1,5 @@
 using Microsoft.Extensions.Logging;
-using Topelab.RegisterActivity.Business.Actions;
+using Topelab.RegisterActivity.BaseBusiness.Actions;
 
 namespace Topelab.RegisterActivity.Tools
 {
