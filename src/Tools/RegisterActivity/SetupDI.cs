@@ -7,8 +7,8 @@ using System.Windows.Input;
 using Topelab.Core.Resolver.Entities;
 using Topelab.Core.Resolver.Interfaces;
 using Topelab.RegisterActivity.Adapters.SetupDI;
+using Topelab.RegisterActivity.BaseBusiness.Enums;
 using Topelab.RegisterActivity.BaseBusiness.SetupDI;
-using Topelab.RegisterActivity.Business.Enums;
 using Topelab.RegisterActivity.Business.Services;
 using Topelab.RegisterActivity.Business.Services.Entities;
 using Topelab.RegisterActivity.Business.SetupDI;
@@ -27,9 +27,6 @@ namespace RegisterActivity
                 .AddCollection(BusinessSetupDI.ModuleDependencies)
                 .AddSingleton<IProcessService, ProcessService>()
                 .AddSingleton<IDataService, DataService>()
-                .AddSingleton<IExportService, ExportService>()
-                .AddSingleton<IExportFileService, ExportCsvService>(nameof(ExportFormat.CSV))
-                .AddSingleton<IExportFileService, ExportExcelService>(nameof(ExportFormat.Excel))
                 .AddSingleton<ICommand, BaseCommand<ExportFormat>>(nameof(ExportFormat), typeof(Action<ExportFormat>))
                 .AddSingleton<IWinlogService, WinlogService>()
                 .AddSingleton<ILoggerFactory, LoggerFactory>()

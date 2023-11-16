@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.IO;
+using Topelab.RegisterActivity.BaseBusiness.Enums;
+using Topelab.RegisterActivity.BaseBusiness.Services;
 using Topelab.RegisterActivity.Business.Enums;
 using Topelab.RegisterActivity.Business.Services.Entities;
 

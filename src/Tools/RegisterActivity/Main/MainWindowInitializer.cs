@@ -1,8 +1,9 @@
 using System;
 using System.Reflection;
+using Topelab.Core.Helpers.Extensions;
 using Topelab.RegisterActivity.Adapters.Interfaces;
+using Topelab.RegisterActivity.BaseBusiness.Enums;
 using Topelab.RegisterActivity.Business.DTO;
-using Topelab.RegisterActivity.Business.Enums;
 using Topelab.RegisterActivity.Business.Services;
 using Topelab.RegisterActivity.Domain.Factories;
 
@@ -66,7 +67,7 @@ namespace RegisterActivity.Main
 
         private void SetTitle(MainWindowVM mainWindowVM)
         {
-            var version = Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion;
+            var version = Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion.Piece(0,'+');
             mainWindowVM.Title = $"Register activities ({version})";
         }
 

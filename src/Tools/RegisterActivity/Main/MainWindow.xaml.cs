@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel;
 using System.Windows;
+using Topelab.RegisterActivity.BaseBusiness.Enums;
 using Topelab.RegisterActivity.Business.Enums;
 
 namespace RegisterActivity.Main
