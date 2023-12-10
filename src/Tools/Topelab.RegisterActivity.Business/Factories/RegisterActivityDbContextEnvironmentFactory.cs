@@ -1,26 +1,23 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using Topelab.RegisterActivity.Adapters.Context;
 using Topelab.RegisterActivity.Adapters.Interfaces;
 
-namespace Topelab.RegisterActivity.Adapters.Context
+namespace Topelab.RegisterActivity.Business.Factories
 {
     /// <summary>
     /// Db Context Options factory for RegisterActivity
     /// </summary>
-    public class RegisterActivityDbContextOptionsFactory : IRegisterActivityDbContextOptionsFactory
+    public class RegisterActivityDbContextEnvironmentFactory : IRegisterActivityDbContextOptionsFactory
     {
-        private readonly ILoggerFactory loggerFactory;
         private Dictionary<string, DbContextOptions<RegisterActivityDbContext>> optionsCache;
 
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="loggerFactory">Logger factory</param>
-        public RegisterActivityDbContextOptionsFactory(ILoggerFactory loggerFactory)
+        public RegisterActivityDbContextEnvironmentFactory()
         {
-            this.loggerFactory = loggerFactory ?? throw new ArgumentNullException(nameof(loggerFactory));
             optionsCache = new Dictionary<string, DbContextOptions<RegisterActivityDbContext>>();
         }
 
@@ -30,10 +27,10 @@ namespace Topelab.RegisterActivity.Adapters.Context
         /// <param name="connString">Connection string</param>
         public DbContextOptions<RegisterActivityDbContext> Create(string connString)
         {
-            if (!optionsCache.TryGetValue(connString, out DbContextOptions<RegisterActivityDbContext> dbContextOptions))
+            connString = Environment.ExpandEnvironmentVariables(connString);
+            if (!optionsCache.TryGetValue(connString, out var dbContextOptions))
             {
                 dbContextOptions = new DbContextOptionsBuilder<RegisterActivityDbContext>()
-                    .UseLoggerFactory(loggerFactory)
                     .UseSqlite(connString)
                     .Options;
                 optionsCache.Add(connString, dbContextOptions);

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Topelab.RegisterActivity.Adapters.Interfaces;
 using Topelab.RegisterActivity.Business.DTO;
-using Topelab.RegisterActivity.Business.Services.Interfaces;
 using Topelab.RegisterActivity.Domain.Entities;
 
 namespace Topelab.RegisterActivity.Business.Services.Entities
@@ -14,8 +13,6 @@ namespace Topelab.RegisterActivity.Business.Services.Entities
     /// </summary>
     public class WinlogService : IWinlogService
     {
-        private readonly ILogService logService;
-
         /// <summary>
         /// The context database
         /// </summary>
@@ -26,10 +23,8 @@ namespace Topelab.RegisterActivity.Business.Services.Entities
         /// </summary>
         /// <param name="contextFactory">The context factory for service.</param>
         /// <param name="logService">The log service for service.</param>
-        public WinlogService(IRegisterActivityDbContextFactory contextFactory,
-            ILogService logService)
+        public WinlogService(IRegisterActivityDbContextFactory contextFactory)
         {
-            this.logService = logService;
             this.contextFactory = contextFactory;
         }
 

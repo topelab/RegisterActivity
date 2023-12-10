@@ -1,11 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net7.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <ApplicationIcon>Resources\register-activity-70.ico</ApplicationIcon>
     <UseWindowsForms>true</UseWindowsForms>
     <UseWPF>true</UseWPF>
-    <Version>1.1.6</Version>
+    <Version>1.3.2</Version>
   </PropertyGroup>
   <ItemGroup>
     <Content Include="Resources\register-activity-70.ico">
@@ -13,7 +13,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NLog.Extensions.Logging" Version="5.1.0" />
+    <PackageReference Include="NLog.Extensions.Logging" Version="5.3.7" />
+    <PackageReference Include="Topelab.Core.Resolver.Microsoft" Version="1.5.3" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Topelab.RegisterActivity.Business\Topelab.RegisterActivity.Business.csproj" />
@@ -23,6 +24,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="data\ActivitiesDB.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="nlog.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

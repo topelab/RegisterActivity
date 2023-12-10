@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 using System.Timers;
+using Topelab.RegisterActivity.BaseBusiness.Services.Interfaces;
 using Topelab.RegisterActivity.Business.DTO;
 using Topelab.RegisterActivity.Business.Factories;
 using Topelab.RegisterActivity.Business.Tools;
@@ -12,14 +13,15 @@ namespace Topelab.RegisterActivity.Business.Services
         private bool timerRunning;
         private readonly Timer timer;
         private readonly IProcessDTOFactory processDTOFactory;
+        private readonly ILogService logService;
         private Action<ProcessDTO> onNewProcesses;
 
         public const double PickDataInterval = 1000;
 
-        public ProcessService(IProcessDTOFactory processDTOFactory)
+        public ProcessService(IProcessDTOFactory processDTOFactory, ILogService logService)
         {
             this.processDTOFactory = processDTOFactory ?? throw new ArgumentNullException(nameof(processDTOFactory));
-
+            this.logService = logService ?? throw new ArgumentNullException(nameof(logService));
             timer = new Timer();
             timer.Elapsed += OnTimerElapsed;
         }
@@ -52,6 +54,10 @@ namespace Topelab.RegisterActivity.Business.Services
                         ProcessDTO currentProcess = processDTOFactory.Create(process, activeWindow, DateTime.Now, timer.Interval);
                         onNewProcesses?.Invoke(currentProcess);
                     }
+                }
+                catch (Exception ex)
+                {
+                    logService.Error(ex.Message);
                 }
                 finally
                 {

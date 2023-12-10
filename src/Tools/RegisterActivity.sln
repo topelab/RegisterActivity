@@ -5,10 +5,6 @@ VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RegisterActivity", "RegisterActivity\RegisterActivity.csproj", "{AFF9490B-8D3F-4BD6-8E8C-011E11FD5A2C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Topelab.RegisterActivity.Domain", "Topelab.RegisterActivity.Domain\Topelab.RegisterActivity.Domain.csproj", "{09BE6FBA-FC89-4F6F-99E3-BD2FFCEF5B98}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Topelab.RegisterActivity.Adapters", "Topelab.RegisterActivity.Adapters\Topelab.RegisterActivity.Adapters.csproj", "{752B4110-4A0E-4AB1-8B28-ED9BC862351E}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Topelab.RegisterActivity.Business", "Topelab.RegisterActivity.Business\Topelab.RegisterActivity.Business.csproj", "{0C3C2A17-EFC6-441E-9CED-488F6172DA4B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Topelab.RegisterActivity.Tools", "Topelab.RegisterActivity.Tools\Topelab.RegisterActivity.Tools.csproj", "{75CAC53F-11C6-4CA8-BCD0-10908A712FE9}"
@@ -22,10 +18,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00 - SolutionItems", "00 - 
 		..\..\README.md = ..\..\README.md
 		version.txt = version.txt
 	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "10 - Domain", "10 - Domain", "{5D7677CF-AEB5-42CF-A4F4-446DA8430427}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "20 - Adapter", "20 - Adapter", "{F6306A81-0364-46D7-AB9A-A84649AFA6CC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "30 - Business", "30 - Business", "{91ED1459-C1EB-45A9-9412-B36E1CD0C63F}"
 EndProject
@@ -43,14 +35,6 @@ Global
 		{AFF9490B-8D3F-4BD6-8E8C-011E11FD5A2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AFF9490B-8D3F-4BD6-8E8C-011E11FD5A2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AFF9490B-8D3F-4BD6-8E8C-011E11FD5A2C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{09BE6FBA-FC89-4F6F-99E3-BD2FFCEF5B98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{09BE6FBA-FC89-4F6F-99E3-BD2FFCEF5B98}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{09BE6FBA-FC89-4F6F-99E3-BD2FFCEF5B98}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{09BE6FBA-FC89-4F6F-99E3-BD2FFCEF5B98}.Release|Any CPU.Build.0 = Release|Any CPU
-		{752B4110-4A0E-4AB1-8B28-ED9BC862351E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{752B4110-4A0E-4AB1-8B28-ED9BC862351E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{752B4110-4A0E-4AB1-8B28-ED9BC862351E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{752B4110-4A0E-4AB1-8B28-ED9BC862351E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0C3C2A17-EFC6-441E-9CED-488F6172DA4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0C3C2A17-EFC6-441E-9CED-488F6172DA4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C3C2A17-EFC6-441E-9CED-488F6172DA4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -69,8 +53,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{AFF9490B-8D3F-4BD6-8E8C-011E11FD5A2C} = {A20A0F2B-DF49-4C94-B581-15E533F4B9C3}
-		{09BE6FBA-FC89-4F6F-99E3-BD2FFCEF5B98} = {5D7677CF-AEB5-42CF-A4F4-446DA8430427}
-		{752B4110-4A0E-4AB1-8B28-ED9BC862351E} = {F6306A81-0364-46D7-AB9A-A84649AFA6CC}
 		{0C3C2A17-EFC6-441E-9CED-488F6172DA4B} = {91ED1459-C1EB-45A9-9412-B36E1CD0C63F}
 		{75CAC53F-11C6-4CA8-BCD0-10908A712FE9} = {D3FE9D66-951A-4823-8279-2FF50C9D45B5}
 		{D7FE9081-F458-4989-A9CC-791B7C1F6A01} = {91ED1459-C1EB-45A9-9412-B36E1CD0C63F}

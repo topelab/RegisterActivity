@@ -1,8 +1,8 @@
-using Topelab.RegisterActivity.Business.Enums;
+using Topelab.RegisterActivity.BaseBusiness.Enums;
 
 namespace Topelab.RegisterActivity.Business.Services
 {
-    public interface IExportService
+    public interface IExportDataService
     {
         void Start(ExportFormat format);
     }

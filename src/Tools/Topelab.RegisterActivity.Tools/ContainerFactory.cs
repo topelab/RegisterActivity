@@ -5,7 +5,8 @@ using Topelab.Core.Resolver.Interfaces;
 using Topelab.Core.Resolver.Microsoft;
 using Topelab.RegisterActivity.Adapters.Context;
 using Topelab.RegisterActivity.Adapters.Interfaces;
-using Topelab.RegisterActivity.Tools.Actions;
+using Topelab.RegisterActivity.Adapters.SetupDI;
+using Topelab.RegisterActivity.BaseBusiness.Actions;
 
 namespace Topelab.RegisterActivity.Tools
 {
@@ -22,19 +23,18 @@ namespace Topelab.RegisterActivity.Tools
         private static ResolveInfoCollection GetCollection()
         {
             return new ResolveInfoCollection()
-                .AddScoped<ILoggerFactory, LoggerFactory>()
-                .AddFactory(s => GetLogger(s))
-                .AddScoped<IRegisterActivityDbContextFactory, RegisterActivityDbContextFactory>()
+                .AddCollection(AdaptersSetupDI.ModuleDependencies)
+                .AddScoped<IRegisterActivityDbContextOptionsFactory, RegisterActivityDbContextOptionsFactory>()
+                .AddFactory(s =>
+                {
+                    var factory = s.Get<ILoggerFactory>();
+                    factory.AddProvider(new NLogLoggerProvider());
+                    return factory.CreateLogger("Topelab.RegisterActivity.Tools");
+                })
                 .AddSelf<CreateAction>()
+                .AddSelf<DeleteAction>()
                 .AddSelf<MigrateAction>()
                 .AddSelf<CanConnectAction>();
-        }
-
-        private static ILogger GetLogger(IResolver resolver)
-        {
-            var factory = resolver.Get<ILoggerFactory>();
-            factory.AddProvider(new NLogLoggerProvider());
-            return factory.CreateLogger("Topelab.RegisterActivity.Tools");
         }
     }
 }
