@@ -1,4 +1,4 @@
-using Moq;
+using Telerik.JustMock;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -15,8 +15,7 @@ namespace Topelab.RegisterActivity.Business.Test.Services
     [TestFixture]
     public class DataServiceTests
     {
-        private MockRepository mockRepository;
-        private Mock<IWinlogService> mockWinlogService;
+        private IWinlogService mockWinlogService;
         private Stack<Winlog> mockWinlogStack;
         private static int id = 0;
 
@@ -25,24 +24,22 @@ namespace Topelab.RegisterActivity.Business.Test.Services
         {
             mockWinlogStack = new Stack<Winlog>();
 
-            this.mockRepository = new MockRepository(MockBehavior.Strict);
+            this.mockWinlogService = Mock.Create<IWinlogService>();
 
-            this.mockWinlogService = this.mockRepository.Create<IWinlogService>();
-            this.mockWinlogService
-                .Setup(m => m.Save(It.IsAny<Winlog>()))
-                .Returns((Winlog w) =>
-                {
-                    w.LocalId = ++id;
-                    mockWinlogStack.Push(w);
-                    Debug.Print(w.ToJSon());
-                    return id;
-                });
+            Mock.Arrange(() => mockWinlogService.Save(Arg.IsAny<Winlog>())).Returns<Winlog>(w =>
+            {
+                w.LocalId = ++id;
+                mockWinlogStack.Push(w);
+                Debug.Print(w.ToJSon());
+                return id;
+
+            });
         }
 
         private DataService CreateService()
         {
             return new DataService(
-                this.mockWinlogService.Object);
+                this.mockWinlogService);
         }
 
         [Test]
@@ -70,8 +67,7 @@ namespace Topelab.RegisterActivity.Business.Test.Services
             service.CalculateData(currentProcess5, afterSave);
 
             // Assert
-            Assert.IsTrue(mockWinlogStack.Peek().TotalTime > 0);
-            this.mockRepository.VerifyAll();
+            Assert.That(mockWinlogStack.Peek().TotalTime > 0);
         }
     }
 }
