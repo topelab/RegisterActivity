@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Reflection;
 using Topelab.Core.Helpers.Extensions;
@@ -35,10 +36,15 @@ namespace RegisterActivity.Main
 
         private DateTime lastDate;
 
-        private void UpdateEnvironment(DateTime date)
+        private void UpdateEnvironment(DateTime date, bool isFirstTime)
         {
             if (date.Date > lastDate)
             {
+                if (!isFirstTime)
+                {
+                    using var oldDB = dbContextFactory.Create();
+                    oldDB.Database.CloseConnection();
+                }
                 lastDate = date.Date;
                 Environment.SetEnvironmentVariable("YEAR", date.ToString("yyyy"));
                 Environment.SetEnvironmentVariable("MONTH", date.ToString("MM"));
@@ -50,10 +56,12 @@ namespace RegisterActivity.Main
 
         private void StartServices(MainWindowVM mainWindowVM)
         {
+            bool isFirstTime = true;
             void RegisterData(ProcessDTO currentProcess)
             {
-                UpdateEnvironment(DateTime.Today);
+                UpdateEnvironment(DateTime.Today, isFirstTime);
                 dataService.CalculateData(currentProcess, o => mainWindowVM.AddMessage($"{o.StartTime:g} - {o.MainWindowTitle}"));
+                isFirstTime = false;
             }
 
             processService.Start(RegisterData);
