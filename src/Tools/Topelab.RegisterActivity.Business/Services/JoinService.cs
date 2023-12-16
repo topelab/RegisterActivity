@@ -16,29 +16,28 @@ namespace Topelab.RegisterActivity.Business.Services
         public void Start(string filePattern, string outputFile)
         {
             TryCreateOutputDB(outputFile);
-            TryInsertInputDBFiles(Directory.EnumerateFiles(filePattern));
+            var path = Path.GetDirectoryName(filePattern);
+            var pattern = $"{Path.GetFileNameWithoutExtension(filePattern)}.db";
+            TryInsertInputDBFiles(path, Directory.EnumerateFiles(path, pattern));
         }
 
-        private void TryInsertInputDBFiles(IEnumerable<string> inputFiles)
+        private void TryInsertInputDBFiles(string path, IEnumerable<string> inputFiles)
         {
             if (inputFiles.Any())
             {
                 foreach (var inputFile in inputFiles)
                 {
-                    TryInsertInputDBFile(inputFile);
+                    TryInsertInputDBFile(Path.Combine(path, Path.GetFileNameWithoutExtension(inputFile)));
                 }
             }
         }
 
         private void TryInsertInputDBFile(string inputFile)
         {
-            if (File.Exists(inputFile))
-            {
-                var data = GetData(inputFile);
-                using var outputDB = dbContextFactory.Create("outputDB");
-                outputDB.Winlog.AddRange(data);
-                outputDB.SaveChanges();
-            }
+            var data = GetData(inputFile);
+            using var outputDB = dbContextFactory.Create("outputDB");
+            outputDB.Winlog.AddRange(data);
+            outputDB.SaveChanges();
         }
 
         private List<Winlog> GetData(string inputFile)

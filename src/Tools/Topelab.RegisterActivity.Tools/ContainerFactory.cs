@@ -8,6 +8,7 @@ using Topelab.RegisterActivity.Adapters.Interfaces;
 using Topelab.RegisterActivity.Adapters.SetupDI;
 using Topelab.RegisterActivity.BaseBusiness.Actions;
 using Topelab.RegisterActivity.BaseBusiness.SetupDI;
+using Topelab.RegisterActivity.Business.Factories;
 using Topelab.RegisterActivity.Business.SetupDI;
 using Topelab.RegisterActivity.Tools.Actions;
 
@@ -29,7 +30,7 @@ namespace Topelab.RegisterActivity.Tools
                 .AddCollection(AdaptersSetupDI.ModuleDependencies)
                 .AddCollection(BaseBusinessSetupDI.ModuleDependencies)
                 .AddCollection(BusinessSetupDI.ModuleDependencies)
-                .AddScoped<IRegisterActivityDbContextOptionsFactory, RegisterActivityDbContextOptionsFactory>()
+                .AddScoped<IRegisterActivityDbContextOptionsFactory, RegisterActivityDbContextEnvironmentFactory>()
                 .AddFactory(s =>
                 {
                     var factory = s.Get<ILoggerFactory>();
