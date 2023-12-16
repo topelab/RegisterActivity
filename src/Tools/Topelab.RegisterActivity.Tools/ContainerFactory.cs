@@ -7,6 +7,9 @@ using Topelab.RegisterActivity.Adapters.Context;
 using Topelab.RegisterActivity.Adapters.Interfaces;
 using Topelab.RegisterActivity.Adapters.SetupDI;
 using Topelab.RegisterActivity.BaseBusiness.Actions;
+using Topelab.RegisterActivity.BaseBusiness.SetupDI;
+using Topelab.RegisterActivity.Business.SetupDI;
+using Topelab.RegisterActivity.Tools.Actions;
 
 namespace Topelab.RegisterActivity.Tools
 {
@@ -24,6 +27,8 @@ namespace Topelab.RegisterActivity.Tools
         {
             return new ResolveInfoCollection()
                 .AddCollection(AdaptersSetupDI.ModuleDependencies)
+                .AddCollection(BaseBusinessSetupDI.ModuleDependencies)
+                .AddCollection(BusinessSetupDI.ModuleDependencies)
                 .AddScoped<IRegisterActivityDbContextOptionsFactory, RegisterActivityDbContextOptionsFactory>()
                 .AddFactory(s =>
                 {
@@ -34,7 +39,8 @@ namespace Topelab.RegisterActivity.Tools
                 .AddSelf<CreateAction>()
                 .AddSelf<DeleteAction>()
                 .AddSelf<MigrateAction>()
-                .AddSelf<CanConnectAction>();
+                .AddSelf<CanConnectAction>()
+                .AddSelf<JoinAction>();
         }
     }
 }
