@@ -10,7 +10,7 @@ namespace Topelab.RegisterActivity.Tools.Actions
     {
         public override bool Start(string[] args = null)
         {
-            bool result = true;
+            ArgumentNullException.ThrowIfNull(args);
 
             if (args.Length < 2)
             {
@@ -18,6 +18,7 @@ namespace Topelab.RegisterActivity.Tools.Actions
                 return false;
             }
 
+            bool result = true;
             try
             {
                 joinService.Start(args[0], args[1]);

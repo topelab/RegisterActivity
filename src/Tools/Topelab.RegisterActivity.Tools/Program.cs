@@ -33,6 +33,10 @@ namespace Topelab.RegisterActivity.Tools
                     logger.Info("Joining DB...");
                     action = resolver.Get<JoinAction>();
                     break;
+                case "export":
+                    logger.Info("Exporting DB...");
+                    action = resolver.Get<ExportAction>();
+                    break;
                 default:
                     logger.Info("Checking DB...");
                     action = resolver.Get<CanConnectAction>();

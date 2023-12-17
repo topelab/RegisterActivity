@@ -24,7 +24,7 @@ namespace Topelab.RegisterActivity.Business.Services
             var dbFileName = ConfigHelper.GetConnectionString(Constants.ConnStringKey).GetPart("Data Source");
             var filename = $"{Path.GetFileNameWithoutExtension(dbFileName)}";
             var outputFileName = Environment.ExpandEnvironmentVariables(ConfigHelper.Config[Constants.OutputFileName] ?? filename);
-            var filePath = ConfigHelper.Config[Constants.OutputDirectory] ?? Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            var filePath = Environment.ExpandEnvironmentVariables(ConfigHelper.Config[Constants.OutputDirectory] ?? Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
 
             exportService.Export(() => winlogService.GetTimeLineEvents(), format, outputFileName, filePath);
         }

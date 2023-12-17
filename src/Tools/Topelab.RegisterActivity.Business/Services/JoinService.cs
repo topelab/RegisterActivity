@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Topelab.RegisterActivity.Adapters.Interfaces;
+using Topelab.RegisterActivity.Business.Enums;
 using Topelab.RegisterActivity.Business.Services.Interfaces;
 using Topelab.RegisterActivity.Domain.Entities;
 
@@ -35,14 +36,14 @@ namespace Topelab.RegisterActivity.Business.Services
         private void TryInsertInputDBFile(string inputFile)
         {
             var data = GetData(inputFile);
-            using var outputDB = dbContextFactory.Create("outputDB");
-            outputDB.Winlog.AddRange(data);
-            outputDB.SaveChanges();
+            using var localserver = dbContextFactory.Create();
+            localserver.Winlog.AddRange(data);
+            localserver.SaveChanges();
         }
 
         private List<Winlog> GetData(string inputFile)
         {
-            Environment.SetEnvironmentVariable("INPUTFILE", inputFile);
+            Environment.SetEnvironmentVariable(Constants.InputFile, inputFile);
             using var db = dbContextFactory.Create("inputDB");
             var data = db.Winlog.AsNoTracking().Select(r => r).ToList();
             data.ForEach(r => r.LocalId = 0);
@@ -52,8 +53,8 @@ namespace Topelab.RegisterActivity.Business.Services
 
         private void TryCreateOutputDB(string outputFile)
         {
-            Environment.SetEnvironmentVariable("OUTPUTFILE", outputFile);
-            using var db = dbContextFactory.Create("outputDB");
+            Environment.SetEnvironmentVariable(Constants.OutputFile, outputFile);
+            using var db = dbContextFactory.Create();
             db.Database.EnsureCreated();
         }
 

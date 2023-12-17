@@ -41,7 +41,8 @@ namespace Topelab.RegisterActivity.Tools
                 .AddSelf<DeleteAction>()
                 .AddSelf<MigrateAction>()
                 .AddSelf<CanConnectAction>()
-                .AddSelf<JoinAction>();
+                .AddSelf<JoinAction>()
+                .AddSelf<ExportAction>();
         }
     }
 }

@@ -3,6 +3,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
     <Version>1.3.2</Version>
+    <AssemblyName>raTools</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.13">
