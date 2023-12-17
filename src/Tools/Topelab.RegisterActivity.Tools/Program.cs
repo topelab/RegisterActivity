@@ -37,6 +37,10 @@ namespace Topelab.RegisterActivity.Tools
                     logger.Info("Exporting DB...");
                     action = resolver.Get<ExportAction>();
                     break;
+                case "split":
+                    logger.Info("Splitting DB...");
+                    action = resolver.Get<SplitAction>();
+                    break;
                 default:
                     logger.Info("Checking DB...");
                     action = resolver.Get<CanConnectAction>();

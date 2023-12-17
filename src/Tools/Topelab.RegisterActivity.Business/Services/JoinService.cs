@@ -14,9 +14,9 @@ namespace Topelab.RegisterActivity.Business.Services
     {
         private readonly IRegisterActivityDbContextFactory dbContextFactory = dbContextFactory ?? throw new ArgumentNullException(nameof(dbContextFactory));
 
-        public void Start(string filePattern, string outputFile)
+        public void Start(string filePattern, string outputFile, bool create)
         {
-            TryCreateOutputDB(outputFile);
+            TryCreateOutputDB(outputFile, create);
             var path = Path.GetDirectoryName(filePattern);
             var pattern = $"{Path.GetFileNameWithoutExtension(filePattern)}.db";
             TryInsertInputDBFiles(path, Directory.EnumerateFiles(path, pattern));
@@ -36,9 +36,9 @@ namespace Topelab.RegisterActivity.Business.Services
         private void TryInsertInputDBFile(string inputFile)
         {
             var data = GetData(inputFile);
-            using var localserver = dbContextFactory.Create();
-            localserver.Winlog.AddRange(data);
-            localserver.SaveChanges();
+            using var db = dbContextFactory.Create();
+            db.Winlog.AddRange(data);
+            db.SaveChanges();
         }
 
         private List<Winlog> GetData(string inputFile)
@@ -51,8 +51,14 @@ namespace Topelab.RegisterActivity.Business.Services
             return data;
         }
 
-        private void TryCreateOutputDB(string outputFile)
+        private void TryCreateOutputDB(string outputFile, bool create)
         {
+            string fullName = string.Concat(outputFile, ".db");
+            if (create && File.Exists(fullName))
+            {
+                File.Delete(fullName);
+            }
+
             Environment.SetEnvironmentVariable(Constants.OutputFile, outputFile);
             using var db = dbContextFactory.Create();
             db.Database.EnsureCreated();

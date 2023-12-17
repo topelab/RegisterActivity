@@ -30,6 +30,7 @@ namespace Topelab.RegisterActivity.Business.SetupDI
             .AddScoped<IRegisterActivityDbContextOptionsFactory, RegisterActivityDbContextEnvironmentFactory>()
             .AddSingleton<IExportDataService, ExportDataService>()
             .AddSingleton<IJoinService, JoinService>()
+            .AddSingleton<ISplitService, SplitService>()
             ;
         }
     }

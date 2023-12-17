@@ -3,7 +3,6 @@ using NLog.Extensions.Logging;
 using Topelab.Core.Resolver.Entities;
 using Topelab.Core.Resolver.Interfaces;
 using Topelab.Core.Resolver.Microsoft;
-using Topelab.RegisterActivity.Adapters.Context;
 using Topelab.RegisterActivity.Adapters.Interfaces;
 using Topelab.RegisterActivity.Adapters.SetupDI;
 using Topelab.RegisterActivity.BaseBusiness.Actions;
@@ -42,7 +41,9 @@ namespace Topelab.RegisterActivity.Tools
                 .AddSelf<MigrateAction>()
                 .AddSelf<CanConnectAction>()
                 .AddSelf<JoinAction>()
-                .AddSelf<ExportAction>();
+                .AddSelf<ExportAction>()
+                .AddSelf<SplitAction>()
+                ;
         }
     }
 }
