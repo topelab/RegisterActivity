@@ -13,8 +13,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NLog.Extensions.Logging" Version="5.3.7" />
-    <PackageReference Include="Topelab.Core.Resolver.Microsoft" Version="1.5.3" />
+    <PackageReference Include="NLog.Extensions.Logging" Version="5.3.8" />
+    <PackageReference Include="Topelab.Core.Resolver.Microsoft" Version="1.5.4" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Topelab.RegisterActivity.Business\Topelab.RegisterActivity.Business.csproj" />

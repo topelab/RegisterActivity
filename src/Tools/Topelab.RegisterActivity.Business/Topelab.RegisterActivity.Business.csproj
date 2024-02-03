@@ -4,6 +4,6 @@
     <Version>1.3.2</Version>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Topelab.RegisterActivity.BaseBusiness" Version="3.5.4" />
+    <PackageReference Include="Topelab.RegisterActivity.BaseBusiness" Version="3.6.2" />
   </ItemGroup>
 </Project>
