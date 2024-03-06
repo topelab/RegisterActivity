@@ -4,6 +4,7 @@ using Topelab.RegisterActivity.Adapters.Interfaces;
 using Topelab.RegisterActivity.Business.Factories;
 using Topelab.RegisterActivity.Business.Services;
 using Topelab.RegisterActivity.Business.Services.Entities;
+using Topelab.RegisterActivity.Business.Services.Interfaces;
 
 namespace Topelab.RegisterActivity.Business.SetupDI
 {
@@ -28,6 +29,8 @@ namespace Topelab.RegisterActivity.Business.SetupDI
             .AddSingleton<IRegisterActivityDbContextFactory, RegisterActivityDbContextFactory>()
             .AddScoped<IRegisterActivityDbContextOptionsFactory, RegisterActivityDbContextEnvironmentFactory>()
             .AddSingleton<IExportDataService, ExportDataService>()
+            .AddSingleton<IJoinService, JoinService>()
+            .AddSingleton<ISplitService, SplitService>()
             ;
         }
     }
