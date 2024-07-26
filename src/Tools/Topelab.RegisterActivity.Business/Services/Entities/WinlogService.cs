@@ -38,7 +38,7 @@ namespace Topelab.RegisterActivity.Business.Services.Entities
             var datos = db.Winlog.AsNoTracking()
                 .Select(r => new TimelineEventsDTO
                 {
-                    LocalId = r.LocalId,
+                    LocalId = r.Id,
                     Title = r.Title,
                     StartTime = DateTime.Parse(r.StartTime),
                     EndTime = DateTime.Parse(r.EndTime),
@@ -59,7 +59,7 @@ namespace Topelab.RegisterActivity.Business.Services.Entities
             using var db = contextFactory.Create();
             db.Add(winlogToSave);
             db.SaveChanges();
-            return winlogToSave.LocalId;
+            return winlogToSave.Id;
         }
 
     }

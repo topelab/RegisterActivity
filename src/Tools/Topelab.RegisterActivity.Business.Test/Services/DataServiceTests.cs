@@ -28,7 +28,7 @@ namespace Topelab.RegisterActivity.Business.Test.Services
 
             Mock.Arrange(() => mockWinlogService.Save(Arg.IsAny<Winlog>())).Returns<Winlog>(w =>
             {
-                w.LocalId = ++id;
+                w.Id = ++id;
                 mockWinlogStack.Push(w);
                 Debug.Print(w.ToJSon());
                 return id;

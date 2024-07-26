@@ -29,7 +29,7 @@ namespace Topelab.RegisterActivity.Business.Services
             Environment.SetEnvironmentVariable(Constants.InputFile, inputFile);
             using var db = dbContextFactory.Create("inputDB");
             var data = db.Winlog.AsNoTracking().Select(r => r).ToList();
-            data.ForEach(r => r.LocalId = 0);
+            data.ForEach(r => r.Id = 0);
 
             int startTimePart = splitType == SplitType.Yearly ? 4 : 7;
 
