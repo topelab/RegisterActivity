@@ -1,6 +1,7 @@
 using Topelab.Core.Resolver.Entities;
 using Topelab.RegisterActivity.Adapters.Context;
 using Topelab.RegisterActivity.Adapters.Interfaces;
+using Topelab.RegisterActivity.BaseBusiness.SetupDI;
 using Topelab.RegisterActivity.Business.Factories;
 using Topelab.RegisterActivity.Business.Services;
 using Topelab.RegisterActivity.Business.Services.Entities;
@@ -21,17 +22,19 @@ namespace Topelab.RegisterActivity.Business.SetupDI
         private static ResolveInfoCollection BaseDependencies()
         {
             return new ResolveInfoCollection()
-            // Business Dependencies for Winlog
-            .AddSingleton<IWinlogService, WinlogService>()
-            .AddSingleton<IProcessDTOFactory, ProcessDTOFactory>()
+                .AddCollection(BaseBusinessSetupDI.ModuleDependencies)
 
-            // Other dependencies
-            .AddSingleton<IRegisterActivityDbContextFactory, RegisterActivityDbContextFactory>()
-            .AddScoped<IRegisterActivityDbContextOptionsFactory, RegisterActivityDbContextEnvironmentFactory>()
-            .AddSingleton<IExportDataService, ExportDataService>()
-            .AddSingleton<IJoinService, JoinService>()
-            .AddSingleton<ISplitService, SplitService>()
-            ;
+                // Business Dependencies for Winlog
+                .AddSingleton<IWinlogService, WinlogService>()
+                .AddSingleton<IProcessDTOFactory, ProcessDTOFactory>()
+
+                // Other dependencies
+                .AddSingleton<IRegisterActivityDbContextFactory, RegisterActivityDbContextFactory>()
+                .AddScoped<IRegisterActivityDbContextOptionsFactory, RegisterActivityDbContextEnvironmentFactory>()
+                .AddSingleton<IExportDataService, ExportDataService>()
+                .AddSingleton<IJoinService, JoinService>()
+                .AddSingleton<ISplitService, SplitService>()
+                ;
         }
     }
 }
