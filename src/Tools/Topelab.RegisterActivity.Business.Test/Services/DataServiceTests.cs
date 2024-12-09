@@ -3,7 +3,7 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Topelab.Core.Helpers.Extensions;
+using Topelab.Core.Domain.Extensions;
 using Topelab.RegisterActivity.Business.DTO;
 using Topelab.RegisterActivity.Business.Factories;
 using Topelab.RegisterActivity.Business.Services;
@@ -56,7 +56,7 @@ namespace Topelab.RegisterActivity.Business.Test.Services
             ProcessDTO currentProcess3 = processFactory.Create(process, "DataServiceTest", lastTimeActive, 1000);
             ProcessDTO currentProcess4 = processFactory.Create(process, "DataServiceTest", lastTimeActive, 1000);
             ProcessDTO currentProcess5 = processFactory.Create(process, "DataServiceTest2", lastTimeActive, 1000);
-            
+
             Action<ProcessDTO> afterSave = null;
 
             // Act

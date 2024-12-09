@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using RegisterActivity.Factories;
 using System;
 using System.Reflection;
-using Topelab.Core.Helpers.Extensions;
+using Topelab.Core.Domain.Extensions;
 using Topelab.RegisterActivity.Adapters.Interfaces;
 using Topelab.RegisterActivity.BaseBusiness.Enums;
 using Topelab.RegisterActivity.Business.DTO;

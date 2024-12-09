@@ -1,5 +1,5 @@
 using System;
-using Topelab.Core.Helpers.Extensions;
+using Topelab.Core.Domain.Extensions;
 
 namespace Topelab.RegisterActivity.Business.DTO
 {
