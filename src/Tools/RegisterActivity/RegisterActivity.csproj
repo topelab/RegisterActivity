@@ -5,7 +5,7 @@
     <ApplicationIcon>Resources\register-activity-70.ico</ApplicationIcon>
     <UseWindowsForms>true</UseWindowsForms>
     <UseWPF>true</UseWPF>
-    <Version>1.4.0</Version>
+    <Version>1.4.1</Version>
   </PropertyGroup>
   <ItemGroup>
     <Content Include="Resources\register-activity-70.ico">
@@ -14,7 +14,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="NLog.Extensions.Logging" Version="5.3.15" />
-    <PackageReference Include="Topelab.Core.Resolver.Microsoft" Version="1.8.1" />
+    <PackageReference Include="Topelab.Core.Resolver.Microsoft" Version="1.8.2" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Topelab.RegisterActivity.Business\Topelab.RegisterActivity.Business.csproj" />
