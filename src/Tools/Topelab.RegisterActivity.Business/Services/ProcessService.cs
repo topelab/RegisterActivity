@@ -1,3 +1,4 @@
+using Microsoft.Data.Sqlite;
 using System;
 using System.Diagnostics;
 using System.Timers;
@@ -36,6 +37,7 @@ namespace Topelab.RegisterActivity.Business.Services
         public void Stop()
         {
             timer.Stop();
+            SqliteConnection.ClearAllPools();
         }
 
         private void OnTimerElapsed(object sender, ElapsedEventArgs e)

@@ -23,17 +23,17 @@ namespace Topelab.RegisterActivity.Tools.Actions
 
             var result = true;
 
-            string outputFile = args[0];
+            var outputFile = args[0];
             ExportFormat exportFormat = args.Length > 1 && Enum.TryParse(args[1], out exportFormat) ? exportFormat : ExportFormat.CSV;
-            string outputDirectory = args.Length > 2 ? args[2] : Path.GetDirectoryName(outputFile);
-            string outFileName = args.Length > 3 ? args[3] : $"ActivitiesDB-{Environment.MachineName}";
+            var outputDirectory = args.Length > 2 ? args[2] : Path.GetDirectoryName(outputFile);
+            var outFileName = args.Length > 3 ? args[3] : $"ActivitiesDB-{Environment.MachineName}";
 
             try
             {
                 Environment.SetEnvironmentVariable(Constants.OutputFile, outputFile);
-                Environment.SetEnvironmentVariable(Constants.Year, DateTime.Today.ToString("yyyy"));
-                Environment.SetEnvironmentVariable(Constants.Month, DateTime.Today.ToString("MM"));
-                Environment.SetEnvironmentVariable(Constants.Day, DateTime.Today.ToString("dd"));
+                Environment.SetEnvironmentVariable(Constants.Year, DateTime.Now.ToString("yyyy"));
+                Environment.SetEnvironmentVariable(Constants.Month, DateTime.Now.ToString("MM"));
+                Environment.SetEnvironmentVariable(Constants.Day, DateTime.Now.ToString("dd"));
                 Environment.SetEnvironmentVariable(Constants.OutputDirectory, outputDirectory);
                 Environment.SetEnvironmentVariable(Constants.OutputFileName, outFileName);
                 exportDataService.Start(exportFormat);

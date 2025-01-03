@@ -1,6 +1,7 @@
 using Microsoft.Extensions.Logging;
 using NLog.Extensions.Logging;
 using RegisterActivity.Base;
+using RegisterActivity.Factories;
 using RegisterActivity.Main;
 using System;
 using System.Windows.Input;
@@ -27,6 +28,7 @@ namespace RegisterActivity
                 .AddFactory(s => GetLogger(s))
                 .AddTransient<IMainWindowFactory, MainWindowFactory>()
                 .AddTransient<IMainWindowInitializer, MainWindowInitializer>()
+                .AddTransient<ICommandFactory, CommandFactory>()
                 .AddSelf<MainWindow>(typeof(MainWindowVM))
                 .AddSelf<MainWindowVM>()
                 ;

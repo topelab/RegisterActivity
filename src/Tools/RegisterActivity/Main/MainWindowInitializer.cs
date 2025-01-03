@@ -1,4 +1,3 @@
-using Microsoft.EntityFrameworkCore;
 using RegisterActivity.Factories;
 using System;
 using System.Reflection;
@@ -6,6 +5,7 @@ using Topelab.Core.Domain.Extensions;
 using Topelab.RegisterActivity.Adapters.Interfaces;
 using Topelab.RegisterActivity.BaseBusiness.Enums;
 using Topelab.RegisterActivity.Business.DTO;
+using Topelab.RegisterActivity.Business.Enums;
 using Topelab.RegisterActivity.Business.Services;
 
 namespace RegisterActivity.Main
@@ -36,19 +36,14 @@ namespace RegisterActivity.Main
 
         private DateTime lastDate;
 
-        private void UpdateEnvironment(DateTime date, bool isFirstTime)
+        private void UpdateEnvironment(DateTime date)
         {
-            if (date.Date > lastDate)
+            if (date.Date > lastDate.Date)
             {
-                if (!isFirstTime)
-                {
-                    using var oldDB = dbContextFactory.Create();
-                    oldDB.Database.CloseConnection();
-                }
-                lastDate = date.Date;
-                Environment.SetEnvironmentVariable("YEAR", date.ToString("yyyy"));
-                Environment.SetEnvironmentVariable("MONTH", date.ToString("MM"));
-                Environment.SetEnvironmentVariable("DAY", date.ToString("dd"));
+                lastDate = date;
+                Environment.SetEnvironmentVariable(Constants.Year, date.ToString("yyyy"));
+                Environment.SetEnvironmentVariable(Constants.Month, date.ToString("MM"));
+                Environment.SetEnvironmentVariable(Constants.Day, date.ToString("dd"));
                 using var db = dbContextFactory.Create();
                 db.Database.EnsureCreated();
             }
@@ -56,12 +51,10 @@ namespace RegisterActivity.Main
 
         private void StartServices(MainWindowVM mainWindowVM)
         {
-            bool isFirstTime = true;
             void RegisterData(ProcessDTO currentProcess)
             {
-                UpdateEnvironment(DateTime.Today, isFirstTime);
+                UpdateEnvironment(DateTime.Now);
                 dataService.CalculateData(currentProcess, o => mainWindowVM.AddMessage($"{o.StartTime:g} - {o.MainWindowTitle}"));
-                isFirstTime = false;
             }
 
             processService.Start(RegisterData);
@@ -75,7 +68,7 @@ namespace RegisterActivity.Main
 
         private void SetTitle(MainWindowVM mainWindowVM)
         {
-            var version = Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion.Piece(0,'+');
+            var version = Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion.Piece(0, '+');
             mainWindowVM.Title = $"Register activities ({version})";
         }
 

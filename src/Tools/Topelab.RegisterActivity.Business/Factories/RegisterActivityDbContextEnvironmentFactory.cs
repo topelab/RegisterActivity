@@ -1,3 +1,4 @@
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -30,6 +31,7 @@ namespace Topelab.RegisterActivity.Business.Factories
             connString = Environment.ExpandEnvironmentVariables(connString);
             if (!optionsCache.TryGetValue(connString, out var dbContextOptions))
             {
+                SqliteConnection.ClearAllPools();
                 dbContextOptions = new DbContextOptionsBuilder<RegisterActivityDbContext>()
                     .UseSqlite(connString)
                     .Options;
