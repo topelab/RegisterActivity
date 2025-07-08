@@ -39,7 +39,7 @@ namespace Topelab.RegisterActivity.Business.Services.Entities
                 .Select(r => new TimelineEventsDTO
                 {
                     LocalId = r.Id,
-                    Title = r.Title,
+                    Title = r.WindowTitle,
                     StartTime = DateTime.Parse(r.StartTime),
                     EndTime = DateTime.Parse(r.EndTime),
                     Filename = r.Filename,

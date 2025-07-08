@@ -59,7 +59,7 @@ namespace Topelab.RegisterActivity.Business.Services
                 EndTime = DateTime.Now.AddMilliseconds(-item.Discount).ToString("s"),
                 StartTime = item.StartTime.ToString("s"),
                 Program = item.ProcessName,
-                Title = item.MainWindowTitle,
+                WindowTitle = item.MainWindowTitle,
                 Filename = item.FileName,
                 TotalTime = item.DurationInSeconds,
                 HashCode = item.GetHashCode()
