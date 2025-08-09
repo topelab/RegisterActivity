@@ -1,0 +1,18 @@
+<Solution>
+  <Folder Name="/00 - SolutionItems/">
+    <File Path="../../LEAME.md" />
+    <File Path="../../README.md" />
+    <File Path="readme.md" />
+    <File Path="version.txt" />
+  </Folder>
+  <Folder Name="/30 - Business/">
+    <Project Path="Topelab.RegisterActivity.Business.Test/Topelab.RegisterActivity.Business.Test.csproj" />
+    <Project Path="Topelab.RegisterActivity.Business/Topelab.RegisterActivity.Business.csproj" />
+  </Folder>
+  <Folder Name="/40 - Presentation/">
+    <Project Path="RegisterActivity/RegisterActivity.csproj" />
+  </Folder>
+  <Folder Name="/90 - Other/">
+    <Project Path="Topelab.RegisterActivity.Tools/Topelab.RegisterActivity.Tools.csproj" />
+  </Folder>
+</Solution>
