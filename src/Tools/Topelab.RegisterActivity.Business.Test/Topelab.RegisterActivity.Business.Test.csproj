@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
     <IsPackable>false</IsPackable>
-    <Version>1.4.8</Version>
+    <Version>1.4.9</Version>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="JustMock" Version="2025.3.813.457" />

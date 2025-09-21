@@ -1,3 +1,8 @@
+## 1.4.9
+
+- Updating NLog.Web.AspNetCore to 6.0.4
+- Updating Topelab.RegisterActivity.BaseBusiness to 3.7.41
+
 ## 1.4.8
 
 - Updating Topelab.Core.Resolver.Microsoft to 1.9.2
