@@ -1,13 +1,13 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net10.0</TargetFramework>
-    <Version>1.5.1</Version>
+    <Version>1.5.2</Version>
     <AssemblyName>raTools</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NLog.Web.AspNetCore" Version="6.1.1" />
-    <PackageReference Include="Topelab.Core.Resolver.Microsoft" Version="2.0.2" />
+    <PackageReference Include="Topelab.Core.Resolver.Microsoft" Version="2.0.3" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Topelab.RegisterActivity.Business\Topelab.RegisterActivity.Business.csproj" />
