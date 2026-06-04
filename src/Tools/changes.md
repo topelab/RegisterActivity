@@ -1,3 +1,12 @@
+## 1.5.5
+
+- Upgrade Topelab.Core.Resolver.Microsoft to 2.0.8
+- Upgrade JustMock to 2026.2.519.512
+- Upgrade Microsoft.NET.Test.Sdk to 18.6.0
+- Upgrade coverlet.collector to 10.0.1
+- Upgrade NUnit to 4.6.1
+- Upgrade Topelab.RegisterActivity.BaseBusiness to 3.8.14
+
 ## 1.4.9
 
 - Updating NLog.Web.AspNetCore to 6.0.4

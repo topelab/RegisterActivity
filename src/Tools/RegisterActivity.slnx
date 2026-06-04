@@ -2,6 +2,7 @@
   <Folder Name="/00 - SolutionItems/">
     <File Path="../../LEAME.md" />
     <File Path="../../README.md" />
+    <File Path="changes.md" />
     <File Path="readme.md" />
     <File Path="version.txt" />
   </Folder>
