@@ -1,3 +1,10 @@
+## Version 1.5.8
+
+- Updating Topelab.Core.Resolver.Microsoft to 2.0.11
+- Updating Topelab.RegisterActivity.BaseBusiness to 3.9.2
+- Updating NLog.Extensions.Logging to 6.1.4
+- Updating NLog.Web.AspNetCore to 6.1.4
+
 ## Version 1.5.7
 
 - Updating Topelab.Core.Resolver.Microsoft to 2.0.10
