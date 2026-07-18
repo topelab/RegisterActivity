@@ -1,3 +1,9 @@
+## Version 1.5.9
+
+- Updating Topelab.Core.Resolver.Microsoft to 2.0.12
+- Updating Microsoft.NET.Test.Sdk to 18.8.1
+- Updating Topelab.RegisterActivity.BaseBusiness to 3.9.3
+
 ## Version 1.5.8
 
 - Updating Topelab.Core.Resolver.Microsoft to 2.0.11
