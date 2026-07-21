@@ -1,3 +1,7 @@
+## Version 1.5.10
+
+- Updating Topelab.RegisterActivity.BaseBusiness to 3.9.4
+
 ## Version 1.5.9
 
 - Updating Topelab.Core.Resolver.Microsoft to 2.0.12
