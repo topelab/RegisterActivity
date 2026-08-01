@@ -1,3 +1,7 @@
+## Version 1.5.13
+
+- Updated Topelab.RegisterActivity.BaseBusiness  3.9.6 -> 3.9.7
+
 ## Version 1.5.12
 
 - Updated Topelab.RegisterActivity.BaseBusiness  3.9.5 -> 3.9.6
