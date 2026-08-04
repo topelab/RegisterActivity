@@ -1,3 +1,7 @@
+## Version 1.5.15
+
+- Updated Topelab.Core.Resolver.Microsoft  2.0.12 -> 2.0.13
+
 ## Version 1.5.14
 
 - Updated Topelab.Core.Resolver.Microsoft  2.0.12 -> 2.0.13
